@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybertass Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #00ffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        .matrix-rain {
+            position: absolute;
+            color: #00ffff;
+            font-size: 14px;
+            animation: fall 10s linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100vh); }
+            100% { transform: translateY(100vh); }
+        }
+
+        /* Container */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff; }
+            to { text-shadow: 0 0 20px #00ffff, 0 0 30px #00ffff, 0 0 40px #00ffff; }
+        }
+
+        .title {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #00ffff, #0080ff, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+            border: 1px solid #00ffff;
+            padding: 20px;
+            border-radius: 10px;
+            background: rgba(0, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Search Bar */
+        .search-container {
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 16px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid #00ffff;
+            border-radius: 25px;
+            color: #00ffff;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-bar:focus {
+            box-shadow: 0 0 20px #00ffff;
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        .search-bar::placeholder {
+            color: #0080ff;
+        }
+
+        /* Content Section */
+        .content-section {
+            margin-bottom: 30px;
+        }
+
+        .section-header {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: linear-gradient(90deg, #00ffff, #0080ff);
+            color: #000;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .section-header:hover::before {
+            left: 100%;
+        }
+
+        .section-header:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.3);
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+
+        .links-grid.expanded {
+            max-height: 1000px;
+        }
+
+        .link-item {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid #00ffff;
+            border-radius: 10px;
+            padding: 20px;
+            text-decoration: none;
+            color: #00ffff;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: block;
+        }
+
+        .link-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(90deg, #00ffff, #0080ff);
+            transition: width 0.3s ease;
+            z-index: -1;
+        }
+
+        .link-item:hover::before {
+            width: 100%;
+        }
+
+        .link-item:hover {
+            color: #000;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0, 255, 255, 0.4);
+        }
+
+        .link-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .link-path {
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+                padding: 15px;
+            }
+            
+            .links-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Hidden class for search */
+        .hidden {
+            display: none !important;
+        }
+
+        /* Cyber effects */
+        .cyber-border {
+            position: relative;
+        }
+
+        .cyber-border::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #00ffff, transparent, #00ffff);
+            border-radius: inherit;
+            z-index: -1;
+            animation: rotate 3s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation" id="matrixBg"></div>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1 class="title">CYBERTASS HUB</h1>
+            <p class="subtitle">
+                Kami adalah gray hat yang berkeliaran di Surabaya, kami bekerja sama dengan banyak sekolah sekolah hingga industri terkenal yang ada di Jawa Timur. Kami siap menerima segala request tentang dunia teknologi, hubungi saja kami lewat telepati.
+            </p>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-container">
+            <input type="text" class="search-bar" id="searchBar" placeholder="🔍 Cari mata pelajaran atau konten...">
+        </div>
+
+        <!-- Content Section -->
+        <div class="content-section">
+            <div class="section-header cyber-border" onclick="toggleSection('kelas11')">
+                📚 KELAS 11 (SAS 2025)
+            </div>
+            <div class="links-grid" id="kelas11">
+                <a href="/11/biologi11.html" class="link-item" data-search="biologi sains ipa">
+                    <div class="link-title">🧬 Biologi 11</div>
+                    <div class="link-path">/11/biologi11.html</div>
+                </a>
+                <a href="/11/ekonomi11.html" class="link-item" data-search="ekonomi sosial ips">
+                    <div class="link-title">💰 Ekonomi 11</div>
+                    <div class="link-path">/11/ekonomi11.html</div>
+                </a>
+                <a href="/11/fisika11.html" class="link-item" data-search="fisika sains ipa">
+                    <div class="link-title">⚡ Fisika 11</div>
+                    <div class="link-path">/11/fisika11.html</div>
+                </a>
+                <a href="/11/indonesia11.html" class="link-item" data-search="bahasa indonesia">
+                    <div class="link-title">🇮🇩 Bahasa Indonesia 11</div>
+                    <div class="link-path">/11/indonesia11.html</div>
+                </a>
+                <a href="/11/inggriswajib11.html" class="link-item" data-search="bahasa inggris english">
+                    <div class="link-title">🇺🇸 Bahasa Inggris Wajib 11</div>
+                    <div class="link-path">/11/inggriswajib11.html</div>
+                </a>
+                <a href="/11/jawa11.html" class="link-item" data-search="bahasa jawa daerah">
+                    <div class="link-title">🏛️ Bahasa Jawa 11</div>
+                    <div class="link-path">/11/jawa11.html</div>
+                </a>
+                <a href="/11/kimia11.html" class="link-item" data-search="kimia sains ipa">
+                    <div class="link-title">🧪 Kimia 11</div>
+                    <div class="link-path">/11/kimia11.html</div>
+                </a>
+                <a href="/11/matlan11.html" class="link-item" data-search="matematika lanjut matlan">
+                    <div class="link-title">📊 Matematika Lanjut 11</div>
+                    <div class="link-path">/11/matlan11.html</div>
+                </a>
+                <a href="/11/matwa11.html" class="link-item" data-search="matematika wajib matwa">
+                    <div class="link-title">🔢 Matematika Wajib 11</div>
+                    <div class="link-path">/11/matwa11.html</div>
+                </a>
+                <a href="/11/pai11.html" class="link-item" data-search="pai agama islam">
+                    <div class="link-title">🕌 PAI 11</div>
+                    <div class="link-path">/11/pai11.html</div>
+                </a>
+                <a href="/11/pjok11.html" class="link-item" data-search="pjok olahraga kesehatan jasmani">
+                    <div class="link-title">🏃 PJOK 11</div>
+                    <div class="link-path">/11/pjok11.html</div>
+                </a>
+                <a href="/11/ppkn11.html" class="link-item" data-search="ppkn pancasila kewarganegaraan">
+                    <div class="link-title">🏛️ PPKn 11</div>
+                    <div class="link-path">/11/ppkn11.html</div>
+                </a>
+                <a href="/11/sejarah11.html" class="link-item" data-search="sejarah sosial ips">
+                    <div class="link-title">📜 Sejarah 11</div>
+                    <div class="link-path">/11/sejarah11.html</div>
+                </a>
+                <a href="/11/senibudaya11.html" class="link-item" data-search="seni budaya kesenian">
+                    <div class="link-title">🎨 Seni Budaya 11</div>
+                    <div class="link-path">/11/senibudaya11.html</div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Matrix rain animation
+        function createMatrixRain() {
+            const matrixBg = document.getElementById('matrixBg');
+            const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+            
+            for (let i = 0; i < 50; i++) {
+                const span = document.createElement('span');
+                span.className = 'matrix-rain';
+                span.style.left = Math.random() * 100 + '%';
+                span.style.animationDelay = Math.random() * 10 + 's';
+                span.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                span.textContent = chars[Math.floor(Math.random() * chars.length)];
+                matrixBg.appendChild(span);
+            }
+        }
+
+        // Toggle section expansion
+        function toggleSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            section.classList.toggle('expanded');
+        }
+
+        // Search functionality
+        function initSearch() {
+            const searchBar = document.getElementById('searchBar');
+            const linkItems = document.querySelectorAll('.link-item');
+            
+            searchBar.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                
+                linkItems.forEach(item => {
+                    const title = item.querySelector('.link-title').textContent.toLowerCase();
+                    const searchData = item.getAttribute('data-search').toLowerCase();
+                    const path = item.querySelector('.link-path').textContent.toLowerCase();
+                    
+                    if (title.includes(searchTerm) || searchData.includes(searchTerm) || path.includes(searchTerm)) {
+                        item.classList.remove('hidden');
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
+
+                // Auto expand section if searching
+                if (searchTerm.length > 0) {
+                    document.getElementById('kelas11').classList.add('expanded');
+                }
+            });
+        }
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', function() {
+            createMatrixRain();
+            initSearch();
+            
+            // Auto expand first section
+            setTimeout(() => {
+                document.getElementById('kelas11').classList.add('expanded');
+            }, 500);
+        });
+
+        // Add typing effect to title
+        function typeWriter() {
+            const title = document.querySelector('.title');
+            const text = 'CYBERTASS HUB';
+            title.textContent = '';
+            
+            for (let i = 0; i < text.length; i++) {
+                setTimeout(() => {
+                    title.textContent += text[i];
+                }, i * 100);
+            }
+        }
+
+        // Add glitch effect on hover
+        document.querySelectorAll('.link-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.filter = 'hue-rotate(90deg)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.filter = 'none';
+            });
+        });
+
+        // Cyber sound effect (optional - can be uncommented)
+        // function playSound() {
+        //     const audio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmYaAzuF1+2WUg0PO6zI6+NhKgUqgsz40IZYFAk+sGEyN3CeQ==');
+        //     audio.play();
+        // }
+    </script>
+</body>
+</html>
