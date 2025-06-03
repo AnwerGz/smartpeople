@@ -318,8 +318,32 @@
 
         <!-- Content Section -->
         <div class="content-section">
+            <div class="section-header" onclick="toggleSection('kelas10')">
+                📚 KELAS 10 (SAT 2025)
+                </div>
+                    <div class="links-grid" id="kelas10">        
+                <a href="/10/pjok11.html" class="link-item" data-search="pjok olahraga kesehatan jasmani">
+                    <div class="link-title">🏃 PJOK 10</div>
+                    <div class="link-path">/10/pjok11.html</div>
+                </a>
+                <a href="/10/ekonomi10.html" class="link-item" data-search="ekonomi sosial ips">
+                    <div class="link-title">💰 Ekonomi 10</div>
+                    <div class="link-path">/10/ekonomi10.html</div>
+                </a>
+                <a href="/10/inggris10.html" class="link-item" data-search="bahasa inggris english">
+                    <div class="link-title">🇺🇸 Bahasa Inggris 10</div>
+                    <div class="link-path">/10/inggris10.html</div>
+                </a>
+                <a href="/10/pai10.html" class="link-item" data-search="pai agama islam">
+                    <div class="link-title">🕌 PAI 10</div>
+                    <div class="link-path">/10/pai10.html</div>
+                </a>
+            </div>
+        </div>
+
+        <div class="content-section">
             <div class="section-header" onclick="toggleSection('kelas11')">
-                📚 KELAS 11 (SAS 2025)
+                📚 KELAS 11 (SAT 2025)
             </div>
             <div class="links-grid" id="kelas11">
                 <a href="/11/biologi11.html" class="link-item" data-search="biologi sains ipa">
@@ -378,6 +402,14 @@
                     <div class="link-title">🎨 Seni Budaya 11</div>
                     <div class="link-path">/11/senibudaya11.html</div>
                 </a>
+                <a href="/11/pkwu11.html" class="link-item" data-search="pkwu kewirausahaan">
+                    <div class="link-title">💼 PKWU 11</div>
+                    <div class="link-path">/11/pkwu11.html</div>
+                </a>
+                <a href="/11/sosiologi11.html" class="link-item" data-search="sosiologi sosial ips">
+                    <div class="link-title">👥 Sosiologi 11</div>
+                    <div class="link-path">/11/sosiologi11.html</div>
+                </a>
             </div>
         </div>
 
@@ -417,6 +449,7 @@
 
                 // Auto expand section if searching
                 if (searchTerm.length > 0) {
+                    document.getElementById('kelas10').classList.add('expanded');
                     document.getElementById('kelas11').classList.add('expanded');
                 }
             });
@@ -428,6 +461,7 @@
             
             // Auto expand first section
             setTimeout(() => {
+                document.getElementById('kelas10').classList.add('expanded');
                 document.getElementById('kelas11').classList.add('expanded');
             }, 300);
         });
