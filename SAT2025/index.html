@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybertass Hub</title>
+    
+    <!-- Primary Meta Tags -->
+    <meta name="google-site-verification" content="7-vOKy3rB1EncO63hiLXadQf4hkomFyBoR5Ol-wE6Sc" />
+    <meta name="title" content="Cybertass Hub">
+    <meta name="description" content="Komunitas gray hat hacker di Surabaya yang bekerja sama dengan sekolah dan industri di Jawa Timur. Menyediakan layanan teknologi dan edukasi digital.">
+    <meta name="keywords" content="cybertass, hacker, gray hat, surabaya, teknologi, edukasi, cyber security, programming, kelas 11">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Indonesian">
+    <meta name="author" content="Cybertass Hub">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cybertass.hub/">
+    <meta property="og:title" content="Cybertass Hub">
+    <meta property="og:description" content="Komunitas gray hat hacker di Surabaya yang bekerja sama dengan sekolah dan industri di Jawa Timur. Menyediakan layanan teknologi dan edukasi digital.">
+    <meta property="og:image" content=https://raw.githubusercontent.com/AnwerGz/smartpeople/refs/heads/main/logo.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Cybertass Hub">
+    <meta property="og:locale" content="id_ID">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://cybertass.hub/">
+    <meta property="twitter:title" content="Cybertass Hub">
+    <meta property="twitter:description" content="Komunitas gray hat hacker di Surabaya yang bekerja sama dengan sekolah dan industri di Jawa Timur. Menyediakan layanan teknologi dan edukasi digital.">
+    <meta property="twitter:image" content="https://raw.githubusercontent.com/AnwerGz/smartpeople/refs/heads/main/logo.png">
+    
+    <!-- Additional Meta -->
+    <meta name="theme-color" content="#00ffff">
+    <meta name="msapplication-TileColor" content="#00ffff">
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/AnwerGz/smartpeople/refs/heads/main/logo.png">
+    <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/AnwerGz/smartpeople/refs/heads/main/logo.png">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000;
+            font-family: 'Courier New', monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            border: 3px solid #00ffff;
+            background: #111;
+            padding: 40px;
+            max-width: 700px;
+            box-shadow: 0 0 25px #00ffff;
+            border-radius: 10px;
+            color: white;
+            width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .profile img {
+            border-radius: 50%;
+            border: 3px solid #00ffff;
+            width: 100px;
+            height: 100px;
+            margin-bottom: 15px;
+            box-shadow: 0 0 15px #00ffff;
+            object-fit: cover;
+        }
+
+        .title h1 {
+            background: linear-gradient(45deg, #00ffff, #0080ff);
+            color: #000;
+            padding: 15px;
+            font-weight: bold;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 5px;
+        }
+
+        .bio {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #ccc;
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: #222;
+            border-radius: 8px;
+            border: 1px solid #333;
+        }
+
+        /* Search Bar */
+        .search-container {
+            margin-bottom: 25px;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 12px 15px;
+            font-size: 14px;
+            background: #222;
+            border: 2px solid #00ffff;
+            border-radius: 25px;
+            color: #00ffff;
+            outline: none;
+            font-family: 'Courier New', monospace;
+        }
+
+        .search-bar:focus {
+            box-shadow: 0 0 10px #00ffff;
+            background: #333;
+        }
+
+        .search-bar::placeholder {
+            color: #666;
+        }
+
+        /* Content Section */
+        .content-section {
+            margin-bottom: 20px;
+        }
+
+        .section-header {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #00ffff;
+            background-color: #222;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 1px solid #00ffff;
+            font-weight: bold;
+        }
+
+        .section-header:hover {
+            background-color: #333;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-top: 15px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+
+        .links-grid.expanded {
+            max-height: 1000px;
+        }
+
+        .link-item {
+            background: #222;
+            border: 1px solid #00ffff;
+            border-radius: 8px;
+            padding: 15px;
+            text-decoration: none;
+            color: #00ffff;
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .link-item:hover {
+            background: #333;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.3);
+        }
+
+        .link-title {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .link-path {
+            font-size: 12px;
+            opacity: 0.7;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #222;
+            color: #aaa;
+            text-align: center;
+            padding: 15px;
+            margin-top: 30px;
+            font-size: 12px;
+            border-radius: 5px;
+            border: 1px solid #333;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        /* Hidden class for search */
+        .hidden {
+            display: none !important;
+        }
+
+        /* Tampilan HP */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                max-width: 100%;
+            }
+
+            .profile img {
+                width: 80px;
+                height: 80px;
+            }
+
+            .title h1 {
+                font-size: 18px;
+                padding: 12px;
+            }
+
+            .section-header {
+                font-size: 16px;
+                padding: 10px;
+            }
+
+            .link-title {
+                font-size: 13px;
+            }
+
+            .link-path {
+                font-size: 11px;
+            }
+
+            .bio {
+                font-size: 12px;
+                padding: 12px;
+            }
+
+            .links-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .search-bar {
+                padding: 10px 12px;
+                font-size: 13px;
+            }
+        }
+
+        /* Tampilan Laptop */
+        @media (min-width: 769px) {
+            .profile img {
+                width: 120px;
+                height: 120px;
+            }
+
+            .title h1 {
+                font-size: 24px;
+            }
+
+            .section-header {
+                font-size: 20px;
+            }
+
+            .link-title {
+                font-size: 16px;
+            }
+
+            .link-path {
+                font-size: 13px;
+            }
+
+            .bio {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <!-- Profile Image -->
+            <div class="profile">
+                <img src="https://raw.githubusercontent.com/AnwerGz/smartpeople/refs/heads/main/logo.png" 
+                     alt="Cybertass Hub Profile" 
+                     onerror="this.style.display='none'">
+            </div>
+            
+            <!-- Title -->
+            <div class="title">
+                <h1>Cybertass Hub</h1>
+            </div>
+            
+            <!-- Bio -->
+            <div class="bio">
+                Kami adalah gray hat yang berkeliaran di Surabaya, kami bekerja sama dengan banyak sekolah sekolah hingga industri terkenal yang ada di Jawa Timur. Kami siap menerima segala request tentang dunia teknologi, hubungi saja kami lewat telepati.
+            </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-container">
+            <input type="text" class="search-bar" id="searchBar" placeholder="🔍 Cari mata pelajaran atau konten...">
+        </div>
+
+        <!-- Content Section -->
+        <div class="content-section">
+            <div class="section-header" onclick="toggleSection('kelas10')">
+                📚 KELAS 10 (SAT 2025)
+                </div>
+                    <div class="links-grid" id="kelas10">        
+                <a href="/SAT2025/10/pjok11.html" class="link-item" data-search="pjok olahraga kesehatan jasmani">
+                    <div class="link-title">🏃 PJOK 10</div>
+                    <div class="link-path">/SAT2025/10/pjok11.html</div>
+                </a>
+                <a href="/SAT2025/10/ekonomi10.html" class="link-item" data-search="ekonomi sosial ips">
+                    <div class="link-title">💰 Ekonomi 10</div>
+                    <div class="link-path">/SAT2025/10/ekonomi10.html</div>
+                </a>
+                <a href="/SAT2025/10/inggris10.html" class="link-item" data-search="bahasa inggris english">
+                    <div class="link-title">🇺🇸 Bahasa Inggris 10</div>
+                    <div class="link-path">/SAT2025/10/inggris10.html</div>
+                </a>
+                <a href="/SAT2025/10/pai10.html" class="link-item" data-search="pai agama islam">
+                    <div class="link-title">🕌 PAI 10</div>
+                    <div class="link-path">/SAT2025/10/pai10.html</div>
+                </a>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <div class="section-header" onclick="toggleSection('kelas11')">
+                📚 KELAS 11 (SAT 2025)
+            </div>
+            <div class="links-grid" id="kelas11">
+                <a href="/SAT2025/11/biologi11.html" class="link-item" data-search="biologi sains ipa">
+                    <div class="link-title">🧬 Biologi 11</div>
+                    <div class="link-path">/SAT2025/11/biologi11.html</div>
+                </a>
+                <a href="/SAT2025/11/ekonomi11.html" class="link-item" data-search="ekonomi sosial ips">
+                    <div class="link-title">💰 Ekonomi 11</div>
+                    <div class="link-path">/SAT2025/11/ekonomi11.html</div>
+                </a>
+                <a href="/SAT2025/11/fisika11.html" class="link-item" data-search="fisika sains ipa">
+                    <div class="link-title">⚡ Fisika 11</div>
+                    <div class="link-path">/SAT2025/11/fisika11.html</div>
+                </a>
+                <a href="/SAT2025/11/indonesia11.html" class="link-item" data-search="bahasa indonesia">
+                    <div class="link-title">🇮🇩 Bahasa Indonesia 11</div>
+                    <div class="link-path">/SAT2025/11/indonesia11.html</div>
+                </a>
+                <a href="/SAT2025/11/inggriswajib11.html" class="link-item" data-search="bahasa inggris english">
+                    <div class="link-title">🇺🇸 Bahasa Inggris Wajib 11</div>
+                    <div class="link-path">/SAT2025/11/inggriswajib11.html</div>
+                </a>
+                <a href="/SAT2025/11/jawa11.html" class="link-item" data-search="bahasa jawa daerah">
+                    <div class="link-title">🏛️ Bahasa Jawa 11</div>
+                    <div class="link-path">/SAT2025/11/jawa11.html</div>
+                </a>
+                <a href="/SAT2025/11/kimia11.html" class="link-item" data-search="kimia sains ipa">
+                    <div class="link-title">🧪 Kimia 11</div>
+                    <div class="link-path">/SAT2025/11/kimia11.html</div>
+                </a>
+                <a href="/SAT2025/11/matlan11.html" class="link-item" data-search="matematika lanjut matlan">
+                    <div class="link-title">📊 Matematika Lanjut 11</div>
+                    <div class="link-path">/SAT2025/11/matlan11.html</div>
+                </a>
+                <a href="/SAT2025/11/matwa11.html" class="link-item" data-search="matematika wajib matwa">
+                    <div class="link-title">🔢 Matematika Wajib 11</div>
+                    <div class="link-path">/SAT2025/11/matwa11.html</div>
+                </a>
+                <a href="/SAT2025/11/pai11.html" class="link-item" data-search="pai agama islam">
+                    <div class="link-title">🕌 PAI 11</div>
+                    <div class="link-path">/SAT2025/11/pai11.html</div>
+                </a>
+                <a href="/SAT2025/11/pjok11.html" class="link-item" data-search="pjok olahraga kesehatan jasmani">
+                    <div class="link-title">🏃 PJOK 11</div>
+                    <div class="link-path">/SAT2025/11/pjok11.html</div>
+                </a>
+                <a href="/SAT2025/11/ppkn11.html" class="link-item" data-search="ppkn pancasila kewarganegaraan">
+                    <div class="link-title">🏛️ PPKn 11</div>
+                    <div class="link-path">/SAT2025/11/ppkn11.html</div>
+                </a>
+                <a href="/SAT2025/11/sejarah11.html" class="link-item" data-search="sejarah sosial ips">
+                    <div class="link-title">📜 Sejarah 11</div>
+                    <div class="link-path">/SAT2025/11/sejarah11.html</div>
+                </a>
+                <a href="/SAT2025/11/senibudaya11.html" class="link-item" data-search="seni budaya kesenian">
+                    <div class="link-title">🎨 Seni Budaya 11</div>
+                    <div class="link-path">/SAT2025/11/senibudaya11.html</div>
+                </a>
+                <a href="/SAT2025/11/pkwu11.html" class="link-item" data-search="pkwu kewirausahaan">
+                    <div class="link-title">💼 PKWU 11</div>
+                    <div class="link-path">/SAT2025/11/pkwu11.html</div>
+                </a>
+                <a href="/SAT2025/11/sosiologi11.html" class="link-item" data-search="sosiologi sosial ips">
+                    <div class="link-title">👥 Sosiologi 11</div>
+                    <div class="link-path">/SAT2025/11/sosiologi11.html</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2025 Cybertass Hub - Gray Hat Community Surabaya</p>
+            <p>Hubungi kami lewat telepati untuk request jasa</p>
+        </footer>
+    </div>
+
+    <script>
+        // Toggle section expansion
+        function toggleSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            section.classList.toggle('expanded');
+        }
+
+        // Search functionality
+        function initSearch() {
+            const searchBar = document.getElementById('searchBar');
+            const linkItems = document.querySelectorAll('.link-item');
+            
+            searchBar.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                
+                linkItems.forEach(item => {
+                    const title = item.querySelector('.link-title').textContent.toLowerCase();
+                    const searchData = item.getAttribute('data-search').toLowerCase();
+                    const path = item.querySelector('.link-path').textContent.toLowerCase();
+                    
+                    if (title.includes(searchTerm) || searchData.includes(searchTerm) || path.includes(searchTerm)) {
+                        item.classList.remove('hidden');
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
+
+                // Auto expand section if searching
+                if (searchTerm.length > 0) {
+                    document.getElementById('kelas10').classList.add('expanded');
+                    document.getElementById('kelas11').classList.add('expanded');
+                }
+            });
+        }
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', function() {
+            initSearch();
+            
+            // Auto expand first section
+            setTimeout(() => {
+                document.getElementById('kelas10').classList.add('expanded');
+                document.getElementById('kelas11').classList.add('expanded');
+            }, 300);
+        });
+    </script>
+</body>
+</html>

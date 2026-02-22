@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybertass Hub</title>
+    
+    <!-- Primary Meta Tags -->
+    <meta name="google-site-verification" content="7-vOKy3rB1EncO63hiLXadQf4hkomFyBoR5Ol-wE6Sc" />
+    <meta name="title" content="Cybertass Hub">
+    <meta name="description" content="Komunitas gray hat hacker di Surabaya yang bekerja sama dengan sekolah dan industri di Jawa Timur. Menyediakan layanan teknologi dan edukasi digital.">
+    <meta name="keywords" content="cybertass, hacker, gray hat, surabaya, teknologi, edukasi, cyber security, programming, kelas 11">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Indonesian">
+    <meta name="author" content="Cybertass Hub">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cybertass17.vercel.app/">
+    <meta property="og:title" content="Cybertass Hub">
+    <meta property="og:description" content="Komunitas gray hat hacker di Surabaya yang bekerja sama dengan sekolah dan industri di Jawa Timur. Menyediakan layanan teknologi dan edukasi digital.">
+    <meta property="og:image" content=https://raw.githubusercontent.com/AnwerGz/smartpeople/refs/heads/main/logo.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Cybertass Hub">
+    <meta property="og:locale" content="id_ID">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://cybertass17.vercel.app/">
+    <meta property="twitter:title" content="Cybertass Hub">
+    <meta property="twitter:description" content="Komunitas gray hat hacker di Surabaya yang bekerja sama dengan sekolah dan industri di Jawa Timur. Menyediakan layanan teknologi dan edukasi digital.">
+    <meta property="twitter:image" content="https://raw.githubusercontent.com/AnwerGz/smartpeople/refs/heads/main/logo.png">
+    
+    <!-- Additional Meta -->
+    <meta name="theme-color" content="#00ffff">
+    <meta name="msapplication-TileColor" content="#00ffff">
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/AnwerGz/smartpeople/refs/heads/main/logo.png">
+    <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/AnwerGz/smartpeople/refs/heads/main/logo.png">
+
+    <!-- Memuat Tailwind CSS untuk styling cepat dan responsif -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Menggunakan font Inter sebagai standar */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* Latar belakang sangat gelap (slate-900) */
+            color: #e2e8f0; /* Teks default terang */
+        }
+        
+        /* Container utama dengan batas lebar untuk efek Linktree */
+        .linktree-container {
+            max-width: 480px; /* Batasi lebar untuk tampilan potret */
+            width: 90%;
+            margin: 0 auto;
+            padding-top: 2rem;
+        }
+
+        /* Styling tombol link mata pelajaran yang lebih menonjol */
+        .subject-link {
+            transition: all 0.2s;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border: 1px solid #3b82f6; /* Border biru untuk kontras */
+            background-color: #1e293b; /* Warna latar belakang tombol gelap */
+            /* Mengurangi shadow agar tidak terlalu berat dalam list panjang */
+        }
+        
+        .subject-link:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px (59, 130, 246, 0.3); /* Bayangan biru yang menonjol */
+            background-color: #3b82f6; /* Warna hover biru */
+            color: white;
+        }
+        .subject-link:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background-color: #2563eb;
+        }
+
+        /* Styling Folder Header */
+        .folder-header {
+            cursor: pointer;
+            transition: background-color 0.2s, box-shadow 0.2s;
+            background-color: #1e293b;
+            border: 2px solid #3b82f6;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+        }
+        .folder-header:hover {
+            background-color: #334155;
+            box-shadow: 0 8px 12px rgba(59, 130, 246, 0.4);
+        }
+        
+        /* Styling Arrow Rotation for Dropdown */
+        .arrow-icon {
+            transition: transform 0.3s ease-in-out;
+        }
+        .rotated {
+            transform: rotate(90deg);
+        }
+
+        /* Styling Tautan Container (Untuk animasi sederhana) */
+        .links-content {
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.86, 0, 0.07, 1), opacity 0.3s;
+        }
+        .links-content.collapsed {
+            max-height: 0;
+            opacity: 0;
+        }
+        .links-content.expanded {
+            max-height: 2000px; /* Nilai besar agar konten terlihat penuh */
+            opacity: 1;
+        }
+        
+        /* Styling untuk link Old Version */
+        .old-version-link {
+            transition: color 0.2s;
+            color: #60a5fa; /* Biru terang */
+            text-decoration: underline;
+        }
+        .old-version-link:hover {
+            color: #93c5fd;
+        }
+                /* Styling untuk Floating Action Button (FAB) */
+        .fab {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #008181; /* Warna Cyan/Aqua yang mencolok */
+            color: #0f172a; /* Teks sangat gelap */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 4px 10px rgba(0, 255, 255, 0.5);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s;
+            z-index: 1000;
+            border: 2px solid #0f172a; /* Border kontras */
+        }
+
+        .fab:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 255, 255, 0.7);
+        }
+
+        /* Media Query untuk memastikan FAB tidak terlalu dekat di layar kecil (opsional) */
+        @media (max-width: 640px) {
+            .fab {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <!-- Kontainer Utama Linktree -->
+    <div class="linktree-container pb-12">
+
+        <!-- Header Profil -->
+        <header class="text-center mb-10">
+            <!-- Logo CYBERTASS HUB - h-32 w-32 -->
+            <img src="https://raw.githubusercontent.com/AnwerGz/smartpeople/refs/heads/main/logo.png" 
+                 alt="CYBERTASS HUB Logo" 
+                 class="h-32 w-32 rounded-full mx-auto mb-4 border-4 border-indigo-600 shadow-xl"
+                 onerror="this.onerror=null; this.src='https://placehold.co/128x128/3b82f6/ffffff?text=C'"
+            >
+            <h1 class="text-4xl font-extrabold text-white tracking-wider mb-1">CYBERTASS HUB</h1>
+            
+            <!-- Deskripsi Baru -->
+            <p class="text-base font-normal text-gray-300 px-4 mb-3">
+                Selamat Belajar! Kami siap menerima segala request tentang dunia teknologi gelap, hubungi saja kami lewat telepati.
+            </p>
+            
+            <!-- Redirect Link Old Version -->
+            <a href="/SAT2025/" class="text-sm font-light old-version-link">
+                SAT2025 (Redirect link)
+            </a><br>
+                        <a href="/ASAS2025/" class="text-sm font-light old-version-link">
+                ASAS2025 (Redirect link)
+            </a>
+        </header>
+
+        <!-- Input Pencarian -->
+        <input type="text" id="searchInput" placeholder="🔎 Cari Mata Pelajaran di semua kelas..."
+               class="w-full mb-8 p-3 text-base border-2 rounded-xl shadow-lg focus:ring-indigo-500 focus:border-indigo-500 transition duration-150 ease-in-out">
+        
+        <!-- Data Tautan Mata Pelajaran -->
+        <div id="linksContainer">
+            
+            <!-- Section Kelas 12 (Dropdown) -->
+            <section data-class="12" class="mb-6 section-class">
+                <!-- Folder Header (Tombol Dropdown) -->
+                <div class="folder-header p-4 rounded-xl flex items-center justify-between font-bold text-xl mb-4" 
+                     onclick="toggleSection(this.nextElementSibling, this.querySelector('.arrow-icon'))">
+                    <div class="flex items-center">
+                        <!-- Ikon Folder dan Emoji Buku -->
+                        <svg class="w-6 h-6 mr-3 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"></path></svg>
+                        Soal Kelas 12 (ASAS 2025) ✨
+                    </div>
+                    <!-- Ikon Panah (untuk indikasi dropdown) -->
+                    <svg class="w-5 h-5 arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </div>
+
+                <!-- Konten Tautan (Tersembunyi secara default) -->
+                <div class="links-content collapsed flex flex-col space-y-3" id="class12Links">
+                    <!-- Tautan Kelas 12 -->
+                    <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">PPKN </a>
+                    <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Matematika Wajib </a>
+                    <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Bahasa Indonesia </a>
+                    <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Fisika </a>
+                    <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Sosiologi</a>
+                    <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Kimia </a>
+                    <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Ekonomi </a>
+                    <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Informatika </a>
+                    <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Biologi </a>
+                    <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Geografi</a>
+                    <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Matematika TK Lanjut </a>
+                    <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Bahasa Inggris TK Lanjut</a>
+                    <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Bahasa Jepang </a>
+                    <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Pendidikan Agama (PAI) </a>
+                    <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Bahasa Inggris </a>
+                    <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Sejarah </a>
+                    <a href="12/PKWU-12.html" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">PKWU ✅</a>
+                    <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Bahasa Daerah (Jawa) </a>
+                    <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Penjaskes (PJOK) </a>
+                    <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Seni Budaya </a>
+                </div>
+            </section>
+
+            <!-- Section Kelas 11 (Dropdown) -->
+            <section data-class="11" class="mb-6 section-class">
+                <!-- Folder Header (Tombol Dropdown) -->
+                <div class="folder-header p-4 rounded-xl flex items-center justify-between font-bold text-xl mb-4" 
+                     onclick="toggleSection(this.nextElementSibling, this.querySelector('.arrow-icon'))">
+                    <div class="flex items-center">
+                        <!-- Ikon Folder dan Emoji Pensil -->
+                        <svg class="w-6 h-6 mr-3 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"></path></svg>
+                        Soal Kelas 11 (SAT 2026) ✏️
+                    </div>
+                    <!-- Ikon Panah (untuk indikasi dropdown) -->
+                    <svg class="w-5 h-5 arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </div>
+
+                <!-- Konten Tautan (Tersembunyi secara default) -->
+                <div class="links-content collapsed flex flex-col space-y-3" id="class11Links">
+                    <!-- Placeholder untuk Kelas 11 -->
+                <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">PPKN </a>
+                <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Matematika Wajib </a>
+                <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Bahasa Indonesia </a>
+                <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Fisika </a>
+                <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Sosiologi </a>
+                <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Kimia </a>
+                <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Ekonomi </a>
+                <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Bahasa Inggris TL </a>
+                <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Geografi </a>
+                <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Biologi </a>
+                <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Informatika </a>
+                <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Matematika TL</a>
+                <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Pendidikan Agama (PAI) </a>
+                <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Bahasa Inggris</a>
+                <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">PKWU </a>
+                <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Sejarah</a>
+                <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Bahasa Daerah (Jawa) </a>
+                <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Penjaskes (PJOK)</a>
+                <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Seni Budaya </a>
+                </div>
+            </section>
+
+            <!-- Section Kelas 10 (Dropdown) -->
+            <section data-class="10" class="mb-8 section-class">
+                <!-- Folder Header (Tombol Dropdown) -->
+                <div class="folder-header p-4 rounded-xl flex items-center justify-between font-bold text-xl mb-4" 
+                     onclick="toggleSection(this.nextElementSibling, this.querySelector('.arrow-icon'))">
+                    <div class="flex items-center">
+                        <!-- Ikon Folder dan Emoji Laptop -->
+                        <svg class="w-6 h-6 mr-3 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"></path></svg>
+                        Soal Kelas 10 (SAT 2026) 💻
+                    </div>
+                    <!-- Ikon Panah (untuk indikasi dropdown) -->
+                    <svg class="w-5 h-5 arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </div>
+
+                <!-- Konten Tautan (Tersembunyi secara default) -->
+                <div class="links-content collapsed flex flex-col space-y-3" id="class10Links">
+                    <!-- Placeholder untuk Kelas 10 -->
+                    <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">PPKN </a>
+                    <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Matematika Wajib </a>
+                    <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Bahasa Indonesia </a>
+                    <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Fisika</a>
+                    <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Kimia</a>
+                    <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Sosiologi </a>
+                    <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Biologi </a>
+                    <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Geografi </a>
+                    <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Pendidikan Agama (PAI) </a>
+                    <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Bahasa Inggris </a>
+                    <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Sejarah </a>
+                    <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Ekonomi</a>
+                    <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Bahasa Daerah </a>
+                    <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Penjaskes (PJOK)</a>
+                    <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Seni Budaya </a>
+                    <a href="" class="subject-link block p-3 rounded-xl text-center text-white font-semibold">Informatika</a>
+               </div>
+            </section>
+        </div>   
+
+        <!-- Pesan Tidak Ditemukan -->
+        <div id="noResults" class="hidden text-center py-10 bg-gray-800 rounded-xl shadow-md mt-8">
+            <p class="text-xl text-gray-400 font-semibold">Tidak ada mata pelajaran yang cocok dengan pencarian Anda. 😥</p>
+            <p class="text-gray-500 mt-2">Coba kata kunci lain atau buka folder kelas.</p>
+        </div>
+
+    </div>
+
+    <!-- Floating Action Button (FAB) untuk Jadwal -->
+    <a href="/2526_Jadwal SAT Kelas 12.html" class="fab">
+        🗓️
+    </a>
+
+    <script>
+        // Fungsi untuk mengaktifkan/menonaktifkan (toggle) konten section
+        function toggleSection(contentElement, arrowElement) {
+            contentElement.classList.toggle('collapsed');
+            contentElement.classList.toggle('expanded');
+            arrowElement.classList.toggle('rotated');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('searchInput');
+            const sections = document.querySelectorAll('.section-class');
+            const noResultsMessage = document.getElementById('noResults');
+
+            /**
+             * Fungsi untuk melakukan filter tautan berdasarkan kata kunci
+             * Filter ini juga akan otomatis membuka folder jika ada hasil.
+             * @param {string} query - Kata kunci pencarian
+             */
+            const filterLinks = (query) => {
+                const lowerCaseQuery = query.toLowerCase().trim();
+                let hasVisibleResultsOverall = false;
+                
+                // Jika query kosong, tampilkan folder dan sembunyikan semua tautan (default collapsed)
+                if (lowerCaseQuery === '') {
+                    sections.forEach(section => {
+                        const content = section.querySelector('.links-content');
+                        const arrow = section.querySelector('.arrow-icon');
+                        section.classList.remove('hidden'); // Selalu tampilkan folder
+                        content.classList.remove('expanded');
+                        content.classList.add('collapsed');
+                        arrow.classList.remove('rotated');
+                        
+                        // Pastikan semua link internal tidak disembunyikan jika tidak ada pencarian
+                        section.querySelectorAll('.subject-link').forEach(link => {
+                            link.classList.remove('hidden');
+                        });
+                    });
+                    noResultsMessage.classList.add('hidden');
+                    return; // Hentikan fungsi karena hanya reset tampilan
+                }
+
+
+                // Logika Pencarian
+                sections.forEach(section => {
+                    const content = section.querySelector('.links-content');
+                    const arrow = section.querySelector('.arrow-icon');
+                    const linksContainer = section.querySelector('div.flex.flex-col');
+                    const links = linksContainer.querySelectorAll('.subject-link');
+                    let sectionHasVisibleLinks = false;
+
+                    links.forEach(link => {
+                        const subjectName = link.textContent.toLowerCase();
+
+                        // Tampilkan tautan jika nama mata pelajaran mengandung kata kunci
+                        if (subjectName.includes(lowerCaseQuery)) {
+                            link.classList.remove('hidden');
+                            sectionHasVisibleLinks = true;
+                            hasVisibleResultsOverall = true;
+                        } else {
+                            link.classList.add('hidden');
+                        }
+                    });
+
+                    // Tampilkan atau sembunyikan seluruh section (Folder)
+                    if (sectionHasVisibleLinks) {
+                        section.classList.remove('hidden');
+                        // Otomatis BUKA folder jika ditemukan hasil
+                        content.classList.remove('collapsed');
+                        content.classList.add('expanded');
+                        arrow.classList.add('rotated');
+                    } else {
+                        section.classList.add('hidden');
+                        // Sembunyikan dan tutup jika tidak ada hasil
+                        content.classList.remove('expanded');
+                        content.classList.add('collapsed');
+                        arrow.classList.remove('rotated');
+                    }
+                });
+
+                // Tampilkan atau sembunyikan pesan 'Tidak Ditemukan'
+                if (hasVisibleResultsOverall) {
+                    noResultsMessage.classList.add('hidden');
+                } else {
+                    noResultsMessage.classList.remove('hidden');
+                }
+            };
+
+            // Event listener untuk input pencarian utama
+            if (searchInput) {
+                searchInput.addEventListener('keyup', (event) => {
+                    filterLinks(event.target.value);
+                });
+            }
+            
+            // Inisialisasi: Lakukan filter pertama kali (akan me-reset ke tampilan tertutup)
+            filterLinks(searchInput.value || '');
+        });
+    </script>
+</body>
+</html>
