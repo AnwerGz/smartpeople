@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PSAJ Matematika Wajib Kelas 12</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0c0e14;--bg2:#13161f;--bg3:#191d2a;--bd:rgba(255,255,255,0.06);--bd2:rgba(255,255,255,0.11);--tx:#dde1f0;--tx2:#8a93b0;--tx3:#4e5670;--ac:#5d7eff;--acbg:rgba(93,126,255,0.1);--acbd:rgba(93,126,255,0.28);--gr:#3ecf8e;--grbg:rgba(62,207,142,0.09);--grbd:rgba(62,207,142,0.28);--rd:#f16060;--rdbg:rgba(241,96,96,0.09);--rdbd:rgba(241,96,96,0.26);--am:#f59e0b;--ambg:rgba(245,158,11,0.09);--ambd:rgba(245,158,11,0.28);--pu:#a78bfa;--pubg:rgba(167,139,250,0.09);--pubd:rgba(167,139,250,0.28);--r:9px;--rl:13px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;line-height:1.6;font-size:14px}
+header{border-bottom:1px solid var(--bd);padding:0 2rem;height:54px;display:flex;align-items:center;gap:10px;position:sticky;top:0;background:rgba(12,14,20,0.94);backdrop-filter:blur(14px);z-index:100}
+.hlogo{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600}
+.hlm{width:26px;height:26px;border-radius:6px;background:linear-gradient(135deg,#5d7eff,#a78bfa);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;flex-shrink:0}
+.hmeta{font-size:12px;color:var(--tx3);margin-left:auto;text-align:right}
+
+.wrap{max-width:820px;margin:0 auto;padding:2.5rem 2rem}
+.page-hero{margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--bd)}
+.page-hero h1{font-size:26px;font-weight:700;letter-spacing:-.4px;margin-bottom:6px;line-height:1.3}
+.page-hero .sub{font-size:13px;color:var(--tx3);display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.sub-pill{background:var(--bg2);border:1px solid var(--bd2);border-radius:20px;padding:2px 10px;font-size:12px}
+
+.q-list{display:flex;flex-direction:column;gap:12px}
+.q-card{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--rl);padding:1.2rem;transition:border-color .15s}
+.q-card:hover{border-color:var(--bd2)}
+.q-meta{display:flex;align-items:center;gap:7px;margin-bottom:7px;flex-wrap:wrap}
+.q-num{font-size:11px;color:var(--tx3);font-weight:700;background:var(--bg3);padding:1px 7px;border-radius:5px}
+.q-badge{font-size:10px;padding:2px 7px;border-radius:5px;font-weight:600;border:1px solid transparent}
+.badge-mc{background:var(--acbg);color:var(--ac);border-color:var(--acbd)}
+.badge-multi{background:var(--ambg);color:var(--am);border-color:var(--ambd)}
+.badge-match{background:var(--grbg);color:var(--gr);border-color:var(--grbd)}
+.badge-img{background:var(--pubg);color:var(--pu);border-color:var(--pubd)}
+.q-text{font-size:15px;color:var(--tx);margin-bottom:11px;line-height:1.55}
+.q-text img{max-width:100%;border-radius:7px;margin:7px 0;border:1px solid var(--bd2);display:block}
+.q-text img.broken{opacity:.3;filter:grayscale(1)}
+.opts{display:flex;flex-direction:column;gap:5px}
+.opt{display:flex;align-items:flex-start;gap:9px;padding:7px 11px;border-radius:7px;border:1px solid var(--bd);font-size:13.5px;transition:all .14s;color:var(--tx2);background:var(--bg3)}
+
+.opt img{max-width:200px;max-height:140px;object-fit:contain;border-radius:5px;margin-top:5px;display:block}
+.opt-lbl{font-weight:700;min-width:17px;font-size:11.5px;opacity:.6;flex-shrink:0;padding-top:2px}
+.correct{background:var(--grbg)!important;border-color:var(--grbd)!important;color:var(--gr)!important}
+.wrong{background:var(--rdbg)!important;border-color:var(--rdbd)!important;color:var(--rd)!important}
+.key-row{margin-top:8px;font-size:12.5px;color:var(--tx3);background:var(--grbg);border-left:2px solid var(--gr);padding:6px 11px;border-radius:0 6px 6px 0}
+.feedback{margin-top:7px;padding:6px 11px;border-radius:6px;font-size:13px;font-weight:500}
+.fb-ok{background:var(--grbg);color:var(--gr)}.fb-err{background:var(--rdbg);color:var(--rd)}
+.match-tbl{width:100%;border-collapse:collapse;font-size:13px}
+.match-tbl th,.match-tbl td{padding:6px 9px;border:1px solid var(--bd);vertical-align:top}
+.match-tbl thead th{font-size:10px;color:var(--tx3);font-weight:700;text-transform:uppercase;letter-spacing:.5px;background:var(--bg3)}
+.match-tbl td img{max-width:140px;border-radius:4px;margin-top:4px;display:block}
+.match-ans{color:var(--gr);font-weight:600}
+footer{text-align:center;padding:2rem;font-size:12px;color:var(--tx3);border-top:1px solid var(--bd);margin-top:3rem}
+</style>
+</head>
+<body>
+<header>
+  <div class="hlogo"><div class="hlm">QC</div><span>QuizConverter <span style="color:var(--tx3);font-weight:400">by cybertass</span></span></div>
+  <div class="hmeta">29 Maret 2026</div>
+</header>
+
+<div class="wrap">
+  <div class="page-hero">
+    <h1>PSAJ Matematika Wajib Kelas 12</h1>
+    <div class="sub">
+      <span class="sub-pill">📝 30 soal</span>
+      <span class="sub-pill">📋 Kunci Jawaban</span>
+      
+    </div>
+    
+  </div>
+<div class="q-list">
+  <div class="q-card" id="q-reorder-1">
+    <div class="q-meta"><span class="q-num">No. 1</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+    <div class="q-text">Sebuah taman yang berbentuk persegi panjang memiliki keliling 104 m dan luasnya 640 m². Lebar taman tersebut adalah …</div>
+    <div class="opts">
+      <div class="opt"><span class="opt-lbl">A</span>20 m</div>
+      <div class="opt"><span class="opt-lbl">B</span>24 m</div>
+      <div class="opt"><span class="opt-lbl">C</span>28 m</div>
+      <div class="opt"><span class="opt-lbl">D</span>32 m</div>
+      <div class="opt correct"><span class="opt-lbl">E</span>20 m</div>
+    </div>
+    <div class="key-row">Kunci: <strong>E</strong></div>
+  </div>
+
+  <div class="q-card" id="q-reorder-2">
+    <div class="q-meta"><span class="q-num">No. 2</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+    <div class="q-text">Luas maksimum sebuah ruangan yang berbentuk persegi panjang dengan keliling 60 m adalah …</div>
+    <div class="opts">
+      <div class="opt"><span class="opt-lbl">A</span>120 m²</div>
+      <div class="opt"><span class="opt-lbl">B</span>150 m²</div>
+      <div class="opt"><span class="opt-lbl">C</span>180 m²</div>
+      <div class="opt"><span class="opt-lbl">D</span>200 m²</div>
+      <div class="opt correct"><span class="opt-lbl">E</span>225 m²</div>
+    </div>
+    <div class="key-row">Kunci: <strong>E</strong></div>
+  </div>
+
+  <div class="q-card" id="q-reorder-3">
+    <div class="q-meta"><span class="q-num">No. 3</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+    <div class="q-text">Nilai diskriminan dari persamaan kuadrat 2x² - 3x - 5 = 0 adalah …</div>
+    <div class="opts">
+      <div class="opt"><span class="opt-lbl">A</span>-28</div>
+      <div class="opt"><span class="opt-lbl">B</span>-15</div>
+      <div class="opt"><span class="opt-lbl">C</span>21</div>
+      <div class="opt"><span class="opt-lbl">D</span>37</div>
+      <div class="opt correct"><span class="opt-lbl">E</span>49</div>
+    </div>
+    <div class="key-row">Kunci: <strong>E</strong></div>
+  </div>
+
+  <div class="q-card" id="q-reorder-4">
+    <div class="q-meta"><span class="q-num">No. 4</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+    <div class="q-text">Sumbu simetri fungsi f(x) = 2x² - 6x - 5 adalah …</div>
+    <div class="opts">
+      <div class="opt"><span class="opt-lbl">A</span>3</div>
+      <div class="opt correct"><span class="opt-lbl">B</span>3/2</div>
+      <div class="opt"><span class="opt-lbl">C</span>1/2</div>
+      <div class="opt"><span class="opt-lbl">D</span>-1/2</div>
+      <div class="opt"><span class="opt-lbl">E</span>-3/2</div>
+    </div>
+    <div class="key-row">Kunci: <strong>B</strong></div>
+  </div>
+
+  <div class="q-card" id="q-reorder-5">
+    <div class="q-meta"><span class="q-num">No. 5</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+    <div class="q-text">Diketahui f(x) = 2x + 7 dan g(x) = x² – 5x – 3. Nilai (f + g) (-2) = …</div>
+    <div class="opts">
+      <div class="opt"><span class="opt-lbl">A</span>2</div>
+      <div class="opt"><span class="opt-lbl">B</span>3</div>
+      <div class="opt"><span class="opt-lbl">C</span>8</div>
+      <div class="opt"><span class="opt-lbl">D</span>11</div>
+      <div class="opt correct"><span class="opt-lbl">E</span>14</div>
+    </div>
+    <div class="key-row">Kunci: <strong>E</strong></div>
+  </div>
+
+  <div class="q-card" id="q-reorder-6">
+    <div class="q-meta"><span class="q-num">No. 6</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+    <div class="q-text">Jika persamaan kuadrat x² - (k+1)x + (2k-1) = 0 mempunyai dua akar riil yang berbeda, batas nilai k adalah …</div>
+    <div class="opts">
+      <div class="opt correct"><span class="opt-lbl">A</span>k < 1 atau k > 5</div>
+      <div class="opt"><span class="opt-lbl">B</span>k < -1 atau k > 5</div>
+      <div class="opt"><span class="opt-lbl">C</span>k < -5 atau k > 1</div>
+      <div class="opt"><span class="opt-lbl">D</span>1 < k < 5</div>
+      <div class="opt"><span class="opt-lbl">E</span>-5 < k < 1</div>
+    </div>
+    <div class="key-row">Kunci: <strong>A</strong></div>
+  </div>
+
+  <div class="q-card" id="q-reorder-7">
+    <div class="q-meta"><span class="q-num">No. 7</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+    <div class="q-text">Sebuah lingkaran mempunyai panjang jari- jari 15 cm. Panjang busur lingkaran yang menghadap sudut 60° adalah …</div>
+    <div class="opts">
+      <div class="opt"><span class="opt-lbl">A</span>13,7 cm</div>
+      <div class="opt"><span class="opt-lbl">B</span>14,7 cm</div>
+      <div class="opt correct"><span class="opt-lbl">C</span>15,7 cm</div>
+      <div class="opt"><span class="opt-lbl">D</span>16,7 cm</div>
+      <div class="opt"><span class="opt-lbl">E</span>17,7 cm</div>
+    </div>
+    <div class="key-row">Kunci: <strong>C</strong></div>
+  </div>
+
+  <div class="q-card" id="q-reorder-8">
+    <div class="q-meta"><span class="q-num">No. 8</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+    <div class="q-text">Dua lingkaran masing – masing berjari – jari 25 cm dan 4 cm bersinggungan diluar. Panjang garis singgung persekutuan luar dua lingkaran adalah …</div>
+    <div class="opts">
+      <div class="opt"><span class="opt-lbl">A</span>25 cm</div>
+      <div class="opt"><span class="opt-lbl">B</span>24 cm</div>
+      <div class="opt correct"><span class="opt-lbl">C</span>20 cm</div>
+      <div class="opt"><span class="opt-lbl">D</span>18 cm</div>
+      <div class="opt"><span class="opt-lbl">E</span>17 cm</div>
+    </div>
+    <div class="key-row">Kunci: <strong>C</strong></div>
+  </div>
+
+  <div class="q-card" id="q-reorder-9">
+    <div class="q-meta"><span class="q-num">No. 9</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+    <div class="q-text">Di sebuah toko kain menjual 8 jenis kain berwarna kuning, 15 jenis kain berwarna hijau, dan 17 jenis kain berwarna merah. Rani akan membeli salah satu dari jenis kain tersebut. Banyaknya cara memilih kain tersebut adalah …</div>
+    <div class="opts">
+      <div class="opt"><span class="opt-lbl">A</span>21 cara</div>
+      <div class="opt"><span class="opt-lbl">B</span>23 cara</div>
+      <div class="opt"><span class="opt-lbl">C</span>25 cara</div>
+      <div class="opt"><span class="opt-lbl">D</span>32 cara</div>
+      <div class="opt correct"><span class="opt-lbl">E</span>40 cara</div>
+    </div>
+    <div class="key-row">Kunci: <strong>E</strong></div>
+  </div>
+
+  <div class="q-card" id="q-reorder-10">
+    <div class="q-meta"><span class="q-num">No. 10</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+    <div class="q-text">Sebuah gedung olahraga mempunyai 6 buah pintu. Seseorang akan masuk ke Gedung tersebut dan keluar melalui pintu yang berbeda. Banyak cara orang tersebut masuk dan keluar gedung tersebut adalah …</div>
+    <div class="opts">
+      <div class="opt"><span class="opt-lbl">A</span>36 cara</div>
+      <div class="opt correct"><span class="opt-lbl">B</span>30 cara</div>
+      <div class="opt"><span class="opt-lbl">C</span>20 cara</div>
+      <div class="opt"><span class="opt-lbl">D</span>6 cara</div>
+      <div class="opt"><span class="opt-lbl">E</span>5 cara</div>
+    </div>
+    <div class="key-row">Kunci: <strong>B</strong></div>
+  </div>
+
+  <div class="q-card" id="q-reorder-11">
+    <div class="q-meta"><span class="q-num">No. 11</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+    <div class="q-text">Dari angka 1, 2, 4, 5, 6, 7 dan 8. Dibuat bilangan yang terdiri atas 4 angka yang berbeda. Banyaknya bilangan ganjil yang dapat dibuat adalah …</div>
+    <div class="opts">
+      <div class="opt"><span class="opt-lbl">A</span>840</div>
+      <div class="opt"><span class="opt-lbl">B</span>630</div>
+      <div class="opt"><span class="opt-lbl">C</span>420</div>
+      <div class="opt correct"><span class="opt-lbl">D</span>360</div>
+      <div class="opt"><span class="opt-lbl">E</span>315</div>
+    </div>
+    <div class="key-row">Kunci: <strong>D</strong></div>
+  </div>
+
+  <div class="q-card" id="q-reorder-12">
+    <div class="q-meta"><span class="q-num">No. 12</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+    <div class="q-text">Banyak susunan kata yang dapat dibentuk dari huruf pada kata “LOMBA” tanpa pengulangan huruf, dengan huruf pertama huruf vocal adalah …</div>
+    <div class="opts">
+      <div class="opt"><span class="opt-lbl">A</span>36</div>
+      <div class="opt"><span class="opt-lbl">B</span>48</div>
+      <div class="opt correct"><span class="opt-lbl">C</span>60</div>
+      <div class="opt"><span class="opt-lbl">D</span>96</div>
+      <div class="opt"><span class="opt-lbl">E</span>120</div>
+    </div>
+    <div class="key-row">Kunci: <strong>C</strong></div>
+  </div>
+
+  <div class="q-card" id="q-reorder-13">
+    <div class="q-meta"><span class="q-num">No. 13</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+    <div class="q-text">Enam orang pengurus kelas mengadakan rapat. Mereka duduk mengelilingi meja bundar. Banyak cara mereka duduk adalah …</div>
+    <div class="opts">
+      <div class="opt"><span class="opt-lbl">A</span>5040</div>
+      <div class="opt"><span class="opt-lbl">B</span>720</div>
+      <div class="opt correct"><span class="opt-lbl">C</span>120</div>
+      <div class="opt"><span class="opt-lbl">D</span>24</div>
+      <div class="opt"><span class="opt-lbl">E</span>6</div>
+    </div>
+    <div class="key-row">Kunci: <strong>C</strong></div>
+  </div>
+
+  <div class="q-card" id="q-reorder-14">
+    <div class="q-meta"><span class="q-num">No. 14</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+    <div class="q-text">Ada 10 wali murid yang belum saling mengenal satu sama lain. Apabila mereka ingin berkenalan dengan cara berjabat tangan, jabat tangan yang akan terjadi sebanyak …</div>
+    <div class="opts">
+      <div class="opt"><span class="opt-lbl">A</span>30</div>
+      <div class="opt"><span class="opt-lbl">B</span>45</div>
+      <div class="opt"><span class="opt-lbl">C</span>60</div>
+      <div class="opt"><span class="opt-lbl">D</span>75</div>
+      <div class="opt correct"><span class="opt-lbl">E</span>90</div>
+    </div>
+    <div class="key-row">Kunci: <strong>E</strong></div>
+  </div>
+
+  <div class="q-card" id="q-reorder-15">
+    <div class="q-meta"><span class="q-num">No. 15</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+    <div class="q-text">Dari 12 finalis lomba pidato akan dipilih juara I dan II. Banyak cara memilih pemenang lomba pidato tersebut adalah …</div>
+    <div class="opts">
+      <div class="opt"><span class="opt-lbl">A</span>33</div>
+      <div class="opt"><span class="opt-lbl">B</span>66</div>
+      <div class="opt"><span class="opt-lbl">C</span>99</div>
+      <div class="opt correct"><span class="opt-lbl">D</span>132</div>
+      <div class="opt"><span class="opt-lbl">E</span>198</div>
+    </div>
+    <div class="key-row">Kunci: <strong>D</strong></div>
+  </div>
+
+  <div class="q-card" id="q-reorder-16">
+    <div class="q-meta"><span class="q-num">No. 16</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+    <div class="q-text">
+      <p>Perhatikan data berikut.</p>
+      <table class="match-tbl">
+        <thead><tr><th>Nilai</th><th>Frekuensi</th></tr></thead>
+        <tbody>
+          <tr><td>54 - 57</td><td>2</td></tr>
+          <tr><td>58 - 61</td><td>7</td></tr>
+          <tr><td>62 - 65</td><td>12</td></tr>
+          <tr><td>66 - 69</td><td>10</td></tr>
+          <tr><td>70 - 73</td><td>6</td></tr>
+          <tr><td>74 - 77</td><td>3</td></tr>
+        </tbody>
+      </table>
+      <p>Berdasarkan data diatas, pilihlah 3 pernyataan berikut yang benar adalah.…</p>
+    </div>
+    <div class="opts">
+      <div class="opt correct"><span class="opt-lbl">A</span>Panjang kelas interval adalah 4</div>
+      <div class="opt correct"><span class="opt-lbl">B</span>Titik tengah kelas interval ketiga adalah 63,5</div>
+      <div class="opt"><span class="opt-lbl">C</span>Tepi atas kelas interval kedua adalah 61</div>
+      <div class="opt"><span class="opt-lbl">D</span>Batas bawah kelas interval keempat adalah 65,5</div>
+      <div class="opt correct"><span class="opt-lbl">E</span>Tepi bawah kelas interval kelima adalah 69,5</div>
+    </div>
+    <div class="key-row">Kunci: <strong>A, B, E</strong></div>
+  </div>
+
+  <div class="q-card" id="q-reorder-17">
+    <div class="q-meta"><span class="q-num">No. 17</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+    <div class="q-text">Diketahui besar sudut AOB = 105°, sudut BOC = 72°, sudut COD = 60°, dan panjang jari - jarinya 42 cm. <strong>Pilihlah 3 pernyataan yang benar.</strong></div>
+    <div class="opts">
+      <div class="opt correct"><span class="opt-lbl">A</span>Panjang busur AB = 77 cm</div>
+      <div class="opt"><span class="opt-lbl">B</span>Panjang busur AD = 96,8 cm</div>
+      <div class="opt"><span class="opt-lbl">C</span>Luas juring COD = 1.617 cm²</div>
+      <div class="opt correct"><span class="opt-lbl">D</span>Luas juring BOC = 1.108,8 cm²</div>
+      <div class="opt correct"><span class="opt-lbl">E</span>Luas juring AOD = 1.894,2 cm²</div>
+    </div>
+    <div class="key-row">Kunci: <strong>A, D, E</strong></div>
+  </div>
+
+  <div class="q-card" id="q-reorder-18">
+    <div class="q-meta"><span class="q-num">No. 18</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+    <div class="q-text">Perhatikan himpunan pasangan (x, y) berikut: {(1, 5), (4, 9), (7, 10)}. Pilihlah 3 jawaban berikut yang benar !</div>
+    <div class="opts">
+      <div class="opt correct"><span class="opt-lbl">A</span>Nilai koefisien regresinya adalah 0,83</div>
+      <div class="opt"><span class="opt-lbl">B</span>Nilai konstantanya adalah 5,67</div>
+      <div class="opt correct"><span class="opt-lbl">C</span>Persamaan garis regresinya adalah y = 4,67 + 0,83x</div>
+      <div class="opt"><span class="opt-lbl">D</span>Perkiraan nilai y untuk x = 5 adalah 7,82</div>
+      <div class="opt correct"><span class="opt-lbl">E</span>Perkiraan nilai y untuk x = 9 adalah 12,14</div>
+    </div>
+    <div class="key-row">Kunci: <strong>A, C, E</strong></div>
+  </div>
+
+  <div class="q-card" id="q-reorder-19">
+    <div class="q-meta"><span class="q-num">No. 19</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+    <div class="q-text">Di dalam sebuah kardus terdapat 15 bola. Pilihlah 3 pernyataan berikut yang benar adalah ...</div>
+    <div class="opts">
+      <div class="opt"><span class="opt-lbl">A</span>Banyak cara mengambil 1 bola adalah 30</div>
+      <div class="opt correct"><span class="opt-lbl">B</span>Banyak cara mengambil 2 bola adalah 105</div>
+      <div class="opt correct"><span class="opt-lbl">C</span>Banyak cara mengambil 3 bola adalah 455</div>
+      <div class="opt correct"><span class="opt-lbl">D</span>Banyak cara mengambil 4 bola adalah 1.365</div>
+      <div class="opt"><span class="opt-lbl">E</span>Banyak cara mengambil 5 bola adalah 3.000</div>
+    </div>
+    <div class="key-row">Kunci: <strong>B, C, D</strong></div>
+  </div>
+
+  <div class="q-card" id="q-reorder-20">
+    <div class="q-meta"><span class="q-num">No. 20</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+    <div class="q-text">Pilihlah 3 pernyataan berikut yang benar adalah …</div>
+    <div class="opts">
+      <div class="opt"><span class="opt-lbl">A</span>Susunan huruf "PAKU" adalah 12</div>
+      <div class="opt correct"><span class="opt-lbl">B</span>Susunan huruf "KRUSIAL" adalah 5.040</div>
+      <div class="opt correct"><span class="opt-lbl">C</span>Susunan huruf "BAHASA" adalah 120</div>
+      <div class="opt"><span class="opt-lbl">D</span>Susunan huruf "ANDAI" adalah 120</div>
+      <div class="opt correct"><span class="opt-lbl">E</span>Susunan huruf "MACAM" adalah 30</div>
+    </div>
+    <div class="key-row">Kunci: <strong>B, C, E</strong></div>
+  </div>
+
+  <div class="q-card" id="q-reorder-21">
+    <div class="q-meta"><span class="q-num">No. 21</span><span class="q-badge badge-match">Menjodohkan</span></div>
+    <div class="q-text">Didalam sebuah kotak terdapat 7 kelereng kuning dan 5 kelereng hijau. Akan diambil 5 kelereng. Tariklah garis antara pertanyaan dan jawaban tepat:</div>
+    <table class="match-tbl">
+      <thead><tr><th>Pernyataan</th><th>Jawaban</th></tr></thead>
+      <tbody>
+        <tr><td>Banyak cara mengambil 3 kuning dan 2 hijau</td><td class="match-ans">350</td></tr>
+        <tr><td>Banyak cara mengambil 2 kuning dan 3 hijau</td><td class="match-ans">210</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="q-card" id="q-reorder-22">
+    <div class="q-meta"><span class="q-num">No. 22</span><span class="q-badge badge-match">Menjodohkan</span><span class="q-badge badge-img">Gambar</span></div>
+    <div class="q-text">Tariklah garis antara matriks dan jenis matriks yang tepat:</div>
+    <table class="match-tbl">
+      <thead><tr><th>Pernyataan</th><th>Jawaban</th></tr></thead>
+      <tbody>
+        <tr><td><img src="@@PLUGINFILE@@/image.png" class="img-fluid"></td><td class="match-ans">matriks tegak</td></tr>
+        <tr><td><img src="@@PLUGINFILE@@/image.png" class="img-fluid"></td><td class="match-ans">matriks persegi</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="q-card" id="q-reorder-23">
+    <div class="q-meta"><span class="q-num">No. 23</span><span class="q-badge badge-match">Menjodohkan</span></div>
+    <div class="q-text">Diketahui angka – angka 3, 4, 5, 6, 7, dan 9. Tariklah garis antara pertanyaan dan jawaban yang tepat.</div>
+    <table class="match-tbl">
+      <thead><tr><th>Pernyataan</th><th>Jawaban</th></tr></thead>
+      <tbody>
+        <tr><td>Banyak bilangan ratusan ganjil yang dapat dibuat</td><td class="match-ans">80</td></tr>
+        <tr><td>Banyak bilangan ratusan terakhir prima genap</td><td class="match-ans">60</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="q-card" id="q-reorder-24">
+    <div class="q-meta"><span class="q-num">No. 24</span><span class="q-badge badge-match">Menjodohkan</span></div>
+    <div class="q-text">Ada 4 siswa kelas X, 5 siswa kelas XI dan 3 siswa kelas XII. Mereka duduk mengelilingi meja bundar. Tariklah garis antara pertanyaan dan jawaban yang tepat.</div>
+    <table class="match-tbl">
+      <thead><tr><th>Pernyataan</th><th>Jawaban</th></tr></thead>
+      <tbody>
+        <tr><td>Siswa kelas XI selalu duduk berdampingan</td><td class="match-ans">7! X 5!</td></tr>
+        <tr><td>Siswa kelas XII selalu duduk berdampingan</td><td class="match-ans">9! X 3!</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="q-card" id="q-reorder-25">
+    <div class="q-meta"><span class="q-num">No. 25</span><span class="q-badge badge-match">Menjodohkan</span></div>
+    <div class="q-text">Didalam sebuah kotak terdapat 7 kelereng kuning dan 5 kelereng hijau. Tariklah garis antara pertanyaan dan jawaban:</div>
+    <table class="match-tbl">
+      <thead><tr><th>Pernyataan</th><th>Jawaban</th></tr></thead>
+      <tbody>
+        <tr><td>Ambil 3 kuning dan 2 hijau</td><td class="match-ans">350</td></tr>
+        <tr><td>Ambil 2 kuning dan 3 hijau</td><td class="match-ans">210</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="q-card" id="q-reorder-26">
+    <div class="q-meta"><span class="q-num">No. 26</span><span class="q-badge badge-mc">Pilihan Ganda</span><span class="q-badge badge-img">Gambar</span></div>
+    <div class="q-text"><img src="MatWa-12/30.png" class="img-fluid"> Dari matriks diatas, elemen baris ketiga adalah 8, 4, 1</div>
+    <div class="opts">
+      <div class="opt correct"><span class="opt-lbl">A</span>true</div>
+      <div class="opt"><span class="opt-lbl">B</span>false</div>
+    </div>
+    <div class="key-row">Kunci: <strong>A</strong></div>
+  </div>
+
+  <div class="q-card" id="q-reorder-27">
+    <div class="q-meta"><span class="q-num">No. 27</span><span class="q-badge badge-mc">Pilihan Ganda</span><span class="q-badge badge-img">Gambar</span></div>
+    <div class="q-text"><img src="MatWa-12/30.png" class="img-fluid"> Dari matriks diatas, apakah matriks K berordo 3 x 3?</div>
+    <div class="opts">
+      <div class="opt correct"><span class="opt-lbl">A</span>true</div>
+      <div class="opt"><span class="opt-lbl">B</span>false</div>
+    </div>
+    <div class="key-row">Kunci: <strong>A</strong></div>
+  </div>
+
+  <div class="q-card" id="q-reorder-28">
+    <div class="q-meta"><span class="q-num">No. 28</span><span class="q-badge badge-mc">Pilihan Ganda</span><span class="q-badge badge-img">Gambar</span></div>
+    <div class="q-text"><img src="MatWa-12/30.png" class="img-fluid
+        "> Dari matriks diatas, apakah elemen kolom kedua adalah 3, -2, 1?</div>
+    <div class="opts">
+      <div class="opt"><span class="opt-lbl">A</span>true</div>
+      <div class="opt correct"><span class="opt-lbl">B</span>false</div>
+    </div>
+    <div class="key-row">Kunci: <strong>B</strong></div>
+  </div>
+
+  <div class="q-card" id="q-reorder-29">
+    <div class="q-meta"><span class="q-num">No. 29</span><span class="q-badge badge-mc">Pilihan Ganda</span><span class="q-badge badge-img">Gambar</span></div>
+    <div class="q-text"><img src="MatWa-12/30.png" class="img-fluid"> Dari matriks diatas, apakah hasil dari a21 + a33 = 1?</div>
+    <div class="opts">
+      <div class="opt"><span class="opt-lbl">A</span>true</div>
+      <div class="opt correct"><span class="opt-lbl">B</span>false</div>
+    </div>
+    <div class="key-row">Kunci: <strong>B</strong></div>
+  </div>
+
+  <div class="q-card" id="q-reorder-30">
+    <div class="q-meta"><span class="q-num">No. 30</span><span class="q-badge badge-mc">Pilihan Ganda</span><span class="q-badge badge-img">Gambar</span></div>
+    <div class="q-text"><img src="MatWa-12/30.png" class="img-fluid"> Dari matriks diatas, apakah jumlah semua elemen kolom pertama = 15?</div>
+    <div class="opts">
+      <div class="opt correct"><span class="opt-lbl">A</span>true</div>
+      <div class="opt"><span class="opt-lbl">B</span>false</div>
+    </div>
+    <div class="key-row">Kunci: <strong>A</strong></div>
+  </div>
+
+    <div class="q-card" id="q-reorder-31">
+    <div class="q-meta"><span class="q-num">No. 31</span><span class="q-badge badge-mc">Essay</span><span class="q-badge badge-img">Gambar</span></div>
+    <div class="q-text"><img src="MatWa-12/31.png" class="img-fluid"> Pada gambar tersebut, PA dan PB adalah garis singgung lingkaran dengan pusat O.
+<br>- Panjang OP = 50 cm dan AP = 40 cm.
+<br>- Panjang jari-jari lingkaran = ... cm</div>
+    <div class="opts">
+      <div class="opt correct"></span>30</div>
+    </div>
+    <div class="key-row">Kunci: <strong>30</strong></div>
+  </div>
+
+    <div class="q-card" id="q-reorder-32">
+    <div class="q-meta"><span class="q-num">No. 32</span><span class="q-badge badge-mc">Essay</span><span class="q-badge badge-img">Gambar</span></div>
+    <div class="q-text"><img src="MatWa-12/31.png" class="img-fluid"> Pada gambar tersebut, PA dan PB adalah garis singgung lingkaran dengan pusat O.
+<br>- Panjang OP = 50 cm dan AP = 40 cm.
+<br>- Luas segitiga OAP = ... cm2</div>
+    <div class="opts">
+      <div class="opt correct"></span>600</div>
+    </div>
+    <div class="key-row">Kunci: <strong>600</strong></div>
+  </div>
+
+    <div class="q-card" id="q-reorder-33">
+    <div class="q-meta"><span class="q-num">No. 33</span><span class="q-badge badge-mc">Essay</span><span class="q-badge badge-img">Gambar</span></div>
+    <div class="q-text"><img src="MatWa-12/31.png" class="img-fluid">Pada gambar tersebut, PA dan PB adalah garis singgung lingkaran dengan pusat O.
+<br>- Panjang OP = 50 cm dan AP = 40 cm
+<br>- Luas layang - layang OAPB = ... cm2</div>
+    <div class="opts">
+      <div class="opt correct"></span>1.200</div>
+    </div>
+    <div class="key-row">Kunci: <strong>1.200</strong></div>
+  </div>
+
+    <div class="q-card" id="q-reorder-34">
+    <div class="q-meta"><span class="q-num">No. 34</span><span class="q-badge badge-mc">Essay</span><span class="q-badge badge-img">Gambar</span></div>
+    <div class="q-text"><img src="MatWa-12/31.png" class="img-fluid">Pada gambar tersebut, PA dan PB adalah garis singgung lingkaran dengan pusat O.
+<br>- Panjang OP = 50 cm dan AP = 40 cm.
+<br>- Sudut OAP = ... derajat</div>
+    <div class="opts">
+      <div class="opt correct"></span>90</div>
+    </div>
+    <div class="key-row">Kunci: <strong>90</strong></div>
+  </div>
+
+    <div class="q-card" id="q-reorder-35">
+    <div class="q-meta"><span class="q-num">No. 35</span><span class="q-badge badge-mc">Essay</span><span class="q-badge badge-img">Gambar</span></div>
+    <div class="q-text"><img src="MatWa-12/31.png" class="img-fluid">Pada gambar tersebut, PA dan PB adalah garis singgung dengan pusat O.
+<br>- Panjang OP = 50 cm dan AP = 40 cm
+<br>- Panjang tali busur AB = ... cm</div>
+    <div class="opts">
+      <div class="opt correct"></span>48</div>
+    </div>
+    <div class="key-row">Kunci: <strong>48</strong></div>
+  </div>
+
+</div>
+  </div>
+</div>
+<footer>Dibuat dengan <strong>QuizConverter</strong> by cybertass &mdash; 29 Maret 2026</footer>
+
+</body>
+</html>
