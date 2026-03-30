@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PSAJ Geografi Kelas 12</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0c0e14;--bg2:#13161f;--bg3:#191d2a;--bd:rgba(255,255,255,0.06);--bd2:rgba(255,255,255,0.11);--tx:#dde1f0;--tx2:#8a93b0;--tx3:#4e5670;--ac:#5d7eff;--acbg:rgba(93,126,255,0.1);--acbd:rgba(93,126,255,0.28);--gr:#3ecf8e;--grbg:rgba(62,207,142,0.09);--grbd:rgba(62,207,142,0.28);--rd:#f16060;--rdbg:rgba(241,96,96,0.09);--rdbd:rgba(241,96,96,0.26);--am:#f59e0b;--ambg:rgba(245,158,11,0.09);--ambd:rgba(245,158,11,0.28);--pu:#a78bfa;--pubg:rgba(167,139,250,0.09);--pubd:rgba(167,139,250,0.28);--r:9px;--rl:13px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;line-height:1.6;font-size:14px}
+header{border-bottom:1px solid var(--bd);padding:0 2rem;height:54px;display:flex;align-items:center;gap:10px;position:sticky;top:0;background:rgba(12,14,20,0.94);backdrop-filter:blur(14px);z-index:100}
+.hlogo{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600}
+.hlm{width:26px;height:26px;border-radius:6px;background:linear-gradient(135deg,#5d7eff,#a78bfa);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;flex-shrink:0}
+.hmeta{font-size:12px;color:var(--tx3);margin-left:auto;text-align:right}
+
+.wrap{max-width:820px;margin:0 auto;padding:2.5rem 2rem}
+.page-hero{margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--bd)}
+.page-hero h1{font-size:26px;font-weight:700;letter-spacing:-.4px;margin-bottom:6px;line-height:1.3}
+.page-hero .sub{font-size:13px;color:var(--tx3);display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.sub-pill{background:var(--bg2);border:1px solid var(--bd2);border-radius:20px;padding:2px 10px;font-size:12px}
+.src-list{font-size:11.5px;color:var(--tx3);margin-top:6px}
+.q-list{display:flex;flex-direction:column;gap:12px}
+.q-card{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--rl);padding:1.2rem;transition:border-color .15s}
+.q-card:hover{border-color:var(--bd2)}
+.q-meta{display:flex;align-items:center;gap:7px;margin-bottom:7px;flex-wrap:wrap}
+.q-num{font-size:11px;color:var(--tx3);font-weight:700;background:var(--bg3);padding:1px 7px;border-radius:5px}
+.q-badge{font-size:10px;padding:2px 7px;border-radius:5px;font-weight:600;border:1px solid transparent}
+.badge-mc{background:var(--acbg);color:var(--ac);border-color:var(--acbd)}
+.badge-multi{background:var(--ambg);color:var(--am);border-color:var(--ambd)}
+.badge-match{background:var(--grbg);color:var(--gr);border-color:var(--grbd)}
+.badge-img{background:var(--pubg);color:var(--pu);border-color:var(--pubd)}
+.q-text{font-size:15px;color:var(--tx);margin-bottom:11px;line-height:1.55}
+.q-text img{max-width:100%;border-radius:7px;margin:7px 0;border:1px solid var(--bd2);display:block}
+.q-text img.broken{opacity:.3;filter:grayscale(1)}
+.opts{display:flex;flex-direction:column;gap:5px}
+.opt{display:flex;align-items:flex-start;gap:9px;padding:7px 11px;border-radius:7px;border:1px solid var(--bd);font-size:13.5px;transition:all .14s;color:var(--tx2);background:var(--bg3)}
+
+.opt img{max-width:200px;max-height:140px;object-fit:contain;border-radius:5px;margin-top:5px;display:block}
+.opt-lbl{font-weight:700;min-width:17px;font-size:11.5px;opacity:.6;flex-shrink:0;padding-top:2px}
+.correct{background:var(--grbg)!important;border-color:var(--grbd)!important;color:var(--gr)!important}
+.wrong{background:var(--rdbg)!important;border-color:var(--rdbd)!important;color:var(--rd)!important}
+.key-row{margin-top:8px;font-size:12.5px;color:var(--tx3);background:var(--grbg);border-left:2px solid var(--gr);padding:6px 11px;border-radius:0 6px 6px 0}
+.feedback{margin-top:7px;padding:6px 11px;border-radius:6px;font-size:13px;font-weight:500}
+.fb-ok{background:var(--grbg);color:var(--gr)}.fb-err{background:var(--rdbg);color:var(--rd)}
+.match-tbl{width:100%;border-collapse:collapse;font-size:13px}
+.match-tbl th,.match-tbl td{padding:6px 9px;border:1px solid var(--bd);vertical-align:top}
+.match-tbl thead th{font-size:10px;color:var(--tx3);font-weight:700;text-transform:uppercase;letter-spacing:.5px;background:var(--bg3)}
+.match-tbl td img{max-width:140px;border-radius:4px;margin-top:4px;display:block}
+.match-ans{color:var(--gr);font-weight:600}
+footer{text-align:center;padding:2rem;font-size:12px;color:var(--tx3);border-top:1px solid var(--bd);margin-top:3rem}
+</style>
+</head>
+<body>
+<header>
+  <div class="hlogo"><div class="hlm">QC</div><span>QuizConverter <span style="color:var(--tx3);font-weight:400">by cybertass</span></span></div>
+  <div class="hmeta">30 Maret 2026</div>
+</header>
+
+<div class="wrap">
+  <div class="page-hero">
+    <h1>PSAJ Geografi Kelas 12</h1>
+    <div class="sub">
+      <span class="sub-pill">📝 41 soal</span>
+      <span class="sub-pill">📋 Kunci Jawaban</span>
+      
+    </div>
+    <div class="src-list">Sumber: questions-GEOG XII-psaj12026-20260330-2323.xml (7 soal), questions-GEOG XII-psaj22026-20260330-2323.xml (13 soal), questions-GEOG XII-psaj32026-20260330-2323.xml (10 soal), questions-GEOG XII-psaj42026-20260330-2323.xml (5 soal), questions-GEOG XII-Setelan bawaan untuk GEOG XII-20260330-2322.xml (6 soal)</div>
+  </div>
+  <div class="q-list">
+<div class="q-card" id="q0">
+<div class="q-meta"><span class="q-num">No. 1</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text">Diketahui jarak antara titik A ke B ada 50 meter, apabila kita akan membuat peta dengan skala 1 : 1000 , maka jarak di peta titik A ke titik B adalah ....</div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div>2 cm</div></div><div class="opt"><span class="opt-lbl">B</span><div>4 cm</div></div><div class="opt correct"><span class="opt-lbl">C</span><div>5 cm</div></div><div class="opt"><span class="opt-lbl">D</span><div>6 cm</div></div><div class="opt"><span class="opt-lbl">E</span><div>8 cm</div></div></div><div class="key-row">Kunci: <strong>C</strong></div>
+</div>
+<div class="q-card" id="q1">
+<div class="q-meta"><span class="q-num">No. 2</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text">Jarak dari rumah Romi ke sekolah adalah 8 km. Jika Romi ingin memetakan dengan skala 1:500.000, maka jarak dari rumah Romi ke sekolah pada peta adalah ....</div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div>0,625 cm</div></div><div class="opt"><span class="opt-lbl">B</span><div>0,16 cm</div></div><div class="opt correct"><span class="opt-lbl">C</span><div>1,6 cm</div></div><div class="opt"><span class="opt-lbl">D</span><div>6,16 cm</div></div><div class="opt"><span class="opt-lbl">E</span><div>16 cm</div></div></div><div class="key-row">Kunci: <strong>C</strong></div>
+</div>
+<div class="q-card" id="q2">
+<div class="q-meta"><span class="q-num">No. 3</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text">Perbandingan jarak antara di peta dengan jarak sebenarnya di permukaan bumi disebut ....</div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div>legenda</div></div><div class="opt"><span class="opt-lbl">B</span><div>orientasi</div></div><div class="opt correct"><span class="opt-lbl">C</span><div>skala peta</div></div><div class="opt"><span class="opt-lbl">D</span><div>relief</div></div><div class="opt"><span class="opt-lbl">E</span><div>proyeksi</div></div></div><div class="key-row">Kunci: <strong>C</strong></div>
+</div>
+<div class="q-card" id="q3">
+<div class="q-meta"><span class="q-num">No. 4</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text">Perbandingan jarak pada peta dengan jarak di lapangan yang ditunjukan dalam bentuk garis disebut ....</div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div>skala numerik</div></div><div class="opt"><span class="opt-lbl">B</span><div>skala angka</div></div><div class="opt correct"><span class="opt-lbl">C</span><div>skala garis</div></div><div class="opt"><span class="opt-lbl">D</span><div>skala verbal</div></div><div class="opt"><span class="opt-lbl">E</span><div>skala inci</div></div></div><div class="key-row">Kunci: <strong>C</strong></div>
+</div>
+<div class="q-card" id="q4">
+<div class="q-meta"><span class="q-num">No. 5</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text">Peta tambahan kecil untuk memperjelas salah satu bagian peta yang terdapat di dalam peta disebut....</div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div>peta korografi</div></div><div class="opt"><span class="opt-lbl">B</span><div>peta umum</div></div><div class="opt correct"><span class="opt-lbl">C</span><div>inset</div></div><div class="opt"><span class="opt-lbl">D</span><div>legenda</div></div><div class="opt"><span class="opt-lbl">E</span><div>proyeksi peta</div></div></div><div class="key-row">Kunci: <strong>C</strong></div>
+</div>
+<div class="q-card" id="q5">
+<div class="q-meta"><span class="q-num">No. 6</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text">Proyeksi peta yang diperoleh dengan cara memproyeksikan permukaan globe ke bidang silinder disebut ....</div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div>proyeksi kerucut</div></div><div class="opt"><span class="opt-lbl">B</span><div>proyeksi azimuth</div></div><div class="opt correct"><span class="opt-lbl">C</span><div>proyeksi silinder</div></div><div class="opt"><span class="opt-lbl">D</span><div>proyeksi normal</div></div><div class="opt"><span class="opt-lbl">E</span><div>proyeksi miring</div></div></div><div class="key-row">Kunci: <strong>C</strong></div>
+</div>
+<div class="q-card" id="q6">
+<div class="q-meta"><span class="q-num">No. 7</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text">Salah satu syarat pembuatan peta adalah confrom, artinya ....</div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div>luas peta harus tepat dan benar</div></div><div class="opt correct"><span class="opt-lbl">B</span><div>bentuk peta harus sesuai dengan aslinya</div></div><div class="opt"><span class="opt-lbl">C</span><div>jarak peta harus benar</div></div><div class="opt"><span class="opt-lbl">D</span><div>arah peta harus benar</div></div><div class="opt"><span class="opt-lbl">E</span><div>gambar harus simetris</div></div></div><div class="key-row">Kunci: <strong>B</strong></div>
+</div>
+<div class="q-card" id="q7">
+<div class="q-meta"><span class="q-num">No. 8</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text">Aliran sungai akan mengikis batuan baik secara vertikal ataupun  horizontal yang mengakibatkan adanya  proses pengendapan tanah / batuan di tempat lain. Bentukan hasil pengendapan tersebut adalah ...</div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div>delta, dataran banjir, dan ngarai</div></div><div class="opt"><span class="opt-lbl">B</span><div>ngarai, delta, dan dataran alluvial</div></div><div class="opt"><span class="opt-lbl">C</span><div>dataran banjir, meander, dan palung sungai</div></div><div class="opt"><span class="opt-lbl">D</span><div>Ox Bow Lake, meander, dan delta</div></div><div class="opt correct"><span class="opt-lbl">E</span><div>dataran alluvial, delta, dan tanggul alam</div></div></div><div class="key-row">Kunci: <strong>E</strong></div>
+</div>
+<div class="q-card" id="q8">
+<div class="q-meta"><span class="q-num">No. 9</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text">Desa yg mampu mengembangkan potensi-potensi sumber daya secara Optimal,dan daya interaksinya dengan wilayah luar sangat tinggi disebut ...</div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div>desa swadaya</div></div><div class="opt"><span class="opt-lbl">B</span><div>desa swakarsa</div></div><div class="opt correct"><span class="opt-lbl">C</span><div>desa swasembada</div></div><div class="opt"><span class="opt-lbl">D</span><div>desa tertinggal</div></div><div class="opt"><span class="opt-lbl">E</span><div>desa transisi</div></div></div><div class="key-row">Kunci: <strong>C</strong></div>
+</div>
+<div class="q-card" id="q9">
+<div class="q-meta"><span class="q-num">No. 10</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text">Diketahui jumlah  penduduk kota A  sebanyak 50.000 jiwa, sedangkan  jumlah  penduduk kota B  sebanyak 30.000 jiwa, jarak kota A dan kota B 40 km.Kekuatan interaksi antara kota A dan B adalah ...</div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div>725.000</div></div><div class="opt"><span class="opt-lbl">B</span><div>837.500</div></div><div class="opt"><span class="opt-lbl">C</span><div>875.000</div></div><div class="opt"><span class="opt-lbl">D</span><div>925.000</div></div><div class="opt correct"><span class="opt-lbl">E</span><div>937.500</div></div></div><div class="key-row">Kunci: <strong>E</strong></div>
+</div>
+<div class="q-card" id="q10">
+<div class="q-meta"><span class="q-num">No. 11</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text">Diketahui jumlah penduduk di Kecamatan Tegalsari adalah 2.750 jiwa yang terdiri dari penduduk  usia 0 - 14 tahun = 1.050 jiwa,  usia 15 – 64 tahun = 1.500 jiwa, dan  penduduk berusia 65 tahun ke atas = 200 jiwa. Dengan menggunakan  rumus "Dependency Ratio" akan diketahui bahwa di  Kecamatan Tegalsari setiap 100 orang penduduk yang produktif akan menanggung  beban sebanyak ..</div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div>53 jiwa</div></div><div class="opt"><span class="opt-lbl">B</span><div>60 jiwa</div></div><div class="opt"><span class="opt-lbl">C</span><div>77 jiwa</div></div><div class="opt correct"><span class="opt-lbl">D</span><div>83 jiwa</div></div><div class="opt"><span class="opt-lbl">E</span><div>97 jiwa</div></div></div><div class="key-row">Kunci: <strong>D</strong></div>
+</div>
+<div class="q-card" id="q11">
+<div class="q-meta"><span class="q-num">No. 12</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text">Dilihat dari pola keruangannya, paling sedikit ada 3 unsur utama desa, yaitu ...</div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div>penduduk, dusun dan daerah</div></div><div class="opt"><span class="opt-lbl">B</span><div>norma, daerah dan dusun</div></div><div class="opt"><span class="opt-lbl">C</span><div>tata kehidupan, dusun dan daerah</div></div><div class="opt correct"><span class="opt-lbl">D</span><div>daerah, penduduk dan tata kehidupan</div></div><div class="opt"><span class="opt-lbl">E</span><div>daerah, dusun dan tata kehidupan</div></div></div><div class="key-row">Kunci: <strong>D</strong></div>
+</div>
+<div class="q-card" id="q12">
+<div class="q-meta"><span class="q-num">No. 13</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text">El Nino merupakan gejala gangguan iklim yang terjadi akibat  naiknya suhu  permukaan air laut  di samudra Pasifik, khususnya sekitar daerah equator,  bagian tengah  dan timur. Kondisi ini  bagi sebagian besar wilayah Indonesia menyebabkan terjadinya ...</div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div>musim kemarau yang panjang</div></div><div class="opt"><span class="opt-lbl">B</span><div>musim hujan yang panjang</div></div><div class="opt"><span class="opt-lbl">C</span><div>musim pancaroba</div></div><div class="opt"><span class="opt-lbl">D</span><div>musim badai  di daerah perairan  Indonesia bagian timur</div></div><div class="opt"><span class="opt-lbl">E</span><div>musim sulit ikan di daerah perairan Indonesia</div></div></div><div class="key-row">Kunci: <strong>A</strong></div>
+</div>
+<div class="q-card" id="q13">
+<div class="q-meta"><span class="q-num">No. 14</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text">Penduduk  kota A berjumlah 10.000 orang,  sedangkan penduduk kota B berjumlah 5.000 orang dan penduduk kota C berjumlah 15.000 orang. Jarak kota A – B 50 km  Jarak kota B – C 100 km Maka lokasi titik henti antara kota A dan B adalah ...</div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div>30,6 km</div></div><div class="opt correct"><span class="opt-lbl">B</span><div>20,75 km</div></div><div class="opt"><span class="opt-lbl">C</span><div>25,30 km</div></div><div class="opt"><span class="opt-lbl">D</span><div>40 km</div></div><div class="opt"><span class="opt-lbl">E</span><div>27 km</div></div></div><div class="key-row">Kunci: <strong>B</strong></div>
+</div>
+<div class="q-card" id="q14">
+<div class="q-meta"><span class="q-num">No. 15</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Pengaruh positif yang akan timbul jika terjadi interaksi antara kota dan desa di antaranya...</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>rangsangan bagi penduduk desa usia muda untuk urbanisasi.</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>wilayah hunian masyarakat desa menempati daerah kumuh.</p></div></div><div class="opt correct"><span class="opt-lbl">C</span><div><p>terbukanya hubungan yang menggairahkan perekonomian desa.</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>lahan desa akan dimiliki masyarakat kota.</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>adanya penetrasi budaya yang tidak sesuai tradisi desa.</p></div></div></div><div class="key-row">Kunci: <strong>C</strong></div>
+</div>
+<div class="q-card" id="q15">
+<div class="q-meta"><span class="q-num">No. 16</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text">Pengertian dari pusat pertumbuhan adalah ...</div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div>wilayah yang mempengaruhi wilayah lain</div></div><div class="opt"><span class="opt-lbl">B</span><div>wilayah yang berkembang lebih baik dari sebelumnya</div></div><div class="opt"><span class="opt-lbl">C</span><div>wilayah yang memiliki kegiatan industri</div></div><div class="opt correct"><span class="opt-lbl">D</span><div>wilayah yang perkembangannya sangat pesat dan mampu mempengaruhi wilayah lain</div></div><div class="opt"><span class="opt-lbl">E</span><div>wilayah yang lebih berkembang dibandingkan wilayah lain di sekitarnya</div></div></div><div class="key-row">Kunci: <strong>D</strong></div>
+</div>
+<div class="q-card" id="q16">
+<div class="q-meta"><span class="q-num">No. 17</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text">Perbedaan pengertian cuaca dan iklim khususnya pada masalah:</div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div>Ruang lingkup wilayah. Cuaca mencakup daerah dengan radius kurang dari 10 km sedangkan iklim mencakup daerah lebih dari 10 km.</div></div><div class="opt correct"><span class="opt-lbl">B</span><div>Lama waktu. Cuaca waktunya singkat sedangkan iklim waktunya panjang.</div></div><div class="opt"><span class="opt-lbl">C</span><div>Variasi kejadian. Cuaca memiliki variasi fenomena cuaca yang lebih sedikit dibandingkan iklim.</div></div><div class="opt"><span class="opt-lbl">D</span><div>Semua benar</div></div><div class="opt"><span class="opt-lbl">E</span><div>Tidak ada yang benar</div></div></div><div class="key-row">Kunci: <strong>B</strong></div>
+</div>
+<div class="q-card" id="q17">
+<div class="q-meta"><span class="q-num">No. 18</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text">Peristiwa gelombang Tsunami di Nangro Aceh Darusalam telah meninggalkan duka yang sangat dalam bagi bangsa kita, banyak harta, benda, maupun manusia menjadi korbannya, gelombang tersebut disebabkan oleh ....</div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div>gerakan pasang naik dan pasang surut air laut</div></div><div class="opt"><span class="opt-lbl">B</span><div>gempa vulkanik di dasar laut</div></div><div class="opt correct"><span class="opt-lbl">C</span><div>gempa tektonik di dasar laut</div></div><div class="opt"><span class="opt-lbl">D</span><div>perbedaan salinitas air laut yang sangat besar</div></div><div class="opt"><span class="opt-lbl">E</span><div>rusaknya terumbu karang dasar laut</div></div></div><div class="key-row">Kunci: <strong>C</strong></div>
+</div>
+<div class="q-card" id="q18">
+<div class="q-meta"><span class="q-num">No. 19</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text">Polusi udara yang banyak terjadi di kota-kota besar dunia mempengaruhi pada pemanasan global. Beragam cara bisa dilakukan untuk mengerem laju pemanasan global tersebut dengan cara-cara yang sederhana, misalnya:</div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div>Berpergian kemanapun dengan kendaraan bermotor</div></div><div class="opt"><span class="opt-lbl">B</span><div>Menyalakan lampu pada siang hari</div></div><div class="opt correct"><span class="opt-lbl">C</span><div>Tidak bepergian dengan motor/mobil bila tidak penting</div></div><div class="opt"><span class="opt-lbl">D</span><div>Menyalakan TV sepanjang waktu</div></div><div class="opt"><span class="opt-lbl">E</span><div>Banyak membersihkan badan</div></div></div><div class="key-row">Kunci: <strong>C</strong></div>
+</div>
+<div class="q-card" id="q19">
+<div class="q-meta"><span class="q-num">No. 20</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text">Salah satu dampak negatif pemukiman terhadap lingkungan fisik, yaitu ...</div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div>meningkatnya limbah domestik</div></div><div class="opt"><span class="opt-lbl">B</span><div>memperlancar proses infiltrasi air ke dalam tanah</div></div><div class="opt"><span class="opt-lbl">C</span><div>menghambat proses erosi</div></div><div class="opt"><span class="opt-lbl">D</span><div>terjadinya penurunan suhu udara akibat pemanasan global</div></div><div class="opt correct"><span class="opt-lbl">E</span><div>terjadinya konflik pemanfaatan lahan</div></div></div><div class="key-row">Kunci: <strong>E</strong></div>
+</div>
+<div class="q-card" id="q20">
+<div class="q-meta"><span class="q-num">No. 21</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p>Bagaimana ciri desa jika dilihat dari kondisi fisiknya...</p>
+<p>(jawaban lebih dari satu)</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>Masyarakatnya bermata pencaharian petani</p></div></div><div class="opt correct"><span class="opt-lbl">B</span><div><p>Luas wilayahnya lebih besar daripada jumlah penduduknya</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>Terdapat kompleks perumahan</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Tersedia tempat rekreasi</p></div></div><div class="opt correct"><span class="opt-lbl">E</span><div><p>Kualitas udara masih alami tanpa adanya polusi</p></div></div></div><div class="key-row">Kunci: <strong>B, E</strong></div>
+</div>
+<div class="q-card" id="q21">
+<div class="q-meta"><span class="q-num">No. 22</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p>Contoh kota di Indonesia yang diklasifikasikan berdasarkan sejarah pertumbuhan dan perkembangan kota dari pusat perdagangan yakni...</p>
+<p>(jawaban lebih dari satu)</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>Bontang</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>Bogor</p></div></div><div class="opt correct"><span class="opt-lbl">C</span><div><p>Jakarta</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Cepu</p></div></div><div class="opt correct"><span class="opt-lbl">E</span><div><p>Samarinda</p></div></div></div><div class="key-row">Kunci: <strong>C, E</strong></div>
+</div>
+<div class="q-card" id="q22">
+<div class="q-meta"><span class="q-num">No. 23</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p>Dalam interaksi desa kota terdapat beberapa teori yang mendukung. Teori tersebut yakni teori gravitasi, teori titik henti dan teori konektivitas. Teori titik yang merupakan modifikasi dari teori gravitasi memiliki fungsi untuk...</p>
+<p>(jawaban lebih dari satu)</p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div><p>Memperkirakan lokasi industri atau layanan sosial yang strategis dan mudah dijangkau oleh kedua wilayah</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>Menghitung kekuatan interaksi antar dua wilayah</p></div></div><div class="opt correct"><span class="opt-lbl">C</span><div><p>Memperkirakan lokasi garis batas yang memisahkan wilayah perdagangan dari dua kota yang berbeda ukurannya</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Menghitung kekuatan interaksi berdasarkan jaringan jalan</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>Memahami pola interaksi antar wilayah kota dilihat dari jaringan jalannya</p></div></div></div><div class="key-row">Kunci: <strong>A, C</strong></div>
+</div>
+<div class="q-card" id="q23">
+<div class="q-meta"><span class="q-num">No. 24</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p>Desa swakarya adalah tahapan desa menuju desa yang maju atau bisa disebut juga desa berkembang. Desa tersebut dicirikan dengan...</p>
+<p>(jawaban lebih dari satu)</p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div><p>Adat istiadat mulai longgar</p></div></div><div class="opt correct"><span class="opt-lbl">B</span><div><p>Mata pencaharian mulai beragam</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>Kehidupan masih bergantung pada alam</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Sarana prasarana lengkap dan modern</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>antar masyarakat bersifat rasional</p></div></div></div><div class="key-row">Kunci: <strong>A, B</strong></div>
+</div>
+<div class="q-card" id="q24">
+<div class="q-meta"><span class="q-num">No. 25</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p>Gejala yang muncul akibat adanya interaksi desa dan kota yang menguntungkan bagi desa yakni...</p>
+<p>(jawaban lebih dari satu)</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>Timbulnya gaya hidup kekotaan yang menuju hedonisme</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>Tersedianya tenaga kerja yang melimpah</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>Pasokan bahan pangan melimpah</p></div></div><div class="opt correct"><span class="opt-lbl">D</span><div><p>Terjadinya pertukaran budaya dan pengetahuan antar masyarakat desa dan kota sehingga dapat menambah wawasan masyarakat desa</p></div></div><div class="opt correct"><span class="opt-lbl">E</span><div><p>Terjadinya adopsi teknologi baru dalam bidang pertanian ditandai dengan munculnya berbagai alat pertanian yang modern</p></div></div></div><div class="key-row">Kunci: <strong>D, E</strong></div>
+</div>
+<div class="q-card" id="q25">
+<div class="q-meta"><span class="q-num">No. 26</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p>Interaksi desa kota merupakan hubungan timbal balik antara desa dan kota yang kemudian menimbulkan gejala/permasalahan yang baru. Dalam interaksi terdapat beberapa prinsip yakni...</p>
+<p>(jawaban lebih dari satu)</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>Adanya wilayah yang saling melengkapi</p></div></div><div class="opt correct"><span class="opt-lbl">B</span><div><p>Adanya hubungan timbal balik yang mengakibatkan beberapa proses pergerakan</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>Adanya kesempatan berintervensi</p></div></div><div class="opt correct"><span class="opt-lbl">D</span><div><p>Timbulnya dampak-dampak tertentu baik dampak positif maupun negatif</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>Adanya kemudahan pemindahan dalam ruang</p></div></div></div><div class="key-row">Kunci: <strong>B, D</strong></div>
+</div>
+<div class="q-card" id="q26">
+<div class="q-meta"><span class="q-num">No. 27</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p>Jika dilihat dari kualitas perkembangannya, tahapan kota dibagi menjadi enam tahapan. Tahapan tyranopolis dicirikan dengan...</p>
+<p>(jawaban lebih dari satu)</p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div><p>Kota mengalamai penurunan fungsi</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>Masih berorientasi pada sektor pertanian</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>Mata pencaharian bergantung pada sektor industri</p></div></div><div class="opt correct"><span class="opt-lbl">D</span><div><p>Semakin berkembangnya kriminalitas dan kejahatan</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>Peralihan kehidupan tradisional menuju modern</p></div></div></div><div class="key-row">Kunci: <strong>A, D</strong></div>
+</div>
+<div class="q-card" id="q27">
+<div class="q-meta"><span class="q-num">No. 28</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p>Kota memiliki karakteristik yang berbeda dengan desa. Terdapat ciri fisik kota dan ciri masyarakat kota. Dibawah ini yang termasuk dalam ciri masyarakat kota adalah...</p>
+<p>(jawaban lebih dari satu)</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>Memilikihi hubungan kekerabatan yang kuat</p></div></div><div class="opt correct"><span class="opt-lbl">B</span><div><p>Bersifat individualis</p></div></div><div class="opt correct"><span class="opt-lbl">C</span><div><p>Hubungan sosial masyarakat bersifat gesselschaft</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Hubungan sosial masyarakat bersifat gemeinschaft</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>Stratifikasi masyarakat tidak terlalu mencolok</p></div></div></div><div class="key-row">Kunci: <strong>B, C</strong></div>
+</div>
+<div class="q-card" id="q28">
+<div class="q-meta"><span class="q-num">No. 29</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p>Potensi desa adalah segala sumber daya yang dimiliki oleh desa. Potensi desa terdiri dari potensi fisik dan potensi non fisik. Dibawah ini yang termasuk dalam potensi fisik desa adalah...</p>
+<p>(jawaban lebih dari satu)</p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div><p>Iklim</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>Aparatur desa</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>Lembaga sosial</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Masyarakat desa</p></div></div><div class="opt correct"><span class="opt-lbl">E</span><div><p>Manusia</p></div></div></div><div class="key-row">Kunci: <strong>A, E</strong></div>
+</div>
+<div class="q-card" id="q29">
+<div class="q-meta"><span class="q-num">No. 30</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p>Unsur-unsur desa adalah komponen-komponen dasar yang membentuk suatu desa sebagai sebuah kesatuan wilayah dan masyarakat. Terdapat 3 unsur-unsur desa yakni daerah, penduduk dan tata kelakuan. Dibawah ini yang termasuk ke dalam unsur tata kelakuan adalah...</p>
+<p>(jawaban lebih dari satu)</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>lokasi</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>mata pencaharian penduduk</p></div></div><div class="opt correct"><span class="opt-lbl">C</span><div><p>adat istiadat</p></div></div><div class="opt correct"><span class="opt-lbl">D</span><div><p>norma</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>bentuk lahan</p></div></div></div><div class="key-row">Kunci: <strong>C, D</strong></div>
+</div>
+<div class="q-card" id="q30">
+<div class="q-meta"><span class="q-num">No. 31</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>&gt;70% masyarakat desa memiliki mata pencaharian sebagai petani.</p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div><p>benar</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>salah</p></div></div></div><div class="key-row">Kunci: <strong>A</strong></div>
+</div>
+<div class="q-card" id="q31">
+<div class="q-meta"><span class="q-num">No. 32</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Desa yang memusat pada 1 pusat adalah desa yang memiliki pola keruangan terpusat.</p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div><p>benar</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>salah</p></div></div></div><div class="key-row">Kunci: <strong>A</strong></div>
+</div>
+<div class="q-card" id="q32">
+<div class="q-meta"><span class="q-num">No. 33</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Regional complementary berfokus pada adanya wilayah yang saling melengkapi dalam proses pemenuhan kebutuhan.</p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div><p>benar</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>salah</p></div></div></div><div class="key-row">Kunci: <strong>A</strong></div>
+</div>
+<div class="q-card" id="q33">
+<div class="q-meta"><span class="q-num">No. 34</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Teori sektoral memiliki kesimpulan bahwa proses pertumbuhan kota berdasarkan sektor.</p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div><p>benar</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>salah</p></div></div></div><div class="key-row">Kunci: <strong>A</strong></div>
+</div>
+<div class="q-card" id="q34">
+<div class="q-meta"><span class="q-num">No. 35</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Teori titik henti merupakan teori yang di gunakan untuk memperkirakan lokasi strategis bagi kegiatan industri atau pelayanan sosial.</p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div><p>benar</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>salah</p></div></div></div><div class="key-row">Kunci: <strong>A</strong></div>
+</div>
+<div class="q-card" id="q35">
+<div class="q-meta"><span class="q-num">No. 36</span><span class="q-badge badge-match">Menjodohkan</span></div>
+<div class="q-text"><p class="MsoListParagraphCxSpFirst" style="margin-left: 40.85pt; mso-add-space: auto; text-align: justify; text-indent: -18.0pt; line-height: 150%; mso-list: l0 level1 lfo1;"><span lang="EN-ID" style="font-size: 12.0pt; line-height: 150%; font-family: 'Times New Roman',serif;">     Interaksi tidak dapat dihindarkan dalam hubungannya untuk memenuhi segala kehidupan manusia. Menurut Edward Ullman, terdapat 3 faktor pendorong interaksi desa-kota dengan karakteristiknya masing-masing. Tariklah garis antara faktor pendorong interaksi desa-kota dan karakteristik yang tepat!</span></p></div>
+<table class="match-tbl"><thead><tr><th>Pernyataan</th><th>Jawaban</th></tr></thead><tbody><tr><td><p><i><span lang="EN-ID" style="font-size: 12.0pt; line-height: 150%; font-family: 'Times New Roman',serif;">Regional Complementary</span></i></p></td><td class="match-ans">Adanya perbedaan barang atau jasa disetiap wilayah</td></tr><tr><td><p><span lang="EN-ID" style="font-size: 12.0pt; line-height: 150%; font-family: 'Times New Roman',serif; mso-fareast-font-family: 'Times New Roman';"><span style="mso-list: Ignore;"><span style="font: 7.0pt 'Times New Roman';"> </span></span></span><!--[endif]--><i><span lang="EN-ID" style="font-size: 12.0pt; line-height: 150%; font-family: 'Times New Roman',serif;">Intervening Opportunity</span></i></p></td><td class="match-ans">Adanya suatu wilayah yang memutus atau melemahkan interaksi dua wilayah</td></tr><tr><td><p><span lang="EN-ID" style="font-size: 12.0pt; line-height: 150%; font-family: 'Times New Roman',serif; mso-fareast-font-family: 'Times New Roman';"><span style="mso-list: Ignore;"><span style="font: 7.0pt 'Times New Roman';"> </span></span></span><!--[endif]--><i><span lang="EN-ID" style="font-size: 12.0pt; line-height: 150%; font-family: 'Times New Roman',serif;">Spatial Transfer Ability</span></i></p></td><td class="match-ans">Adaya kemudahan perpindahan barang atau jasa pada suatu wilayah</td></tr></tbody></table>
+</div>
+<div class="q-card" id="q36">
+<div class="q-meta"><span class="q-num">No. 37</span><span class="q-badge badge-match">Menjodohkan</span></div>
+<div class="q-text"><p class="MsoListParagraphCxSpFirst" style="text-align: justify; text-indent: -18.0pt; line-height: 150%; mso-list: l0 level1 lfo1;"><!-- [if !supportLists]--><span lang="EN-ID" style="font-size: 12.0pt; line-height: 150%; font-family: 'Times New Roman',serif; mso-fareast-font-family: 'Times New Roman';"><span style="mso-list: Ignore;">1.<span style="font: 7.0pt 'Times New Roman';">      </span></span></span><!--[endif]--><span lang="EN-ID" style="font-size: 12.0pt; line-height: 150%; font-family: 'Times New Roman',serif;">Seiring dengan berkembangnya kemampuan Masyarakat, wilayah desa akan mengalami perkembangan. Masyarakat yang awalnya hidup tradisional akan membuka diri agar lebih maju. Terdapat beberapa tingkat perkembangan desa berdasarkan kemampuan masyarakatnya. Tariklah garis antara Tingkat perkembangan desa dan ciri-ciri perkembangan desa yang tepat!</span></p></div>
+<table class="match-tbl"><thead><tr><th>Pernyataan</th><th>Jawaban</th></tr></thead><tbody><tr><td><p><span lang="EN-ID" style="font-size: 12.0pt; line-height: 150%; font-family: 'Times New Roman',serif;">Desa swadaya</span></p></td><td class="match-ans">  Masyarakatnya masih sangat tradisional dan bersifat tertutup</td></tr><tr><td><p><span lang="EN-ID" style="font-size: 12.0pt; line-height: 150%; font-family: 'Times New Roman',serif; mso-fareast-font-family: 'Times New Roman';"><span style="mso-list: Ignore;"><span style="font: 7.0pt 'Times New Roman';">  </span></span></span><!--[endif]--><span lang="EN-ID" style="font-size: 12.0pt; line-height: 150%; font-family: 'Times New Roman',serif;">Desa swakarya</span></p></td><td class="match-ans">  Adanya pengaruh dari luar mengakibatkan perubahan pola pikir</td></tr><tr><td><p><span lang="EN-ID" style="font-size: 12.0pt; line-height: 150%; font-family: 'Times New Roman',serif; mso-fareast-font-family: 'Times New Roman';"><span style="mso-list: Ignore;"><span style="font: 7.0pt 'Times New Roman';"> </span></span></span><!--[endif]--><span lang="EN-ID" style="font-size: 12.0pt; line-height: 150%; font-family: 'Times New Roman',serif;">Desa swasembada</span></p></td><td class="match-ans">Hubungan Masyarakat sudah bersifat rasional dan modern</td></tr></tbody></table>
+</div>
+<div class="q-card" id="q37">
+<div class="q-meta"><span class="q-num">No. 38</span><span class="q-badge badge-match">Menjodohkan</span></div>
+<div class="q-text"><p class="MsoListParagraphCxSpFirst" style="text-align: justify; text-indent: -18.0pt; line-height: 150%; mso-list: l0 level1 lfo1;"><!-- [if !supportLists]--><span lang="EN-ID" style="font-size: 12.0pt; line-height: 150%; font-family: 'Times New Roman',serif; mso-fareast-font-family: 'Times New Roman';"><span style="mso-list: Ignore;">1.<span style="font: 7.0pt 'Times New Roman';">      </span></span></span><!--[endif]--><span lang="EN-ID" style="font-size: 12.0pt; line-height: 150%; font-family: 'Times New Roman',serif;">Perkembangan kota yang pesat telah membawa berbagai dampak, baik positif maupun negative. Untuk itu, diperlukan Pembangunan kota yang seimbang dan berkelanjutan. Pembangunan tersebut diwujudkan dalam paradigma baru pembangunan kota. Terdapat tiga paradigma pembangunan kota dengan karakteristiknya masing-masing. Tariklah garis antara paradigma pembangunan kota dan karakteristik yang tepat!</span></p>
+<table class="MsoTableGrid" style="width: 438.6pt; margin-left: 36.0pt; border-collapse: collapse; border: none; mso-border-alt: solid windowtext .5pt; mso-yfti-tbllook: 1184; mso-padding-alt: 0cm 5.4pt 0cm 5.4pt;" border="1" width="585" cellspacing="0" cellpadding="0">
+<tbody>
+<tr style="mso-yfti-irow: 0; mso-yfti-firstrow: yes;">
+<td style="width: 133.85pt; border: solid windowtext 1.0pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 5.4pt 0cm 5.4pt;" valign="top" width="178">
+<p class="MsoListParagraphCxSpMiddle" align="center" style="margin: 0cm; mso-add-space: auto; text-align: center; line-height: 150%;"><strong><span lang="EN-ID" style="font-size: 12.0pt; line-height: 150%; font-family: 'Times New Roman',serif;">Paradigma Pembangunan Kota</span></strong></p>
+</td>
+<td style="width: 304.75pt; border: solid windowtext 1.0pt; border-left: none; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 5.4pt 0cm 5.4pt;" valign="top" width="406">
+<p class="MsoListParagraphCxSpLast" align="center" style="margin: 0cm; mso-add-space: auto; text-align: center; line-height: 150%;"><strong><span lang="EN-ID" style="font-size: 12.0pt; line-height: 150%; font-family: 'Times New Roman',serif;">Karakteristik</span></strong></p>
+</td>
+</tr>
+<tr style="mso-yfti-irow: 1;">
+<td style="width: 133.85pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 5.4pt 0cm 5.4pt;" valign="top" width="178">
+<p class="MsoListParagraphCxSpFirst" style="mso-add-space: auto; text-align: justify; text-indent: -18.0pt; line-height: 150%; mso-list: l2 level1 lfo2; margin: 0cm 0cm 0cm 22.35pt;"><!-- [if !supportLists]--><span lang="EN-ID" style="font-size: 12.0pt; line-height: 150%; font-family: 'Times New Roman',serif; mso-fareast-font-family: 'Times New Roman';"><span style="mso-list: Ignore;">A.<span style="font: 7.0pt 'Times New Roman';"> </span></span></span></p>
+</td>
+<td style="width: 304.75pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 5.4pt 0cm 5.4pt;" valign="top" width="406">
+<p class="MsoListParagraphCxSpLast" style="mso-add-space: auto; text-align: justify; text-indent: -18.0pt; line-height: 150%; mso-list: l1 level1 lfo3; margin: 0cm 0cm 0cm 16.05pt;"><!-- [if !supportLists]--><span lang="EN-ID" style="font-size: 12.0pt; line-height: 150%; font-family: 'Times New Roman',serif; mso-fareast-font-family: 'Times New Roman';"><span style="mso-list: Ignore;">1.<span style="font: 7.0pt 'Times New Roman';">     </span></span></span></p>
+</td>
+</tr>
+<tr style="mso-yfti-irow: 2;">
+<td style="width: 133.85pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 5.4pt 0cm 5.4pt;" valign="top" width="178">
+<p class="MsoListParagraphCxSpFirst" style="mso-add-space: auto; text-align: justify; text-indent: -18.0pt; line-height: 150%; mso-list: l2 level1 lfo2; margin: 0cm 0cm 8.0pt 22.35pt;"><!-- [if !supportLists]--><span lang="EN-ID" style="font-size: 12.0pt; line-height: 150%; font-family: 'Times New Roman',serif; mso-fareast-font-family: 'Times New Roman';"><span style="mso-list: Ignore;">B.<span style="font: 7.0pt 'Times New Roman';">    </span></span></span></p>
+</td>
+<td style="width: 304.75pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 5.4pt 0cm 5.4pt;" valign="top" width="406">
+<p class="MsoListParagraphCxSpLast" style="mso-add-space: auto; text-align: justify; text-indent: -18.0pt; line-height: 150%; mso-list: l1 level1 lfo3; margin: 0cm 0cm 0cm 16.05pt;"><!-- [if !supportLists]--><span lang="EN-ID" style="font-size: 12.0pt; line-height: 150%; font-family: 'Times New Roman',serif; mso-fareast-font-family: 'Times New Roman';"><span style="mso-list: Ignore;">2.<span style="font: 7.0pt 'Times New Roman';">     </span></span></span></p>
+</td>
+</tr>
+<tr style="mso-yfti-irow: 3; mso-yfti-lastrow: yes;">
+<td style="width: 133.85pt; border: solid windowtext 1.0pt; border-top: none; mso-border-top-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 5.4pt 0cm 5.4pt;" valign="top" width="178">
+<p class="MsoListParagraphCxSpFirst" style="mso-add-space: auto; text-align: justify; text-indent: -18.0pt; line-height: 150%; mso-list: l2 level1 lfo2; margin: 0cm 0cm 0cm 22.35pt;"><!-- [if !supportLists]--><span lang="EN-ID" style="font-size: 12.0pt; line-height: 150%; font-family: 'Times New Roman',serif; mso-fareast-font-family: 'Times New Roman';"><span style="mso-list: Ignore;">C.<span style="font: 7.0pt 'Times New Roman';">   </span></span></span></p>
+</td>
+<td style="width: 304.75pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; mso-border-top-alt: solid windowtext .5pt; mso-border-left-alt: solid windowtext .5pt; mso-border-alt: solid windowtext .5pt; padding: 0cm 5.4pt 0cm 5.4pt;" valign="top" width="406">
+<p class="MsoListParagraphCxSpLast" style="mso-add-space: auto; text-align: justify; text-indent: -18.0pt; line-height: 150%; mso-list: l1 level1 lfo3; margin: 0cm 0cm 0cm 16.05pt;"><!-- [if !supportLists]--><span lang="EN-ID" style="font-size: 12.0pt; line-height: 150%; font-family: 'Times New Roman',serif; mso-fareast-font-family: 'Times New Roman';"><span style="mso-list: Ignore;">3.<span style="font: 7.0pt 'Times New Roman';">      </span></span></span></p>
+</td>
+</tr>
+</tbody>
+</table></div>
+<table class="match-tbl"><thead><tr><th>Pernyataan</th><th>Jawaban</th></tr></thead><tbody><tr><td><p><span lang="EN-ID" style="font-size: 12.0pt; line-height: 150%; font-family: 'Times New Roman',serif; mso-fareast-font-family: 'Times New Roman';"><span style="mso-list: Ignore;"><span style="font: 7.0pt 'Times New Roman';">   </span></span></span><!--[endif]--><span lang="EN-ID" style="font-size: 12.0pt; line-height: 150%; font-family: 'Times New Roman',serif;">Konsep <i>smart city</i></span></p></td><td class="match-ans">Berfokus pada pemanfaatakan teknologi informasi dan komunikasi untuk meningkatkan kualitas hidup masyarakat</td></tr><tr><td><p><span lang="EN-ID" style="font-size: 12.0pt; line-height: 150%; font-family: 'Times New Roman',serif; mso-fareast-font-family: 'Times New Roman';"><span style="mso-list: Ignore;"><span style="font: 7.0pt 'Times New Roman';"> </span></span></span><!--[endif]--><span lang="EN-ID" style="font-size: 12.0pt; line-height: 150%; font-family: 'Times New Roman',serif;">Konsep <i>green city</i></span></p></td><td class="match-ans">Berfokus pada pengembangan yang berkelanjutan dan ramah lingkungan</td></tr><tr><td><p><span lang="EN-ID" style="font-size: 12.0pt; line-height: 150%; font-family: 'Times New Roman',serif; mso-fareast-font-family: 'Times New Roman';"><span style="mso-list: Ignore;"><span style="font: 7.0pt 'Times New Roman';">  </span></span></span><!--[endif]--><span lang="EN-ID" style="font-size: 12.0pt; line-height: 150%; font-family: 'Times New Roman',serif;">Konsep <i>compact city</i></span></p></td><td class="match-ans">Berfokus pada integrasi fungsional dan kondisi keruangan kota yang padat dan efisien</td></tr></tbody></table>
+</div>
+<div class="q-card" id="q38">
+<div class="q-meta"><span class="q-num">No. 39</span><span class="q-badge badge-match">Menjodohkan</span></div>
+<div class="q-text"><p class="MsoListParagraphCxSpFirst" style="margin-left: 40.85pt; mso-add-space: auto; text-align: justify; text-indent: -18.0pt; line-height: 150%; mso-list: l1 level1 lfo1;"><span lang="EN-ID" style="font-size: 12.0pt; line-height: 150%; font-family: 'Times New Roman',serif; mso-fareast-font-family: 'Times New Roman';"><span style="mso-list: Ignore;"><span style="font: 7.0pt 'Times New Roman';"> </span></span></span><!--[endif]--><span lang="EN-ID" style="font-size: 12.0pt; line-height: 150%; font-family: 'Times New Roman',serif;">Interaksi antar wilayah banyak diteliti oleh ahli untuk mengembangkan teori interaksi dan terapannya dalam perencanaan pembangunan wilayah. Terdapat tiga teori interaksi desa-kota dengan karakteristiknya masing-masing. Tariklah garis antara teori interaksi desa-kota dan karakteristik yang tepat!</span></p></div>
+<table class="match-tbl"><thead><tr><th>Pernyataan</th><th>Jawaban</th></tr></thead><tbody><tr><td><p><span lang="EN-ID" style="font-size: 12.0pt; line-height: 150%; font-family: 'Times New Roman',serif;">Teori gravitasi</span></p></td><td class="match-ans">Digunakan untuk mengukur kekuatan interaksi 2 wilayah atau lebih</td></tr><tr><td><p><span lang="EN-ID" style="font-size: 12.0pt; line-height: 150%; font-family: 'Times New Roman',serif; mso-fareast-font-family: 'Times New Roman';"><span style="mso-list: Ignore;"><span style="font: 7.0pt 'Times New Roman';">   </span></span></span><!--[endif]--><span lang="EN-ID" style="font-size: 12.0pt; line-height: 150%; font-family: 'Times New Roman',serif;">Teori titik henti</span></p></td><td class="match-ans">  Digunakan untuk mengetahui lokasi industry atau pelayanan sosial antara dua wilayah</td></tr><tr><td><p><span lang="EN-ID" style="font-size: 12.0pt; line-height: 150%; font-family: 'Times New Roman',serif;">Teori konektivitas</span></p></td><td class="match-ans">Digunakan untuk mengukur kekuatan interaksi 2 wilayah dilihat dari jaringan jalan yang digunakan</td></tr></tbody></table>
+</div>
+<div class="q-card" id="q39">
+<div class="q-meta"><span class="q-num">No. 40</span><span class="q-badge badge-match">Menjodohkan</span></div>
+<div class="q-text"><p class="MsoListParagraphCxSpFirst" style="text-align: justify; text-indent: -18.0pt; line-height: 150%; mso-list: l0 level1 lfo1;"><!-- [if !supportLists]--><span lang="EN-ID" style="font-size: 12.0pt; line-height: 150%; font-family: 'Times New Roman',serif; mso-fareast-font-family: 'Times New Roman';"><span style="mso-list: Ignore;">1.<span style="font: 7.0pt 'Times New Roman';"> </span></span></span><span lang="EN-ID" style="font-size: 12.0pt; line-height: 150%; font-family: 'Times New Roman',serif;">Pembagian ruang wilayah di kota memiliki kecenderungan yang sama. Pembagian ruang tersebut dapat diidentifikasi dengan teori struktur keruangan kota. Setiap teori memiliki ciri khusus dalam pembagian ruangnya. Tariklah garis antara teori struktur keruangan kota dan karakteristik yang tepat!</span></p></div>
+<table class="match-tbl"><thead><tr><th>Pernyataan</th><th>Jawaban</th></tr></thead><tbody><tr><td><p><span lang="EN-ID" style="font-size: 12.0pt; line-height: 150%; font-family: 'Times New Roman',serif; mso-fareast-font-family: 'Times New Roman';"><span style="mso-list: Ignore;"><span style="font: 7.0pt 'Times New Roman';"> </span></span></span><!--[endif]--><span lang="EN-ID" style="font-size: 12.0pt; line-height: 150%; font-family: 'Times New Roman',serif;">Teori Sektoral</span></p></td><td class="match-ans">Struktur kota sudah diatur dengan rapi, tetapi terbentuk beberapa sektor yang lebih bebas</td></tr><tr><td><p><span lang="EN-ID" style="font-size: 12.0pt; line-height: 150%; font-family: 'Times New Roman',serif;">Teori Inti Ganda</span></p></td><td class="match-ans">  Struktur kota tidak hanya terdiri atas satu pusat kegiatan, tetapi terdiri atas beberapa pusat kegiatan</td></tr><tr><td><p><span lang="EN-ID" style="font-size: 12.0pt; line-height: 150%; font-family: 'Times New Roman',serif; mso-fareast-font-family: 'Times New Roman';"><span style="mso-list: Ignore;"><span style="font: 7.0pt 'Times New Roman';">  </span></span></span><!--[endif]--><span lang="EN-ID" style="font-size: 12.0pt; line-height: 150%; font-family: 'Times New Roman',serif;">Teori Konsentris</span></p></td><td class="match-ans">   Struktur kota tumbuh teratur dari pusat yang meluas ke daerah pinggiran</td></tr></tbody></table>
+</div>
+<div class="q-card" id="q40">
+<div class="q-meta"><span class="q-num">No. 41</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>kota harus selalu ramai</p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div>true</div></div><div class="opt"><span class="opt-lbl">B</span><div>false</div></div></div><div class="key-row">Kunci: <strong>A</strong></div>
+</div>
+  </div>
+</div>
+<footer>Dibuat dengan <strong>QuizConverter</strong> by cybertass &mdash; 30 Maret 2026</footer>
+
+</body>
+</html>

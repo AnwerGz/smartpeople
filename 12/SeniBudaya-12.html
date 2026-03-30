@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PSAJ Seni Budaya Kelas 12</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0c0e14;--bg2:#13161f;--bg3:#191d2a;--bd:rgba(255,255,255,0.06);--bd2:rgba(255,255,255,0.11);--tx:#dde1f0;--tx2:#8a93b0;--tx3:#4e5670;--ac:#5d7eff;--acbg:rgba(93,126,255,0.1);--acbd:rgba(93,126,255,0.28);--gr:#3ecf8e;--grbg:rgba(62,207,142,0.09);--grbd:rgba(62,207,142,0.28);--rd:#f16060;--rdbg:rgba(241,96,96,0.09);--rdbd:rgba(241,96,96,0.26);--am:#f59e0b;--ambg:rgba(245,158,11,0.09);--ambd:rgba(245,158,11,0.28);--pu:#a78bfa;--pubg:rgba(167,139,250,0.09);--pubd:rgba(167,139,250,0.28);--r:9px;--rl:13px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;line-height:1.6;font-size:14px}
+header{border-bottom:1px solid var(--bd);padding:0 2rem;height:54px;display:flex;align-items:center;gap:10px;position:sticky;top:0;background:rgba(12,14,20,0.94);backdrop-filter:blur(14px);z-index:100}
+.hlogo{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600}
+.hlm{width:26px;height:26px;border-radius:6px;background:linear-gradient(135deg,#5d7eff,#a78bfa);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;flex-shrink:0}
+.hmeta{font-size:12px;color:var(--tx3);margin-left:auto;text-align:right}
+
+.wrap{max-width:820px;margin:0 auto;padding:2.5rem 2rem}
+.page-hero{margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--bd)}
+.page-hero h1{font-size:26px;font-weight:700;letter-spacing:-.4px;margin-bottom:6px;line-height:1.3}
+.page-hero .sub{font-size:13px;color:var(--tx3);display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.sub-pill{background:var(--bg2);border:1px solid var(--bd2);border-radius:20px;padding:2px 10px;font-size:12px}
+
+.q-list{display:flex;flex-direction:column;gap:12px}
+.q-card{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--rl);padding:1.2rem;transition:border-color .15s}
+.q-card:hover{border-color:var(--bd2)}
+.q-meta{display:flex;align-items:center;gap:7px;margin-bottom:7px;flex-wrap:wrap}
+.q-num{font-size:11px;color:var(--tx3);font-weight:700;background:var(--bg3);padding:1px 7px;border-radius:5px}
+.q-badge{font-size:10px;padding:2px 7px;border-radius:5px;font-weight:600;border:1px solid transparent}
+.badge-mc{background:var(--acbg);color:var(--ac);border-color:var(--acbd)}
+.badge-multi{background:var(--ambg);color:var(--am);border-color:var(--ambd)}
+.badge-match{background:var(--grbg);color:var(--gr);border-color:var(--grbd)}
+.badge-img{background:var(--pubg);color:var(--pu);border-color:var(--pubd)}
+.q-text{font-size:15px;color:var(--tx);margin-bottom:11px;line-height:1.55}
+.q-text img{max-width:100%;border-radius:7px;margin:7px 0;border:1px solid var(--bd2);display:block}
+.q-text img.broken{opacity:.3;filter:grayscale(1)}
+.opts{display:flex;flex-direction:column;gap:5px}
+.opt{display:flex;align-items:flex-start;gap:9px;padding:7px 11px;border-radius:7px;border:1px solid var(--bd);font-size:13.5px;transition:all .14s;color:var(--tx2);background:var(--bg3)}
+
+.opt img{max-width:200px;max-height:140px;object-fit:contain;border-radius:5px;margin-top:5px;display:block}
+.opt-lbl{font-weight:700;min-width:17px;font-size:11.5px;opacity:.6;flex-shrink:0;padding-top:2px}
+.correct{background:var(--grbg)!important;border-color:var(--grbd)!important;color:var(--gr)!important}
+.wrong{background:var(--rdbg)!important;border-color:var(--rdbd)!important;color:var(--rd)!important}
+.key-row{margin-top:8px;font-size:12.5px;color:var(--tx3);background:var(--grbg);border-left:2px solid var(--gr);padding:6px 11px;border-radius:0 6px 6px 0}
+.feedback{margin-top:7px;padding:6px 11px;border-radius:6px;font-size:13px;font-weight:500}
+.fb-ok{background:var(--grbg);color:var(--gr)}.fb-err{background:var(--rdbg);color:var(--rd)}
+.match-tbl{width:100%;border-collapse:collapse;font-size:13px}
+.match-tbl th,.match-tbl td{padding:6px 9px;border:1px solid var(--bd);vertical-align:top}
+.match-tbl thead th{font-size:10px;color:var(--tx3);font-weight:700;text-transform:uppercase;letter-spacing:.5px;background:var(--bg3)}
+.match-tbl td img{max-width:140px;border-radius:4px;margin-top:4px;display:block}
+.match-ans{color:var(--gr);font-weight:600}
+footer{text-align:center;padding:2rem;font-size:12px;color:var(--tx3);border-top:1px solid var(--bd);margin-top:3rem}
+</style>
+</head>
+<body>
+<header>
+  <div class="hlogo"><div class="hlm">QC</div><span>QuizConverter <span style="color:var(--tx3);font-weight:400">by cybertass</span></span></div>
+  <div class="hmeta">30 Maret 2026</div>
+</header>
+
+<div class="wrap">
+  <div class="page-hero">
+    <h1>PSAJ Seni Budaya Kelas 12</h1>
+    <div class="sub">
+      <span class="sub-pill">📝 50 soal</span>
+      <span class="sub-pill">📋 Kunci Jawaban</span>
+      
+    </div>
+    
+  </div>
+  <div class="q-list">
+<div class="q-card" id="q0">
+<div class="q-meta"><span class="q-num">No. 1</span><span class="q-badge badge-match">Menjodohkan</span></div>
+<div class="q-text"><p>Jenis karya seni rupa terapan</p></div>
+<table class="match-tbl"><thead><tr><th>Pernyataan</th><th>Jawaban</th></tr></thead><tbody><tr><td><p>Brosur</p></td><td class="match-ans">Desain</td></tr><tr><td><p>Keranjang anyam bambu</p></td><td class="match-ans">Kriya</td></tr><tr><td><p>Guci</p></td><td class="match-ans">Dekorasi</td></tr></tbody></table>
+</div>
+<div class="q-card" id="q1">
+<div class="q-meta"><span class="q-num">No. 2</span><span class="q-badge badge-match">Menjodohkan</span></div>
+<div class="q-text"><p>Bahan dan teknik pembuatan karaya seni</p></div>
+<table class="match-tbl"><thead><tr><th>Pernyataan</th><th>Jawaban</th></tr></thead><tbody><tr><td><p>Kain</p></td><td class="match-ans">Tenun</td></tr><tr><td><p>Logam</p></td><td class="match-ans">Cor</td></tr><tr><td><p>Kayu</p></td><td class="match-ans">Ukir</td></tr></tbody></table>
+</div>
+<div class="q-card" id="q2">
+<div class="q-meta"><span class="q-num">No. 3</span><span class="q-badge badge-match">Menjodohkan</span></div>
+<div class="q-text"><p>Teknik pembuatan batik</p></div>
+<table class="match-tbl"><thead><tr><th>Pernyataan</th><th>Jawaban</th></tr></thead><tbody><tr><td><p>Batik cap</p></td><td class="match-ans">Menggunakan stempel tembaga dengan lilin panas</td></tr><tr><td><p>Batik cetak</p></td><td class="match-ans">Mengunakan teknik cetak atau alat mesin</td></tr><tr><td><p>Batik lukis</p></td><td class="match-ans">Menggunakan kuas untuk melukis langsung diatas kain</td></tr></tbody></table>
+</div>
+<div class="q-card" id="q3">
+<div class="q-meta"><span class="q-num">No. 4</span><span class="q-badge badge-match">Menjodohkan</span></div>
+<div class="q-text"><p>Gaya seni rupa dan cirinya</p></div>
+<table class="match-tbl"><thead><tr><th>Pernyataan</th><th>Jawaban</th></tr></thead><tbody><tr><td><p>Primitif</p></td><td class="match-ans">Sederhana baik dari segi bentuk dan warnanya</td></tr><tr><td><p>Klasik</p></td><td class="match-ans">Dipengaruhi budaya istana masa lampau dan mengikuti kaidah seni</td></tr><tr><td><p>Representatif</p></td><td class="match-ans">Menggambarkan keadaan nyata pada kehidupan masyarakat atau keadaan alam</td></tr></tbody></table>
+</div>
+<div class="q-card" id="q4">
+<div class="q-meta"><span class="q-num">No. 5</span><span class="q-badge badge-match">Menjodohkan</span></div>
+<div class="q-text"><p>Aliran seni rupa dan seniman</p></div>
+<table class="match-tbl"><thead><tr><th>Pernyataan</th><th>Jawaban</th></tr></thead><tbody><tr><td><p>Surealisme</p></td><td class="match-ans">Lucia hartini</td></tr><tr><td><p>Realisme</p></td><td class="match-ans">Dullah</td></tr><tr><td><p>Ekspresionisme</p></td><td class="match-ans">Affandi</td></tr></tbody></table>
+</div>
+<div class="q-card" id="q5">
+<div class="q-meta"><span class="q-num">No. 6</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Sebuah karya seni yang di buat dengan mengutamakan kegunaanya sehari - hari merupakan karya seni rupa...</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>Murni</p></div></div><div class="opt correct"><span class="opt-lbl">B</span><div><p>Terapan</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>Tradisional</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Modern</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>Desain</p></div></div></div><div class="key-row">Kunci: <strong>B</strong></div>
+</div>
+<div class="q-card" id="q6">
+<div class="q-meta"><span class="q-num">No. 7</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Proses gambar yang dibuat dengan pewarnaan manual atau dengan komputer dengan halus sehigga gambar pun terlihat seperti aslinya disebut gambar….</p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div><p>Rendering</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>Tembus</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>Potongan</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Dekorasi</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>Arsitek</p></div></div></div><div class="key-row">Kunci: <strong>A</strong></div>
+</div>
+<div class="q-card" id="q7">
+<div class="q-meta"><span class="q-num">No. 8</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Batik yang motifnya dibuat dengan hanya menggunakan tangan disebut….<br><br></p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div><p>Batik tulis</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>Batik cap</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>Batik pekalongan</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Batik ikat</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>Batik Malaysia</p></div></div></div><div class="key-row">Kunci: <strong>A</strong></div>
+</div>
+<div class="q-card" id="q8">
+<div class="q-meta"><span class="q-num">No. 9</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Yang termasuk karya seni rupa murni adalah….<br><br></p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>cangkir</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>Rumah</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>Kursi</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Baju</p></div></div><div class="opt correct"><span class="opt-lbl">E</span><div><p>Patung</p></div></div></div><div class="key-row">Kunci: <strong>E</strong></div>
+</div>
+<div class="q-card" id="q9">
+<div class="q-meta"><span class="q-num">No. 10</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Seni rupa yang memiliki panjang dan lebar disebut.....</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>Seni rupa 2 dimensi</p></div></div><div class="opt correct"><span class="opt-lbl">B</span><div><p>Seni rupa 3 dimensi</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>Seni rupa murni</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Seni rupa terapan</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>a dan b benar</p></div></div></div><div class="key-row">Kunci: <strong>B</strong></div>
+</div>
+<div class="q-card" id="q10">
+<div class="q-meta"><span class="q-num">No. 11</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Berikut ini adalah unsur dasar seni rupa kecuali….<br><br></p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>Titik</p></div></div><div class="opt correct"><span class="opt-lbl">B</span><div><p>Lukisan</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>Garis</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Bidang</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>Ruang</p></div></div></div><div class="key-row">Kunci: <strong>B</strong></div>
+</div>
+<div class="q-card" id="q11">
+<div class="q-meta"><span class="q-num">No. 12</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Contoh karya seni visual dua dimensi yang bergerak, yaitu….<br><br></p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>Relief</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>Lukisan</p></div></div><div class="opt correct"><span class="opt-lbl">C</span><div><p>Film</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Foto</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>Patung</p></div></div></div><div class="key-row">Kunci: <strong>C</strong></div>
+</div>
+<div class="q-card" id="q12">
+<div class="q-meta"><span class="q-num">No. 13</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Unsur fisik seni rupa yang merupakan gabungan titik-titik yang bersambung, yaitu ….</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>Warna </p></div></div><div class="opt correct"><span class="opt-lbl">B</span><div><p>Garis</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>Volume</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Tekstur</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>Bidang</p></div></div></div><div class="key-row">Kunci: <strong>B</strong></div>
+</div>
+<div class="q-card" id="q13">
+<div class="q-meta"><span class="q-num">No. 14</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Salah satu jenis karya seni rupa terapan adalah seni kriya yang disebut juga….<br><br></p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>Desain</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>Seni grafis</p></div></div><div class="opt correct"><span class="opt-lbl">C</span><div><p>Kerajinan tangan</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Arsitektur</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>Ketrampilan</p></div></div></div><div class="key-row">Kunci: <strong>C</strong></div>
+</div>
+<div class="q-card" id="q14">
+<div class="q-meta"><span class="q-num">No. 15</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Patung “Kuda Berlari” yang terdapat di pintu gerbang kompleks perumahan Citra Garden-Padang Bulan Medan adalah seni rupa……<br><br></p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>Setengah dimensi</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>Dua dimensi</p></div></div><div class="opt correct"><span class="opt-lbl">C</span><div><p>Tiga dimensi</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Lima dimensi</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>Satu dimensi</p></div></div></div><div class="key-row">Kunci: <strong>C</strong></div>
+</div>
+<div class="q-card" id="q15">
+<div class="q-meta"><span class="q-num">No. 16</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Patung yang dibuat dengan tujuan untuk memperingati jasa seseorang, kelompok, atau peristiwa bersejarah disebut patung ….<br><br></p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>Religi</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>Dekorasi</p></div></div><div class="opt correct"><span class="opt-lbl">C</span><div><p>Monumen</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Arsitektur</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>Patung mainan</p></div></div></div><div class="key-row">Kunci: <strong>C</strong></div>
+</div>
+<div class="q-card" id="q16">
+<div class="q-meta"><span class="q-num">No. 17</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Berikut contoh karya seni rupa terapan dua dimensi adalah...</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>Kerajinan ukiran dari kayu</p></div></div><div class="opt correct"><span class="opt-lbl">B</span><div><p>Wayan kulit</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>Celengan dari tanah liat</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Kerajinan topi dari bahan bambu</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>Bakul tenon</p></div></div></div><div class="key-row">Kunci: <strong>B</strong></div>
+</div>
+<div class="q-card" id="q17">
+<div class="q-meta"><span class="q-num">No. 18</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Salah satu contoh karya seni rupa sebagai kebutuhan akan benda pakai adalah….</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>Lukisan</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>Gambar</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>Kaligrafi</p></div></div><div class="opt correct"><span class="opt-lbl">D</span><div><p>Kursi</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>Foto</p></div></div></div><div class="key-row">Kunci: <strong>D</strong></div>
+</div>
+<div class="q-card" id="q18">
+<div class="q-meta"><span class="q-num">No. 19</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Corak yang merupakan tiruan dari bentuk alam disebut…<br><br></p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div><p>Representatif</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>Deformatif</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>Abstrak</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Geometeris</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>Non geometris</p></div></div></div><div class="key-row">Kunci: <strong>A</strong></div>
+</div>
+<div class="q-card" id="q19">
+<div class="q-meta"><span class="q-num">No. 20</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Corak yang merubah bentuk alam,diubah menurut imajinasi,gagasan dan kreativitas senima disebut…<br><br></p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>Representatif</p></div></div><div class="opt correct"><span class="opt-lbl">B</span><div><p>Deformatif</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>Abstrak</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Motif benda mati</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>Geometris</p></div></div></div><div class="key-row">Kunci: <strong>B</strong></div>
+</div>
+<div class="q-card" id="q20">
+<div class="q-meta"><span class="q-num">No. 21</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Gambar yang artinya melebih-lebihkan atau mengubah bentuk disebut …<br><br></p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div><p>Karikatur</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>Dekoratif</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>Kartun</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Komik</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>Lukisan</p></div></div></div><div class="key-row">Kunci: <strong>A</strong></div>
+</div>
+<div class="q-card" id="q21">
+<div class="q-meta"><span class="q-num">No. 22</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Gambar karikatur biasanya mengandung …<br><br></p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div><p>Sindiran atau kritikan</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>Memuji</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>Mengejek</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Mencela</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>Saran</p></div></div></div><div class="key-row">Kunci: <strong>A</strong></div>
+</div>
+<div class="q-card" id="q22">
+<div class="q-meta"><span class="q-num">No. 23</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Gambar yang dibuat sesuai keadaan yang sebenarnya baik anatomi maupun proposi adalah …<br><br></p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>Ekspresi</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>Abstrak</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>Komposisi</p></div></div><div class="opt correct"><span class="opt-lbl">D</span><div><p>Realis</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>Representatif</p></div></div></div><div class="key-row">Kunci: <strong>D</strong></div>
+</div>
+<div class="q-card" id="q23">
+<div class="q-meta"><span class="q-num">No. 24</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Kesan gelap terang suatu benda dapat digambar dengan teknik berikut ini, kecuali ….<br><br></p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>Teknik dussel</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>Teknik pointilis</p></div></div><div class="opt correct"><span class="opt-lbl">C</span><div><p>Teknik linear</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Teknik arsir</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>Teknik blok</p></div></div></div><div class="key-row">Kunci: <strong>C</strong></div>
+</div>
+<div class="q-card" id="q24">
+<div class="q-meta"><span class="q-num">No. 25</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Proses pengerjaannya menggunakan dua keping cetakan terbuat dari batu dan dapat dipakai berulang kali sesuai dengan kebutuhan disebut teknik ….<br><br></p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>Berputar</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>Zig zag</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>A cire perdue</p></div></div><div class="opt correct"><span class="opt-lbl">D</span><div><p>Bivalve</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>Mengulir</p></div></div></div><div class="key-row">Kunci: <strong>D</strong></div>
+</div>
+<div class="q-card" id="q25">
+<div class="q-meta"><span class="q-num">No. 26</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Ukiran yang mengandung simbol-simbol tertentu dan berkaitan dengan kepercayaan untuk kepentingan spiritual termasuk dalam fungsi ….</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>Hias</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>Kontruksi</p></div></div><div class="opt correct"><span class="opt-lbl">C</span><div><p>Magis</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Simbolis</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>Ekinomis</p></div></div></div><div class="key-row">Kunci: <strong>C</strong></div>
+</div>
+<div class="q-card" id="q26">
+<div class="q-meta"><span class="q-num">No. 27</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Aliran/gaya seni rupa yang penggambarannya sesuai dengan keadaan jiwa perupanya yang spontan pada saat melihat objek disebut ….<br><br></p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>Kubisme</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>Impresionisme</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>Surealisme</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Realisme</p></div></div><div class="opt correct"><span class="opt-lbl">E</span><div><p>Ekspresionisme</p></div></div></div><div class="key-row">Kunci: <strong>E</strong></div>
+</div>
+<div class="q-card" id="q27">
+<div class="q-meta"><span class="q-num">No. 28</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Berikut teknik pembuatan karya seni rupa terapan tiga dimensi adalah teknik...</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>Semprot</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>Kolase</p></div></div><div class="opt correct"><span class="opt-lbl">C</span><div><p>Pahat</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Patri</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>Mosaik</p></div></div></div><div class="key-row">Kunci: <strong>C</strong></div>
+</div>
+<div class="q-card" id="q28">
+<div class="q-meta"><span class="q-num">No. 29</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Garis yang bersudut dapat menciptakan kesan….<br><br></p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>Lambang</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>Tenang</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>Statis</p></div></div><div class="opt correct"><span class="opt-lbl">D</span><div><p>Tajam</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>Setabil</p></div></div></div><div class="key-row">Kunci: <strong>D</strong></div>
+</div>
+<div class="q-card" id="q29">
+<div class="q-meta"><span class="q-num">No. 30</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p>Berikut merupakan contoh benda seni rupa terapan yang termasuk benda pakai adalah...</p>
+<p><strong>(pilihan ganda komplek 4 jawaban benar)</strong></p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div><p>Vas bunga</p></div></div><div class="opt correct"><span class="opt-lbl">B</span><div><p>Kursi</p></div></div><div class="opt correct"><span class="opt-lbl">C</span><div><p>Cangkir</p></div></div><div class="opt correct"><span class="opt-lbl">D</span><div><p>Mangkuk</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>Patung</p></div></div></div><div class="key-row">Kunci: <strong>A, B, C, D</strong></div>
+</div>
+<div class="q-card" id="q30">
+<div class="q-meta"><span class="q-num">No. 31</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p>Teknik pembuatan batik di indonesia sangat beragam. Berikut merupakan teknik pembuatan batik antara lain.....</p>
+<p><strong>(Pilihan ganda komplek 4 jawaban benar)</strong></p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div><p>Batik tulis</p></div></div><div class="opt correct"><span class="opt-lbl">B</span><div><p>Batik celup</p></div></div><div class="opt correct"><span class="opt-lbl">C</span><div><p>Batik cap</p></div></div><div class="opt correct"><span class="opt-lbl">D</span><div><p>Batik lukis</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>Batik gambar</p></div></div></div><div class="key-row">Kunci: <strong>A, B, C, D</strong></div>
+</div>
+<div class="q-card" id="q31">
+<div class="q-meta"><span class="q-num">No. 32</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p>Bahan yang di gunakan sebagai bahan baku karya seni supa terapan dengan teknik menganyam antara lain...</p>
+<p><strong>(pilihan ganda komplek 3 jawaban benar)</strong></p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>Kain batik</p></div></div><div class="opt correct"><span class="opt-lbl">B</span><div><p>Rotan</p></div></div><div class="opt correct"><span class="opt-lbl">C</span><div><p>Bambu</p></div></div><div class="opt correct"><span class="opt-lbl">D</span><div><p>Enceng gondok</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>Gibsum</p></div></div></div><div class="key-row">Kunci: <strong>B, C, D</strong></div>
+</div>
+<div class="q-card" id="q32">
+<div class="q-meta"><span class="q-num">No. 33</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p>Berikut karya seni rupa terapan yang termasuk hasil karya desain adalah....</p>
+<p><strong>(jawaban lebih dari satu)</strong></p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div><p>Poster</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>Meja ukiran</p></div></div><div class="opt correct"><span class="opt-lbl">C</span><div><p>Desain kemasan</p></div></div><div class="opt correct"><span class="opt-lbl">D</span><div><p>Komik</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>Tempat ibadah</p></div></div></div><div class="key-row">Kunci: <strong>A, C, D</strong></div>
+</div>
+<div class="q-card" id="q33">
+<div class="q-meta"><span class="q-num">No. 34</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p>Berikut bentuk seni rupa terapan nusantara adalah...</p>
+<p><strong>(pilihan ganda komplek 3 jawaban benar)</strong></p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div><p>Rumah adat</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>Seni rupa vidio</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>Patung</p></div></div><div class="opt correct"><span class="opt-lbl">D</span><div><p>Senjata tradisional</p></div></div><div class="opt correct"><span class="opt-lbl">E</span><div><p>Transportasi tradisional</p></div></div></div><div class="key-row">Kunci: <strong>A, D, E</strong></div>
+</div>
+<div class="q-card" id="q34">
+<div class="q-meta"><span class="q-num">No. 35</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p>Daerah di indonesia yang terkenal sebagai penghasil benda seni kriya kulit yaitu...</p>
+<p><strong>(pilihan ganda komplek 2 jawaban benar)</strong></p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div><p>Garut</p></div></div><div class="opt correct"><span class="opt-lbl">B</span><div><p>Yogyakarta</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>Bali</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Jambi</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>Makasar</p></div></div></div><div class="key-row">Kunci: <strong>A, B</strong></div>
+</div>
+<div class="q-card" id="q35">
+<div class="q-meta"><span class="q-num">No. 36</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p>Berikut merupakan contoh hasil karya seni kriya zaman prasejarah adalah...</p>
+<p><strong>(pilihan ganda komplek 3 jawaban benar)</strong></p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div><p>Kapak perseg</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>Wayang</p></div></div><div class="opt correct"><span class="opt-lbl">C</span><div><p>Tembikar</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Candi</p></div></div><div class="opt correct"><span class="opt-lbl">E</span><div><p>Kapak lonjong</p></div></div></div><div class="key-row">Kunci: <strong>A, C, E</strong></div>
+</div>
+<div class="q-card" id="q36">
+<div class="q-meta"><span class="q-num">No. 37</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p>Berikut merupakan hasil karya kriya dari bahan logam adalah....</p>
+<p><strong>(pilihan ganda komplek 3 jawaban benar)</strong></p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>Relief candi</p></div></div><div class="opt correct"><span class="opt-lbl">B</span><div><p>Gamelan</p></div></div><div class="opt correct"><span class="opt-lbl">C</span><div><p>Perhiasan</p></div></div><div class="opt correct"><span class="opt-lbl">D</span><div><p>Senjata tradisional</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>Batik</p></div></div></div><div class="key-row">Kunci: <strong>B, C, D</strong></div>
+</div>
+<div class="q-card" id="q37">
+<div class="q-meta"><span class="q-num">No. 38</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p>Bahan dari alam yang bisa dijadikan bahan baku seni kriya dengan teknik menganyam adalah...</p>
+<p><strong>(pilihan ganda komplek 3 jawaban benar)</strong></p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div><p>Janur</p></div></div><div class="opt correct"><span class="opt-lbl">B</span><div><p>Pandan</p></div></div><div class="opt correct"><span class="opt-lbl">C</span><div><p>Rotan</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Logam</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>Kayu</p></div></div></div><div class="key-row">Kunci: <strong>A, B, C</strong></div>
+</div>
+<div class="q-card" id="q38">
+<div class="q-meta"><span class="q-num">No. 39</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p>Berikut merupakan contoh hasil karya kriya kayu adalah....</p>
+<p><strong>(pilihan ganda komplek 3 jawaban benar)</strong></p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>Cincin</p></div></div><div class="opt correct"><span class="opt-lbl">B</span><div><p>Bingkai foto</p></div></div><div class="opt correct"><span class="opt-lbl">C</span><div><p>Gitar</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Tenun</p></div></div><div class="opt correct"><span class="opt-lbl">E</span><div><p>Meja ukiran</p></div></div></div><div class="key-row">Kunci: <strong>B, C, E</strong></div>
+</div>
+<div class="q-card" id="q39">
+<div class="q-meta"><span class="q-num">No. 40</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Aliran seni rupa yang menekankan pada penyajian kehidupan sehari-hari dengan gaya yang sederhana adalah...</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>Minimalisme</p></div></div><div class="opt correct"><span class="opt-lbl">B</span><div><p>Pop Art</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>Barok</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Art Nouveau</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>Surealis</p></div></div></div><div class="key-row">Kunci: <strong>B</strong></div>
+</div>
+<div class="q-card" id="q40">
+<div class="q-meta"><span class="q-num">No. 41</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Unsur seni rupa yang berhubungan dengan terang-gelap disebut …</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>Warna</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>Tekstur</p></div></div><div class="opt correct"><span class="opt-lbl">C</span><div><p>Value</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Bidang</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>Bentuk</p></div></div></div><div class="key-row">Kunci: <strong>C</strong></div>
+</div>
+<div class="q-card" id="q41">
+<div class="q-meta"><span class="q-num">No. 42</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Warna primer dalam seni rupa terdiri dari …</p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div><p>Merah, biru, kuning</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>Merah, hijau, biru</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>Hitam, putih, abu-abu</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Oranye, ungu, hijau</p></div></div></div><div class="key-row">Kunci: <strong>A</strong></div>
+</div>
+<div class="q-card" id="q42">
+<div class="q-meta"><span class="q-num">No. 43</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Prinsip keseimbangan dalam seni rupa dapat diwujudkan melalui …</p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div><p>Simetris dan asimetris</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>Melodi dan harmoni</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>Tekanan dan nada</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Dinamika dan tempo</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>Dinamika dan nada</p></div></div></div><div class="key-row">Kunci: <strong>A</strong></div>
+</div>
+<div class="q-card" id="q43">
+<div class="q-meta"><span class="q-num">No. 44</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Unsur ruang dalam karya seni rupa dua dimensi diwujudkan melalui …</p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div><p>Ilusi perspektif</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>Tekstur nyata</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>Irama musik</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Harmoni nada</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>Harmoni gerak</p></div></div></div><div class="key-row">Kunci: <strong>A</strong></div>
+</div>
+<div class="q-card" id="q44">
+<div class="q-meta"><span class="q-num">No. 45</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Warna yang dihasilkan dari penggabungan warna merah dan kuning dengan perbandingan 50:50 adalah warna….</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>Hijau</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>Ungu</p></div></div><div class="opt correct"><span class="opt-lbl">C</span><div><p>Oranye</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Abu-abu</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>Coklat</p></div></div></div><div class="key-row">Kunci: <strong>C</strong></div>
+</div>
+<div class="q-card" id="q45">
+<div class="q-meta"><span class="q-num">No. 46</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Unsur yang ditonjolkan pada karya seni rupa dengan teknik pointilis adalah titik.</p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div>true</div></div><div class="opt"><span class="opt-lbl">B</span><div>false</div></div></div><div class="key-row">Kunci: <strong>A</strong></div>
+</div>
+<div class="q-card" id="q46">
+<div class="q-meta"><span class="q-num">No. 47</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Tekstur yang dapat kita temukan pada gambar atau lukisan merupakan tekstur semu.</p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div>true</div></div><div class="opt"><span class="opt-lbl">B</span><div>false</div></div></div><div class="key-row">Kunci: <strong>A</strong></div>
+</div>
+<div class="q-card" id="q47">
+<div class="q-meta"><span class="q-num">No. 48</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p><em>Happening art</em> merupakan karya seni kontemporer.</p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div>true</div></div><div class="opt"><span class="opt-lbl">B</span><div>false</div></div></div><div class="key-row">Kunci: <strong>A</strong></div>
+</div>
+<div class="q-card" id="q48">
+<div class="q-meta"><span class="q-num">No. 49</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Pepatran termasuk ragam hias flora.</p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div>true</div></div><div class="opt"><span class="opt-lbl">B</span><div>false</div></div></div><div class="key-row">Kunci: <strong>A</strong></div>
+</div>
+<div class="q-card" id="q49">
+<div class="q-meta"><span class="q-num">No. 50</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Van gogh adalah pelukis  dari barat yang beraliran realisme.</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div>true</div></div><div class="opt correct"><span class="opt-lbl">B</span><div>false</div></div></div><div class="key-row">Kunci: <strong>B</strong></div>
+</div>
+  </div>
+</div>
+<footer>Dibuat dengan <strong>QuizConverter</strong> by cybertass &mdash; 30 Maret 2026</footer>
+
+</body>
+</html>
