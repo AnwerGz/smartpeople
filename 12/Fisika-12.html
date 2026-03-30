@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PSAJ Fisika Kelas 12</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0c0e14;--bg2:#13161f;--bg3:#191d2a;--bd:rgba(255,255,255,0.06);--bd2:rgba(255,255,255,0.11);--tx:#dde1f0;--tx2:#8a93b0;--tx3:#4e5670;--ac:#5d7eff;--acbg:rgba(93,126,255,0.1);--acbd:rgba(93,126,255,0.28);--gr:#3ecf8e;--grbg:rgba(62,207,142,0.09);--grbd:rgba(62,207,142,0.28);--rd:#f16060;--rdbg:rgba(241,96,96,0.09);--rdbd:rgba(241,96,96,0.26);--am:#f59e0b;--ambg:rgba(245,158,11,0.09);--ambd:rgba(245,158,11,0.28);--pu:#a78bfa;--pubg:rgba(167,139,250,0.09);--pubd:rgba(167,139,250,0.28);--r:9px;--rl:13px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;line-height:1.6;font-size:14px}
+header{border-bottom:1px solid var(--bd);padding:0 2rem;height:54px;display:flex;align-items:center;gap:10px;position:sticky;top:0;background:rgba(12,14,20,0.94);backdrop-filter:blur(14px);z-index:100}
+.hlogo{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600}
+.hlm{width:26px;height:26px;border-radius:6px;background:linear-gradient(135deg,#5d7eff,#a78bfa);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;flex-shrink:0}
+.hmeta{font-size:12px;color:var(--tx3);margin-left:auto;text-align:right}
+
+.wrap{max-width:820px;margin:0 auto;padding:2.5rem 2rem}
+.page-hero{margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--bd)}
+.page-hero h1{font-size:26px;font-weight:700;letter-spacing:-.4px;margin-bottom:6px;line-height:1.3}
+.page-hero .sub{font-size:13px;color:var(--tx3);display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.sub-pill{background:var(--bg2);border:1px solid var(--bd2);border-radius:20px;padding:2px 10px;font-size:12px}
+
+.q-list{display:flex;flex-direction:column;gap:12px}
+.q-card{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--rl);padding:1.2rem;transition:border-color .15s}
+.q-card:hover{border-color:var(--bd2)}
+.q-meta{display:flex;align-items:center;gap:7px;margin-bottom:7px;flex-wrap:wrap}
+.q-num{font-size:11px;color:var(--tx3);font-weight:700;background:var(--bg3);padding:1px 7px;border-radius:5px}
+.q-badge{font-size:10px;padding:2px 7px;border-radius:5px;font-weight:600;border:1px solid transparent}
+.badge-mc{background:var(--acbg);color:var(--ac);border-color:var(--acbd)}
+.badge-multi{background:var(--ambg);color:var(--am);border-color:var(--ambd)}
+.badge-match{background:var(--grbg);color:var(--gr);border-color:var(--grbd)}
+.badge-img{background:var(--pubg);color:var(--pu);border-color:var(--pubd)}
+.q-text{font-size:15px;color:var(--tx);margin-bottom:11px;line-height:1.55}
+.q-text img{max-width:100%;border-radius:7px;margin:7px 0;border:1px solid var(--bd2);display:block}
+.q-text img.broken{opacity:.3;filter:grayscale(1)}
+.opts{display:flex;flex-direction:column;gap:5px}
+.opt{display:flex;align-items:flex-start;gap:9px;padding:7px 11px;border-radius:7px;border:1px solid var(--bd);font-size:13.5px;transition:all .14s;color:var(--tx2);background:var(--bg3)}
+
+.opt img{max-width:200px;max-height:140px;object-fit:contain;border-radius:5px;margin-top:5px;display:block}
+.opt-lbl{font-weight:700;min-width:17px;font-size:11.5px;opacity:.6;flex-shrink:0;padding-top:2px}
+.correct{background:var(--grbg)!important;border-color:var(--grbd)!important;color:var(--gr)!important}
+.wrong{background:var(--rdbg)!important;border-color:var(--rdbd)!important;color:var(--rd)!important}
+.key-row{margin-top:8px;font-size:12.5px;color:var(--tx3);background:var(--grbg);border-left:2px solid var(--gr);padding:6px 11px;border-radius:0 6px 6px 0}
+.feedback{margin-top:7px;padding:6px 11px;border-radius:6px;font-size:13px;font-weight:500}
+.fb-ok{background:var(--grbg);color:var(--gr)}.fb-err{background:var(--rdbg);color:var(--rd)}
+.match-tbl{width:100%;border-collapse:collapse;font-size:13px}
+.match-tbl th,.match-tbl td{padding:6px 9px;border:1px solid var(--bd);vertical-align:top}
+.match-tbl thead th{font-size:10px;color:var(--tx3);font-weight:700;text-transform:uppercase;letter-spacing:.5px;background:var(--bg3)}
+.match-tbl td img{max-width:140px;border-radius:4px;margin-top:4px;display:block}
+.match-ans{color:var(--gr);font-weight:600}
+footer{text-align:center;padding:2rem;font-size:12px;color:var(--tx3);border-top:1px solid var(--bd);margin-top:3rem}
+</style>
+</head>
+<body>
+<header>
+  <div class="hlogo"><div class="hlm">QC</div><span>QuizConverter <span style="color:var(--tx3);font-weight:400">by cybertass</span></span></div>
+  <div class="hmeta">30 Maret 2026</div>
+</header>
+
+<div class="wrap">
+  <div class="page-hero">
+    <h1>PSAJ Fisika Kelas 12</h1>
+    <div class="sub">
+      <span class="sub-pill">📝 37 soal</span>
+      <span class="sub-pill">📋 Kunci Jawaban</span>
+      
+    </div>
+    
+  </div>
+  <div class="q-list">
+<div class="q-card" id="q0">
+<div class="q-meta"><span class="q-num">No. 1</span><span class="q-badge badge-match">Menjodohkan</span></div>
+<div class="q-text"><p>PASANGKAN SOAL DENGAN JAWABAN YANG BENAR</p></div>
+<table class="match-tbl"><thead><tr><th>Pernyataan</th><th>Jawaban</th></tr></thead><tbody><tr><td><p style="background: #F7F7F7; margin: 0cm 0cm 12.0pt 0cm;"><span style="font-size: 13.0pt; font-family: 'Segoe UI',sans-serif; color: #242424;">Dua buah gaya memiliki nilai sama besar yaitu 10 N membentuk sudut 120 derajat satu sama lain.  selisih kedua vektor tersebut</span></p></td><td class="match-ans">10 N</td></tr><tr><td><p><span style="font-size: 15.0pt; line-height: 107%; font-family: 'Georgia',serif; mso-fareast-font-family: 'Times New Roman'; mso-bidi-font-family: Arial; color: #0d0d0d; mso-ansi-language: EN-ID; mso-fareast-language: EN-ID; mso-bidi-language: AR-SA;">Pada suatu perlombaan tarik tambang, kelompok A menarik ke timur dengan gaya 700 N dan kelompok B menarik ke barat dengan gaya 665 N.Resultan gaya tersebut.....</span></p></td><td class="match-ans">35 N</td></tr></tbody></table>
+</div>
+<div class="q-card" id="q1">
+<div class="q-meta"><span class="q-num">No. 2</span><span class="q-badge badge-match">Menjodohkan</span></div>
+<div class="q-text"><p>PASANGKAN SOAL DENGAN JAWABAN YANG BENAR</p></div>
+<table class="match-tbl"><thead><tr><th>Pernyataan</th><th>Jawaban</th></tr></thead><tbody><tr><td><p class="MsoListParagraph" style="text-align: justify; text-indent: -21.3pt; line-height: 112%; mso-list: l0 level1 lfo1; tab-stops: 24.0pt; margin: 8.05pt 35.15pt .0001pt 21.3pt;"><!-- [if !supportLists]--><span lang="ms" style="font-size: 15.0pt; mso-bidi-font-size: 11.0pt; line-height: 112%; font-family: 'Cambria',serif; mso-hansi-font-family: 'Arial MT';">Dua buah gaya masing-masing 10 N dan15 N membentuk sudut<span style="letter-spacing: 4.0pt; mso-font-width: 150%;"> </span><span style="letter-spacing: -.1pt; mso-font-width: 110%;">60 derajat.</span><span style="letter-spacing: -.65pt; mso-font-width: 110%;"> </span><span style="letter-spacing: -.1pt; mso-font-width: 110%;">Besar</span><span style="letter-spacing: -.65pt; mso-font-width: 110%;"> </span><span style="letter-spacing: -.1pt; mso-font-width: 110%;">resultan</span><span style="letter-spacing: -.6pt; mso-font-width: 110%;"> </span><span style="letter-spacing: -.1pt; mso-font-width: 110%;">kedua</span><span style="letter-spacing: -.65pt; mso-font-width: 110%;"> </span><span style="letter-spacing: -.1pt; mso-font-width: 110%;">gaya</span><span style="letter-spacing: -.65pt; mso-font-width: 110%;"> </span><span style="letter-spacing: -.1pt; mso-font-width: 110%;">tersebut</span><span style="letter-spacing: -.65pt; mso-font-width: 110%;"> </span><span style="letter-spacing: -.1pt; mso-font-width: 110%;">adalah</span><span style="letter-spacing: -.65pt; mso-font-width: 110%;"> </span><span style="letter-spacing: -.1pt; mso-font-width: 110%;">.</span><span style="letter-spacing: -.7pt; mso-font-width: 110%;"> </span><span style="letter-spacing: -.1pt; mso-font-width: 110%;">.</span><span style="letter-spacing: -.65pt; mso-font-width: 110%;"> </span><span style="letter-spacing: -.1pt; mso-font-width: 110%;">.</span><span style="letter-spacing: -.7pt; mso-font-width: 110%;"> </span></span></p></td><td class="match-ans">b.	5 √19 N</td></tr><tr><td><p class="MsoListParagraph" style="text-align: justify; text-indent: -21.3pt; mso-list: l0 level1 lfo1; tab-stops: 24.4pt; margin: 10.45pt 0cm .0001pt 21.3pt;"><!-- [if !supportLists]--><span lang="ms" style="font-size: 15.0pt; mso-bidi-font-size: 11.0pt; font-family: 'Cambria',serif; letter-spacing: -.1pt;">Tiga buah vektor </span><span lang="ms" style="font-size: 14.0pt; font-family: 'Cambria',serif; mso-fareast-font-family: Calibri; mso-bidi-font-family: Calibri; color: #202020; position: relative; top: -1.0pt; mso-text-raise: 1.0pt; mso-font-width: 105%;">F</span><span lang="ms" style="font-size: 14.0pt; font-family: 'Cambria',serif; mso-fareast-font-family: Calibri; mso-bidi-font-family: Calibri; color: #202020; mso-font-width: 105%;">1<span style="letter-spacing: -.55pt;"> </span><span style="position: relative; top: -1.0pt; mso-text-raise: 1.0pt;">=<span style="letter-spacing: -.95pt;"> </span>6<span style="letter-spacing: -.95pt;"> </span>N membentuk sudut </span></span><span lang="ms" style="font-size: 15.0pt; mso-bidi-font-size: 11.0pt; font-family: 'Cambria',serif; mso-font-width: 105%;">60° terhadap </span><span lang="ms" style="font-size: 14.0pt; font-family: 'Cambria',serif; mso-fareast-font-family: Calibri; mso-bidi-font-family: Calibri; color: #202020; position: relative; top: -1.0pt; mso-text-raise: 1.0pt; mso-font-width: 105%;">sumbu x positif (kuadran 1),<span style="letter-spacing: -.95pt;"> </span>F</span><span lang="ms" style="font-size: 14.0pt; font-family: 'Cambria',serif; mso-fareast-font-family: Calibri; mso-bidi-font-family: Calibri; color: #202020; mso-font-width: 105%;">2<span style="letter-spacing: -.1pt;"> </span><span style="position: relative; top: -1.0pt; mso-text-raise: 1.0pt;">=<span style="letter-spacing: -.95pt;"> 12 </span>N membentuk sudut </span></span><span lang="ms" style="font-size: 15.0pt; mso-bidi-font-size: 11.0pt; font-family: 'Cambria',serif; mso-font-width: 105%;">60° terhadap </span><span lang="ms" style="font-size: 14.0pt; font-family: 'Cambria',serif; mso-fareast-font-family: Calibri; mso-bidi-font-family: Calibri; color: #202020; position: relative; top: -1.0pt; mso-text-raise: 1.0pt; mso-font-width: 105%;">sumbu x positif (kuadran 4),<span style="letter-spacing: -.95pt;"> </span>dan<span style="letter-spacing: -.95pt;"> </span>F</span><span lang="ms" style="font-size: 14.0pt; font-family: 'Cambria',serif; mso-fareast-font-family: Calibri; mso-bidi-font-family: Calibri; color: #202020; mso-font-width: 105%;">3<span style="letter-spacing: -.1pt;"> </span><span style="position: relative; top: -1.0pt; mso-text-raise: 1.0pt;">=<span style="letter-spacing: -.95pt;"> </span>6<span style="letter-spacing: -.95pt;"> </span>N<span style="letter-spacing: -.95pt;"> terletak pada sumbu x negatif maka resultan ketiga vektor adalah ............</span></span></span></p></td><td class="match-ans">6,0 N</td></tr></tbody></table>
+</div>
+<div class="q-card" id="q2">
+<div class="q-meta"><span class="q-num">No. 3</span><span class="q-badge badge-match">Menjodohkan</span></div>
+<div class="q-text"><p>PASANGKAN SOAL DENGAN JAWABAN YANG BENAR</p></div>
+<table class="match-tbl"><thead><tr><th>Pernyataan</th><th>Jawaban</th></tr></thead><tbody><tr><td><p>Model atom yang menyatakan bahwa atom terdiri dari inti bermuatan positif dan elektron bergerak mengelilinginya pada lintasan tertentu tanpa memancarkan energi.</p></td><td class="match-ans">Niels Bohr</td></tr><tr><td><p>Tokoh yang menemukan elektron melalui percobaan tabung sinar katode dan mengusulkan model atom "roti kismis".</p></td><td class="match-ans">J.J. Thomson</td></tr></tbody></table>
+</div>
+<div class="q-card" id="q3">
+<div class="q-meta"><span class="q-num">No. 4</span><span class="q-badge badge-match">Menjodohkan</span></div>
+<div class="q-text"><p>PASANGKAN SOAL DENGAN JAWABAN YANG BENAR</p></div>
+<table class="match-tbl"><thead><tr><th>Pernyataan</th><th>Jawaban</th></tr></thead><tbody><tr><td><p>Energi yang diperlukan untuk memutuskan inti atom menjadi nukleon-nukleon penyusunnya.</p></td><td class="match-ans">energi ikat inti</td></tr><tr><td><p>Selisih antara massa nukleon penyusun inti dengan massa inti atom yang terbentuk.</p></td><td class="match-ans">defek massa</td></tr></tbody></table>
+</div>
+<div class="q-card" id="q4">
+<div class="q-meta"><span class="q-num">No. 5</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>PILIHLAH 1 JAWABAN YANG PALING BENAR</p>
+<p>Vektor F1 = 12 N  menempel pada sumbu X positif, F2 = 14 N menempel pada sumbu Y positif, dan F3 = 10 N membentuk sudut 37 derajat terhadap sumbu X negatif. Tentukan resultan ketiga vektor </p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>20 i + 4 j</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>20 i - 4 j</p></div></div><div class="opt correct"><span class="opt-lbl">C</span><div><p>4 i + 20 j</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>4 i - 20 j</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>20 j</p></div></div></div><div class="key-row">Kunci: <strong>C</strong></div>
+</div>
+<div class="q-card" id="q5">
+<div class="q-meta"><span class="q-num">No. 6</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p data-pm-slice="1 1 []">Berikut beberapa peristiwa sehari-hari:</p>
+<p>1. Tangan terasa sakit saat memukul dinding</p>
+<p>2. Bagian ujung kaki terasa sakit saat menendang bola</p>
+<p>3. Buah yang jatuh dari pohon bergerak jatuh bebas</p>
+<p>4. Senapan terdorong ke belakang saat menembakkan peluru</p>
+<p>Peristiwa yang merupakan contoh dari hukum III Newton adalah</p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div><p>1</p></div></div><div class="opt correct"><span class="opt-lbl">B</span><div><p>2</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>3</p></div></div><div class="opt correct"><span class="opt-lbl">D</span><div><p>4</p></div></div></div><div class="key-row">Kunci: <strong>A, B, D</strong></div>
+</div>
+<div class="q-card" id="q6">
+<div class="q-meta"><span class="q-num">No. 7</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p style="text-align: left;">PILIHLAH 1 JAWABAN YANG PALING BENAR</p>
+<p style="text-align: left;">Jika sebuah vektor kecepatan v = 10 m/s diuraikan menjadi dua <br>buah vektor yang saling tegak lurus dan salah satu vektor <br>uraiannya membentuk sudut 60° dengan sumbu x, maka besar <br>masing-masing vektor uraiannya berturut-turut pad sumbu x dan y <br>adalah …</p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div><p>5 m/s dan 5 √3 m/s</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>5 m/s dan 5 √2 m/s</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>10 m/s dan 10 √3 m/s</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>5 m/s dan 5 √6 m/s</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>10 m/s dan 1 m/s</p></div></div></div><div class="key-row">Kunci: <strong>A</strong></div>
+</div>
+<div class="q-card" id="q7">
+<div class="q-meta"><span class="q-num">No. 8</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p class="MsoNormal">PILIHLAH 1 JAWABAN YANG PALING BENAR</p>
+<p class="MsoNormal">Jika sebuah benda bermassa 5 kg didorong dengan gaya 10 N sejauh 3 meter, maka usaha yang dilakukan adalah.…</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p class="MsoNormal">15 J</p></div></div><div class="opt correct"><span class="opt-lbl">B</span><div><p class="MsoNormal">30 J</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p class="MsoNormal">50 J</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>150 J</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>200 J</p></div></div></div><div class="key-row">Kunci: <strong>B</strong></div>
+</div>
+<div class="q-card" id="q8">
+<div class="q-meta"><span class="q-num">No. 9</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p data-pm-slice="1 1 []">JAWABLAH PERTANYAAN BERIKUT DENGAN 4 JAWABAN BENAR</p>
+<p data-pm-slice="1 1 []">Berikut ini pernyataan yang benar tentang energi potensial adalah ...</p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div><p data-pm-slice="1 1 []">Energi potensial listrik disebabkan oleh adanya interaksi elektrostastis antara muatan-muatan listrik</p></div></div><div class="opt correct"><span class="opt-lbl">B</span><div><p data-pm-slice="1 1 []">Energi potensial adalah energi yang dimiliki benda karena keadaannya.</p></div></div><div class="opt correct"><span class="opt-lbl">C</span><div><p data-pm-slice="1 1 []">Energi potensial grafitasi adalah energi yang dimiliki benda ketika benda berada pada ketinggian tertentu dari permukaan bumi</p></div></div><div class="opt correct"><span class="opt-lbl">D</span><div><p data-pm-slice="1 1 []">energi potensial pegas hanya dimiliki oleh pegas yang panjangnya mengalami perubahan</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p data-pm-slice="1 1 []">energi potensial pegas adalah energi yang dimiliki benda ketika benda berada pada ketinggian tertentu dari permukaan bumi</p></div></div></div><div class="key-row">Kunci: <strong>A, B, C, D</strong></div>
+</div>
+<div class="q-card" id="q9">
+<div class="q-meta"><span class="q-num">No. 10</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>PILIHLAH 1 JAWABAN YANG PALING BENAR</p>
+<p>Berdasarkan model atom Bohr, elektron bergerak mengelilingi inti pada lintasan yang memenuhi syarat momentum sudut. Jika elektron berada pada kulit <span class="math-inline" data-math="n=3" data-index-in-node="148">n=3</span>, maka panjang lintasan elektron tersebut setara dengan.....</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p data-path-to-node="28">1 kali panjang gelombang De Broglie</p>
+<p data-path-to-node="32"></p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p data-path-to-node="29"> 1,5 kali panjang gelombang De Broglie</p>
+<p data-path-to-node="32"></p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p data-path-to-node="30">2 kali panjang gelombang De Broglie</p>
+<p data-path-to-node="32"></p></div></div><div class="opt correct"><span class="opt-lbl">D</span><div><p data-path-to-node="31">3 kali panjang gelombang De Broglie</p>
+<p data-path-to-node="32"></p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>9 kali panjang gelombang De Broglie</p></div></div></div><div class="key-row">Kunci: <strong>D</strong></div>
+</div>
+<div class="q-card" id="q10">
+<div class="q-meta"><span class="q-num">No. 11</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>PILIHLAH 1 JAWABAN YANG PALING BENAR</p>
+<p>Berdasarkan model atom Bohr, elektron bergerak mengelilingi inti pada lintasan yang memenuhi syarat momentum sudut. Jika elektron berada pada kulit <span class="math-inline" data-math="n=3" data-index-in-node="148">n=3</span>, maka panjang lintasan elektron tersebut setara dengan.....</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p data-path-to-node="28">1 kali panjang gelombang De Broglie</p>
+<p data-path-to-node="32"></p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p data-path-to-node="29">1,5 kali panjang gelombang De Broglie</p>
+<p data-path-to-node="32"></p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p data-path-to-node="30">2 kali panjang gelombang De Broglie</p>
+<p data-path-to-node="32"></p></div></div><div class="opt correct"><span class="opt-lbl">D</span><div><p data-path-to-node="31"> 3 kali panjang gelombang De Broglie</p>
+<p data-path-to-node="32"></p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p data-path-to-node="31">9 kali panjang gelombang De Broglie</p></div></div></div><div class="key-row">Kunci: <strong>D</strong></div>
+</div>
+<div class="q-card" id="q11">
+<div class="q-meta"><span class="q-num">No. 12</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>PILIHLAH 1 JAWABAN YANG PALING BENAR</p>
+<p>Energi total elektron pada kulit dasar (ground state) atom hidrogen adalah -<span class="math-inline" data-math="-13,6" data-index-in-node="75">13,6</span> eV. Besar energi minimum yang diperlukan untuk melepaskan elektron dari kulit <span class="math-inline" data-math="n=2" data-index-in-node="159">n=2</span> adalah....</p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div><p data-path-to-node="18">3,4 eV</p>
+<p data-path-to-node="19"></p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p data-path-to-node="19">6,8 eV</p>
+<p data-path-to-node="20"></p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p data-path-to-node="20">10,2 eV</p>
+<p data-path-to-node="21"></p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p data-path-to-node="21">13,6 eV</p>
+<p data-path-to-node="22"></p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>17,0 eV</p></div></div></div><div class="key-row">Kunci: <strong>A</strong></div>
+</div>
+<div class="q-card" id="q12">
+<div class="q-meta"><span class="q-num">No. 13</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p data-pm-slice="1 1 []">PILIHLAH 1 JAWABAN YANG PALING BENAR</p>
+<p data-pm-slice="1 1 []">Diketahui unsur <sup>31</sup><sub>15</sub>P, <sup>30</sup><sub>16</sub>Q,<sup>32</sup><sub>15</sub>R dan <sup>32</sup><sub>16</sub>S. Unsur – unsur yang merupakan isobar adalah ….</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p data-pm-slice="1 1 []">P dan Q</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p data-pm-slice="1 1 []">Q dan R</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>P dan R</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Q dan S</p></div></div><div class="opt correct"><span class="opt-lbl">E</span><div><p>R dan S</p></div></div></div><div class="key-row">Kunci: <strong>E</strong></div>
+</div>
+<div class="q-card" id="q13">
+<div class="q-meta"><span class="q-num">No. 14</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p data-pm-slice="1 1 []">PILIHLAH 1 JAWABAN YANG PALING BENAR</p>
+<p data-pm-slice="1 1 []">Ion Ca<sup>2+</sup>mempunyai jumlah elektron 18. Jika nomor massanya 40, jumlah proton, neutron, dan elektron berturut-turut pada atom Ca adalah ...</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p data-pm-slice="1 1 []">18, 18, dan 22</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p data-pm-slice="1 1 []">18, 18, dan 40</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p data-pm-slice="1 1 []">18, 20, dan 40</p></div></div><div class="opt correct"><span class="opt-lbl">D</span><div><p data-pm-slice="1 1 []">20, 20, dan 18</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p data-pm-slice="1 1 []">20, 20, dan 20</p></div></div></div><div class="key-row">Kunci: <strong>D</strong></div>
+</div>
+<div class="q-card" id="q14">
+<div class="q-meta"><span class="q-num">No. 15</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>PILIHLAH 1 JAWABAN YANG PALING BENAR</p>
+<p>Sebuah sampel radioaktif memiliki aktivitas <span class="math-inline" data-math="A" data-index-in-node="44">A</span>. Jika dalam waktu 4 hari aktivitasnya berkurang menjadi <span class="math-inline" data-math="1/16 A" data-index-in-node="102">1/16 A</span>, maka aktivitas sampel tersebut setelah 6 hari dari awal adalah....... A</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>1/32</p></div></div><div class="opt correct"><span class="opt-lbl">B</span><div><p>1/64</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>1/132</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>1/8</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>1/128</p></div></div></div><div class="key-row">Kunci: <strong>B</strong></div>
+</div>
+<div class="q-card" id="q15">
+<div class="q-meta"><span class="q-num">No. 16</span><span class="q-badge badge-mc">Pilihan Ganda</span><span class="q-badge badge-img">Gambar</span></div>
+<div class="q-text"><p>PILIHLAH 1 JAWABAN YANG PALING BENAR</p>
+<p>Pada peluruhan &beta;<sup>-1</sup> (beta minus), spektrum energi elektron yang dipancarkan bersifat kontinu, bukan diskret. Fenomena ini membuktikan keberadaan partikel..................</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>positron</p></div></div><div class="opt correct"><span class="opt-lbl">B</span><div><p>neutron</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>foton gamma </p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>kuark</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>alfa</p></div></div></div><div class="key-row">Kunci: <strong>B</strong></div>
+</div>
+<div class="q-card" id="q16">
+<div class="q-meta"><span class="q-num">No. 17</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>PILIHLAH 1 JAWABAN YANG PALING BENAR</p>
+<p>Dalam penentuan usia fosil menggunakan Carbon-14 (<span class="math-inline" data-math="T_{1/2} = 5730" data-index-in-node="50">T1/2= 5730</span> tahun), seorang arkeolog menemukan fosil dengan kadar C-14 sebesar 12,5% dari kadar awal. Usia fosil tersebut adalah..........tahun</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>5730 </p></div></div><div class="opt correct"><span class="opt-lbl">B</span><div><p>17190</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>11460 </p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>22920</p></div></div></div><div class="key-row">Kunci: <strong>B</strong></div>
+</div>
+<div class="q-card" id="q17">
+<div class="q-meta"><span class="q-num">No. 18</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p data-pm-slice="1 1 []">JAWABLAH PERTANYAAN BERIKUT DENGAN 3 JAWABAN BENAR</p>
+<p data-pm-slice="1 1 []">Berikut beberapa peristiwa sehari-hari:</p>
+<p>1. Tangan terasa sakit saat memukul dinding</p>
+<p>2. Bagian ujung kaki terasa sakit saat menendang bola</p>
+<p>3. Buah yang jatuh dari pohon bergerak jatuh bebas</p>
+<p>4. Senapan terdorong ke belakang saat menembakkan peluru</p>
+<p>Peristiwa yang merupakan contoh dari hukum III Newton adalah</p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div><p>1</p></div></div><div class="opt correct"><span class="opt-lbl">B</span><div><p>2</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>3</p></div></div><div class="opt correct"><span class="opt-lbl">D</span><div><p>4</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>5</p></div></div></div><div class="key-row">Kunci: <strong>A, B, D</strong></div>
+</div>
+<div class="q-card" id="q18">
+<div class="q-meta"><span class="q-num">No. 19</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p class="MsoListParagraph" style="text-indent: -22.5pt; mso-list: l0 level3 lfo2; tab-stops: 30.75pt; margin: 9.25pt 0cm .0001pt 30.75pt;"><span lang="ms" style="font-size: 13.5pt; mso-bidi-font-size: 11.0pt;">JAWABLAH PERTANYAAN BERIKUT DENGAN 3 JAWABAN BENAR</span></p>
+<p class="MsoListParagraph" style="text-indent: -22.5pt; mso-list: l0 level3 lfo2; tab-stops: 30.75pt; margin: 9.25pt 0cm .0001pt 30.75pt;"><span lang="ms" style="font-size: 13.5pt; mso-bidi-font-size: 11.0pt;">Jika<span style="letter-spacing: -.45pt;"> </span>suatu<span style="letter-spacing: -.45pt;"> </span>benda<span style="letter-spacing: -.2pt;"> </span>jatuh<span style="letter-spacing: -.45pt;"> </span>bebas<span style="letter-spacing: -.4pt;"> </span><span style="letter-spacing: -.2pt;">maka:</span></span></p>
+<p class="MsoListParagraph" style="mso-list: l1 level1 lfo1; tab-stops: 23.35pt;"><!-- [if !supportLists]--><span lang="ms" style="font-size: 13.5pt;"><span style="mso-list: Ignore;">1.<span style="font: 7.0pt 'Times New Roman';">  </span></span></span><!--[endif]--><span lang="ms" style="font-size: 13.5pt; mso-bidi-font-size: 11.0pt;">energi<span style="letter-spacing: -.55pt;"> </span>mekanik<span style="letter-spacing: -.5pt;"> </span><span style="letter-spacing: -.1pt;">tetap</span></span></p>
+<p class="MsoListParagraph" style="margin-top: 1.05pt; mso-list: l1 level1 lfo1; tab-stops: 23.35pt;"><!-- [if !supportLists]--><span lang="ms" style="font-size: 13.5pt;"><span style="mso-list: Ignore;">2.<span style="font: 7.0pt 'Times New Roman';">  </span></span></span><!--[endif]--><span lang="ms" style="font-size: 13.5pt; mso-bidi-font-size: 11.0pt;">energi<span style="letter-spacing: -.65pt;"> </span>potensial<span style="letter-spacing: -.6pt;"> </span><span style="letter-spacing: -.1pt;">tetap</span></span></p>
+<p class="MsoListParagraph" style="mso-list: l1 level1 lfo1; tab-stops: 23.35pt;"><!-- [if !supportLists]--><span lang="ms" style="font-size: 13.5pt;"><span style="mso-list: Ignore;">3.<span style="font: 7.0pt 'Times New Roman';">  </span></span></span><!--[endif]--><span lang="ms" style="font-size: 13.5pt; mso-bidi-font-size: 11.0pt;">gerakannya<span style="letter-spacing: -.8pt;"> </span>dipercepat<span style="letter-spacing: -.8pt;"> </span><span style="letter-spacing: -.1pt;">beraturan</span></span></p>
+<p class="MsoListParagraph" style="text-indent: 0cm; line-height: 107%; mso-list: l1 level1 lfo1; tab-stops: 23.35pt; margin: 1.25pt 268.1pt .0001pt 8.25pt;"><!-- [if !supportLists]--><span lang="ms" style="font-size: 13.5pt; line-height: 107%;"><span style="mso-list: Ignore;">4.<span style="font: 7.0pt 'Times New Roman';">  </span></span></span><!--[endif]--><span lang="ms" style="font-size: 13.5pt; mso-bidi-font-size: 11.0pt; line-height: 107%;">energi kinetiknya tetap Pernyataan<span style="letter-spacing: -.4pt;"> </span>yang<span style="letter-spacing: -.4pt;"> </span>benar<span style="letter-spacing: -.55pt;"> </span>adalah<span style="letter-spacing: -.6pt;"> </span>….</span></p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div><p>1</p></div></div><div class="opt correct"><span class="opt-lbl">B</span><div><p>2</p></div></div><div class="opt correct"><span class="opt-lbl">C</span><div><p>3</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>4</p></div></div></div><div class="key-row">Kunci: <strong>A, B, C</strong></div>
+</div>
+<div class="q-card" id="q19">
+<div class="q-meta"><span class="q-num">No. 20</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p class="MsoListParagraph" style="text-indent: 0cm; line-height: 107%; mso-list: l0 level3 lfo2; tab-stops: 30.9pt; margin: 9.1pt 64.75pt .0001pt 8.25pt;"><span lang="ms" style="font-size: 13.5pt; line-height: 107%;"><span style="mso-list: Ignore;">JAWABLAH PERTANYAAN BERIKUT DENGAN 2 JAWABAN BENAR</span></span></p>
+<p class="MsoNormal" style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; line-height: normal;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif; mso-fareast-font-family: 'Times New Roman'; mso-fareast-language: EN-ID;">Berikut pernyataan yang benar terkait gerak parabola adalah …</span></p>
+<ol start="1" type="a">
+<li class="MsoNormal" style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; line-height: normal; mso-list: l0 level1 lfo1; tab-stops: list 36.0pt;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif; mso-fareast-font-family: 'Times New Roman'; mso-fareast-language: EN-ID;">Gerak parabola merupakan gabungan antara gerak lurus dan gerak melingkar</span></li>
+<li class="MsoNormal" style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; line-height: normal; mso-list: l0 level1 lfo1; tab-stops: list 36.0pt;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif; mso-fareast-font-family: 'Times New Roman'; mso-fareast-language: EN-ID;">Percepatan arah vertikal pada gerak parabola berubah – ubah terhadap waktu</span></li>
+<li class="MsoNormal" style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; line-height: normal; mso-list: l0 level1 lfo1; tab-stops: list 36.0pt;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif; mso-fareast-font-family: 'Times New Roman'; mso-fareast-language: EN-ID;">Kecepatan arah horizontal pada gerak parabola sebanding dengan waktu</span></li>
+<li class="MsoNormal" style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; line-height: normal; mso-list: l0 level1 lfo1; tab-stops: list 36.0pt;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif; mso-fareast-font-family: 'Times New Roman'; mso-fareast-language: EN-ID;">Pada titik tertinggi, kecepatan benda pada sumbu y adalah nol</span></li>
+<li class="MsoNormal" style="mso-margin-top-alt: auto; mso-margin-bottom-alt: auto; line-height: normal; mso-list: l0 level1 lfo1; tab-stops: list 36.0pt;"><span style="font-size: 12.0pt; font-family: 'Times New Roman',serif; mso-fareast-font-family: 'Times New Roman'; mso-fareast-language: EN-ID;">Percepatan pada gerak parabola hanya percepatan gravitasi</span></li>
+</ol></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>a</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>b</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>c</p></div></div><div class="opt correct"><span class="opt-lbl">D</span><div><p>d</p></div></div><div class="opt correct"><span class="opt-lbl">E</span><div><p>e</p></div></div></div><div class="key-row">Kunci: <strong>D, E</strong></div>
+</div>
+<div class="q-card" id="q20">
+<div class="q-meta"><span class="q-num">No. 21</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>PILIHLAH 1 JAWABAN YANG PALING BENAR</p>
+<p>Sebuah balon udara sedang bergerak vertikal ke atas dengan kelajuan 11 m/s pada ketinggian 70 m di atas tanah ketika sebuah bungkusan dilepaskan dari balon udara tersebut.<br>Waktu yang dibutuhkan bungkusan tersebut untuk mencapai tanah sejak dilepaskan dan kelajuan bungkusan tersebut saat mengenai tanah adalah ….</p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div><p>5 s dan 39 m/s</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p> 5 s dan 49 m/s</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>15 s dan 39 m/s</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>15 s dan 49 m/s</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>25 s dan 49 m/s</p></div></div></div><div class="key-row">Kunci: <strong>A</strong></div>
+</div>
+<div class="q-card" id="q21">
+<div class="q-meta"><span class="q-num">No. 22</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>PILIHLAH 1 JAWABAN YANG PALING BENAR</p>
+<p>Seorang anak mengayuh sepeda dari keadaan bergerak. Mula-mula sepeda bergerak dengan<br>kecepatan vo = 10 m/s. Sepeda dipercepat dengan percepatan a = 2 m/s^2. Kecepatan<br>sepeda itu setelah t = 4 sekon adalah................. m/s</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>14</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>16</p></div></div><div class="opt correct"><span class="opt-lbl">C</span><div><p>18</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>20</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>24</p></div></div></div><div class="key-row">Kunci: <strong>C</strong></div>
+</div>
+<div class="q-card" id="q22">
+<div class="q-meta"><span class="q-num">No. 23</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p data-pm-slice="1 1 []">JAWABLAH PERTANYAAN BERIKUT DENGAN MEMILIH 3 JAWABAN BENAR</p>
+<p data-pm-slice="1 1 []">Tiga buah resistor dengan nilai masing-masing 2 ohm, 4 ohm, dan 6 ohm dihubungkan secara seri. Jika rangkaian tersebut dihubungkan dengan baterai 12 volt, maka tegangan di masing-masing resistor secara berurutan adalah…</p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div><p>2</p></div></div><div class="opt correct"><span class="opt-lbl">B</span><div><p>4</p></div></div><div class="opt correct"><span class="opt-lbl">C</span><div><p>6</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>8</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>10</p></div></div></div><div class="key-row">Kunci: <strong>A, B, C</strong></div>
+</div>
+<div class="q-card" id="q23">
+<div class="q-meta"><span class="q-num">No. 24</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p style="line-height: 22.5pt; background: white; margin: 0cm 0cm 24.0pt 0cm;"><span style="font-size: 15.0pt; font-family: 'Arial',sans-serif; color: #535353;">PILIHLAH 1 JAWABAN YANG PALING BENAR</span></p>
+<p style="line-height: 22.5pt; background: white; margin: 0cm 0cm 24.0pt 0cm;"><span style="font-size: 15.0pt; font-family: 'Arial',sans-serif; color: #535353;">Antara muatan A dan muatan B terpisah dengan jarak 2,0 m. Muatan A mengandung +1,0 C sementara muatan B mengandung +2,0 C. </span><span style="font-size: 15.0pt; font-family: 'Arial',sans-serif; color: #535353;">Adapun untuk muatan C mengandung nilai +2,0 C dan terletak di antara A dan B pada titik tertentu.</span><span style="font-size: 15.0pt; font-family: 'Arial',sans-serif; color: #535353;">Oleh sebab itu, gaya yang ada pada muatan C adalah nol. Lalu berapakah perkiraan jarak muatan C dari A....</span></p>
+<p style="line-height: 22.5pt; background: white; margin: 0cm 0cm 24.0pt 0cm;"></p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div><p><span style="font-size: 15.0pt; font-family: 'Arial',sans-serif; color: #535353;">0,83 meter<br></span></p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p><span style="font-size: 15.0pt; font-family: 'Arial',sans-serif; color: #535353;">0,36 meter<br></span></p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p><span style="font-size: 15.0pt; font-family: 'Arial',sans-serif; color: #535353;">0,67 meter<br></span></p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p><span style="font-size: 15.0pt; font-family: 'Arial',sans-serif; color: #535353;">1,0 meter<br></span></p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p><span style="font-size: 15.0pt; font-family: 'Arial',sans-serif; color: #535353;">0,50 meter</span></p></div></div></div><div class="key-row">Kunci: <strong>A</strong></div>
+</div>
+<div class="q-card" id="q24">
+<div class="q-meta"><span class="q-num">No. 25</span><span class="q-badge badge-mc">Pilihan Ganda</span><span class="q-badge badge-img">Gambar</span></div>
+<div class="q-text"><p>PILIHLAH 1 JAWABAN YANG PALING BENAR</p>
+<p><img class="img-fluid" src="Fisika-12/5.png" class="img-fluid"                                                                   </p>
+<p class="MsoNormal" style="margin-bottom: 24.0pt; line-height: 22.5pt; background: white;"><span style="font-size: 15.0pt; font-family: 'Arial',sans-serif; mso-fareast-font-family: 'Times New Roman'; color: #535353; mso-fareast-language: EN-ID;">Cobalah perhatikan gambar yang menunjukkan 3 partikel yang terdiri dari A, B, lalu C. Ketiga gambar di atas saling memiliki satu garis lurus. Pada partikel A, gambar memiliki muatan dengan nilai+18 μC.</span><span style="font-size: 15.0pt; font-family: 'Arial',sans-serif; mso-fareast-font-family: 'Times New Roman'; color: #535353; mso-fareast-language: EN-ID;">Sementara untuk muatan pada partikel B adalah -3 μC, dan muatan dari partikel C adalah -12 μC.</span><span style="font-size: 15.0pt; font-family: 'Arial',sans-serif; mso-fareast-font-family: 'Times New Roman'; color: #535353; mso-fareast-language: EN-ID;">Lalu, jarak partikel A menuju B sendiri adalah 3 m, sementara jarak dari B ke C adalah 2 m. Lalu berapakah besar dari gaya coulomb yang bekerja di partikel B?</span></p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>0,065 N</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>0,027 N</p></div></div><div class="opt correct"><span class="opt-lbl">C</span><div><p>0,135 N</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>0,054 N</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>0,081 N</p></div></div></div><div class="key-row">Kunci: <strong>C</strong></div>
+</div>
+<div class="q-card" id="q25">
+<div class="q-meta"><span class="q-num">No. 26</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p class="MsoNormal" style="margin-bottom: 24.0pt; line-height: 22.5pt; background: white;"><span style="font-size: 15.0pt; font-family: 'Arial',sans-serif; mso-fareast-font-family: 'Times New Roman'; color: #535353; mso-fareast-language: EN-ID;">PILIHLAH 1 JAWABAN YANG PALING BENAR</span></p>
+<p class="MsoNormal" style="margin-bottom: 24.0pt; line-height: 22.5pt; background: white;"><span style="font-size: 15.0pt; font-family: 'Arial',sans-serif; mso-fareast-font-family: 'Times New Roman'; color: #535353; mso-fareast-language: EN-ID;">Ada dua buah muatan yang disebut dengan Q1 dan Q2. Masing-masing muatan mengandung nilai +2 μC dan -8 μC. Nilai dalam muatan terpisahkan dengan jarak 4 cm antara satu sama lain.</span><span style="font-size: 15.0pt; font-family: 'Arial',sans-serif; mso-fareast-font-family: 'Times New Roman'; color: #535353; mso-fareast-language: EN-ID;">Apabila k memiliki nilai 9 x 10^9 Nm^2C^-2, lalu berapakah besar dan arah dari gaya elektrostatis dari muatan Q1 dan Q2?</span></p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p><span style="font-size: 15.0pt; line-height: 107%; font-family: 'Arial',sans-serif; mso-fareast-font-family: 'Times New Roman'; color: #535353; mso-ansi-language: EN-ID; mso-fareast-language: EN-ID; mso-bidi-language: AR-SA;">180 N dengan saling tolak menolak<br></span></p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p><span style="font-size: 15.0pt; line-height: 107%; font-family: 'Arial',sans-serif; mso-fareast-font-family: 'Times New Roman'; color: #535353; mso-ansi-language: EN-ID; mso-fareast-language: EN-ID; mso-bidi-language: AR-SA;">50 N dengan saling tarik menarik<br></span></p></div></div><div class="opt correct"><span class="opt-lbl">C</span><div><p><span style="font-size: 15.0pt; line-height: 107%; font-family: 'Arial',sans-serif; mso-fareast-font-family: 'Times New Roman'; color: #535353; mso-ansi-language: EN-ID; mso-fareast-language: EN-ID; mso-bidi-language: AR-SA;">90 N dengan saling tarik menarik<br></span></p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p><span style="font-size: 15.0pt; line-height: 107%; font-family: 'Arial',sans-serif; mso-fareast-font-family: 'Times New Roman'; color: #535353; mso-ansi-language: EN-ID; mso-fareast-language: EN-ID; mso-bidi-language: AR-SA;">180 N dengan tarik menarik<br></span></p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p><span style="font-size: 15.0pt; line-height: 107%; font-family: 'Arial',sans-serif; mso-fareast-font-family: 'Times New Roman'; color: #535353; mso-ansi-language: EN-ID; mso-fareast-language: EN-ID; mso-bidi-language: AR-SA;">90 N dengan  tolak menolak</span></p></div></div></div><div class="key-row">Kunci: <strong>C</strong></div>
+</div>
+<div class="q-card" id="q26">
+<div class="q-meta"><span class="q-num">No. 27</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p class="MsoNormal" style="margin-bottom: 24.0pt; line-height: 22.5pt; background: white;"><span style="font-size: 15.0pt; font-family: 'Arial',sans-serif; mso-fareast-font-family: 'Times New Roman'; color: #535353; mso-fareast-language: EN-ID;">Ada dua buah muatan yang disebut dengan Q1 dan Q2. Masing-masing muatan mengandung nilai +2 μC dan -8 μC. Nilai dalam muatan terpisahkan dengan jarak 4 cm antara satu sama lain.</span></p>
+<p class="MsoNormal" style="margin-bottom: 24.0pt; line-height: 22.5pt; background: white;"><span style="font-size: 15.0pt; font-family: 'Arial',sans-serif; mso-fareast-font-family: 'Times New Roman'; color: #535353; mso-fareast-language: EN-ID;">Apabila k memiliki nilai 9 x 10^9 Nm2C^-2, lalu berapakah besar dan arah dari gaya elektrostatis dari muatan Q1 dan Q2?</span></p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p><span style="font-size: 15.0pt; line-height: 107%; font-family: 'Arial',sans-serif; mso-fareast-font-family: 'Times New Roman'; color: #535353; mso-ansi-language: EN-ID; mso-fareast-language: EN-ID; mso-bidi-language: AR-SA;">180 N dengan saling tolak menolak</span></p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p><span style="font-size: 15.0pt; line-height: 107%; font-family: 'Arial',sans-serif; mso-fareast-font-family: 'Times New Roman'; color: #535353; mso-ansi-language: EN-ID; mso-fareast-language: EN-ID; mso-bidi-language: AR-SA;">50 N dengan saling tarik menarik</span></p></div></div><div class="opt correct"><span class="opt-lbl">C</span><div><p><span style="font-size: 15.0pt; line-height: 107%; font-family: 'Arial',sans-serif; mso-fareast-font-family: 'Times New Roman'; color: #535353; mso-ansi-language: EN-ID; mso-fareast-language: EN-ID; mso-bidi-language: AR-SA;">90 N dengan saling tarik menarik</span></p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p><span style="font-size: 15.0pt; line-height: 107%; font-family: 'Arial',sans-serif; mso-fareast-font-family: 'Times New Roman'; color: #535353; mso-ansi-language: EN-ID; mso-fareast-language: EN-ID; mso-bidi-language: AR-SA;">180 N dengan tarik menarik</span></p></div></div></div><div class="key-row">Kunci: <strong>C</strong></div>
+</div>
+<div class="q-card" id="q27">
+<div class="q-meta"><span class="q-num">No. 28</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>PILIHLAH 1 JAWABAN YANG PALING BENAR</p>
+<p>Seorang pemain sepak bola memberikan gaya tendangan pada bola sebesar 50 N selama 2 detik.Maka kecepatan bola setelah terlepas dari kaki pemain bila mula-mula bola tersebut diam dan massa bola 500 gram adalah...............m/s</p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div><p>200</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>300 </p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>400</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>500</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>100</p></div></div></div><div class="key-row">Kunci: <strong>A</strong></div>
+</div>
+<div class="q-card" id="q28">
+<div class="q-meta"><span class="q-num">No. 29</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>PILIHLAH 1 JAWABAN YANG PALING BENAR</p>
+<p>Jika energi total suatu partikel adalah <span class="math-inline" data-math="\frac{5}{4}" data-index-in-node="40">5/4</span> kali energi diamnya, maka kecepatan partikel tersebut adalah....</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>0,2 c</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>0,4 c</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>0,5 c</p></div></div><div class="opt correct"><span class="opt-lbl">D</span><div><p>0,6 c</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>0,8 c</p></div></div></div><div class="key-row">Kunci: <strong>D</strong></div>
+</div>
+<div class="q-card" id="q29">
+<div class="q-meta"><span class="q-num">No. 30</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p><span class="">PILIHLAH 1 JAWABAN YANG PALING BENAR</span></p>
+<p><span class="">Sebuah pesawat antariksa memiliki panjang </span><span class="math-inline" data-math="L" data-index-in-node="42">L</span><span class=""> ketika diam di bumi.</span><span class=""> Jika pesawat tersebut melintas di depan seorang pengamat yang diam dengan kecepatan </span><span class="math-inline" data-math="0,6c" data-index-in-node="149">0,6c</span><span class=""> (</span><span class="math-inline" data-math="c" data-index-in-node="155">c</span><span class=""> = kecepatan cahaya),</span><span class=""> maka panjang pesawat yang terukur oleh pengamat tersebut adalah....</span></p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>0.4 L</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>0,6 L</p></div></div><div class="opt correct"><span class="opt-lbl">C</span><div><p>0,8 L</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>1,0 L</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>1,25 L</p></div></div></div><div class="key-row">Kunci: <strong>C</strong></div>
+</div>
+<div class="q-card" id="q30">
+<div class="q-meta"><span class="q-num">No. 31</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p><span class="">PILIHLAH 1 JAWABAN YANG PALING BENAR</span></p>
+<p><span class="">Dua orang saudara kembar A dan B berumur 20 tahun.</span><span class=""> A melakukan perjalanan ke sebuah bintang dengan kecepatan </span><span class="math-inline" data-math="0,8c" data-index-in-node="109">0,8c</span><span class="">.</span><span class=""> Ketika A kembali ke bumi,</span><span class=""> menurut B perjalanan tersebut telah berlangsung selama 30 tahun.</span><span class=""> Berapakah umur A saat tepat kembali ke bumi....</span></p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>30 tahun</p></div></div><div class="opt correct"><span class="opt-lbl">B</span><div><p>38 tahun</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>44 tahun</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>50 tahun</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>56 tahun</p></div></div></div><div class="key-row">Kunci: <strong>B</strong></div>
+</div>
+<div class="q-card" id="q31">
+<div class="q-meta"><span class="q-num">No. 32</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p data-pm-slice="1 1 []">BANAR ATAU SALAH PERNYATAAN BERIKUT</p>
+<p data-pm-slice="1 1 []">Andi ingin mengukur volume penghapus pensil yang dimilikinya. langkah yang dilakukan andi adalah mengukur panjang dan lebar serta tinggi penghapus tersebut dengan jangka sorong. Dari hasil pengukuran didapatkan hasil panjang, lebar dan tingginya penghapus berturut-turut 2,52 cm; 1,30 cm dan 0,50 cm.</p>
+<p>Berdasarkan aturan angka penting, volume penghapus adalah 2 cm<sup>3</sup></p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div>true</div></div><div class="opt"><span class="opt-lbl">B</span><div>false</div></div></div><div class="key-row">Kunci: <strong>A</strong></div>
+</div>
+<div class="q-card" id="q32">
+<div class="q-meta"><span class="q-num">No. 33</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p data-pm-slice="1 1 []">BENAR ATAU SALAH PERNYATAAN BERIKUT</p>
+<p data-pm-slice="1 1 []">Dua buah vektor A dan B masing-masing mempunyai besar 6 cm dan 10 cm. Kedua vektor membentuk sudut 60<sup>o</sup>. Besar penjumlahan kedua vektor tersebut adalah .14 cm</p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div>true</div></div><div class="opt"><span class="opt-lbl">B</span><div>false</div></div></div><div class="key-row">Kunci: <strong>A</strong></div>
+</div>
+<div class="q-card" id="q33">
+<div class="q-meta"><span class="q-num">No. 34</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Sebuah bandul sederhana memiliki panjang tali <span class="math-inline" data-math="L" data-index-in-node="46">$L$</span> dan periode getaran <span class="math-inline" data-math="T" data-index-in-node="68">$T$</span> di permukaan bumi. Jika bandul tersebut dibawa ke suatu planet yang memiliki percepatan gravitasi <span class="math-inline" data-math="\frac{1}{4}" data-index-in-node="168">$\frac{1}{4}$</span> kali gravitasi bumi, maka periode getaran bandul tersebut menjadi...</p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div>true</div></div><div class="opt"><span class="opt-lbl">B</span><div>false</div></div></div><div class="key-row">Kunci: <strong>A</strong></div>
+</div>
+<div class="q-card" id="q34">
+<div class="q-meta"><span class="q-num">No. 35</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p data-pm-slice="1 1 []">BENAR ATAU SALAH PERYATAAN BERIKUT</p>
+<p data-pm-slice="1 1 []">sebuah kereta berjalan dengan kecepatan 72 km/jam tiba-tiba kereta tersebut dihentikan dan ia berhenti tepat 5 detik dari saat ia mulai mengerem. Kereta tersebut berhenti bila dihitung dari saat ia mulai mengerem menempuh jarak 50 m</p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div>true</div></div><div class="opt"><span class="opt-lbl">B</span><div>false</div></div></div><div class="key-row">Kunci: <strong>A</strong></div>
+</div>
+<div class="q-card" id="q35">
+<div class="q-meta"><span class="q-num">No. 36</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p data-pm-slice="1 1 []">BENAR ATAU SALAH PERNYATAAN BERIKUT</p>
+<p data-pm-slice="1 1 []">Kuat medan listrik yang disebabkan sebuah muatan titik +4 nC yang terletak di udara pada suatu titik adalah 10<sup>4</sup> N/C. Jarak titik tersebut dari muatan adalah 6 cm</p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div>true</div></div><div class="opt"><span class="opt-lbl">B</span><div>false</div></div></div><div class="key-row">Kunci: <strong>A</strong></div>
+</div>
+<div class="q-card" id="q36">
+<div class="q-meta"><span class="q-num">No. 37</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p data-pm-slice="1 1 []">BENAR ATAU SALAH PERNYATAAN BERIKUT</p>
+<p data-pm-slice="1 1 []">Medan listrik yang dirasakan oleh muatan uji A terhadap muatan B sebesar 80 N/C. Jika jarak kedua muatan tersebut adalah 0,03 m, besar muatan B 8 x 10<sup>-12</sup> C</p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div>true</div></div><div class="opt"><span class="opt-lbl">B</span><div>false</div></div></div><div class="key-row">Kunci: <strong>A</strong></div>
+</div>
+
+<div class="q-card" id="q-reorder-21">
+  <div class="q-meta"><span class="q-num">No. 21</span><span class="q-badge badge-mc">Essay</span></div>
+    <div class="q-text"><p>JODOHKAN SOAL DI BAWAH INI DENGAN 1 JAWABAN YANG BENAR</p>
+<p>Sebuah dongkrak hidrolik memiliki dua penampang berbentuk lingkaran dengan diameter masing-masing 2 cm dan 20 cm. Jika pada penampang kecil diberikan gaya sebesar 50 N, maka beban maksimum yang dapat diangkat pada penampang besar adalah............N</p></div>
+    <div class="opts">
+      <div class="opt correct"></span>5000</div>
+  </div>
+  <div class="key-row">Kunci: <strong>5000</strong></div>
+</div>
+
+<div class="q-card" id="q-reorder-22">
+  <div class="q-meta"><span class="q-num">No. 22</span><span class="q-badge badge-mc">Essay</span></div>
+    <div class="q-text"><p>JAWABANLAH PERTANYAAN BERIKUT DENGAN MENGGUNAKAN HURUF BESAR</p>
+<p>Sebuah bandul sederhana memiliki panjang tali <span class="math-inline" data-math="L" data-index-in-node="46">L</span> dan periode getaran <span class="math-inline" data-math="T" data-index-in-node="68">T</span> di permukaan bumi. Jika bandul tersebut dibawa ke suatu planet yang memiliki percepatan gravitasi <span class="math-inline" data-math="\frac{1}{4}" data-index-in-node="168">1/4</span> kali gravitasi bumi, maka periode getaran bandul tersebut menjadi...</p></div>
+    <div class="opts">
+      <div class="opt correct"></span>2 T</div>
+      <div class="opt correct"></span>2T</div>
+      <div class="opt correct"></span>DUA PERIODE</div>
+  </div>
+  <div class="key-row">Kunci: <strong>Pilih salah satu</strong></div>
+</div>
+
+<div class="q-card" id="q-reorder-23">
+  <div class="q-meta"><span class="q-num">No. 23</span><span class="q-badge badge-mc">Essay</span></div>
+    <div class="q-text"><p>JAWABLAH PERTANYAAN BERIKUT DENGAN TEPAT ( TANPA MENGGUNAKAN SATUAN )</p>
+<p>Sebuah benda melakukan getaran harmonik dengan persamaan simpangan <span class="math-inline" data-math="y = 0,05 \sin(20\pi t)" data-index-in-node="67">y = 0,05 sin(20 π t)</span>, di mana <span class="math-inline" data-math="y" data-index-in-node="99">y</span> dalam meter dan <span class="math-inline" data-math="t" data-index-in-node="117">t</span> dalam sekon. Besar frekuensi dan amplitudo getaran tersebut adalah...... Hz dan ....... cm</p></div>
+    <div class="opts">
+      <div class="opt correct"></span>10 dan 5</div>
+      <div class="opt correct"></span>10 Hz dan 5 cm</div>
+  </div>
+  <div class="key-row">Kunci: <strong>Pilih salah satu</strong></div>
+</div>
+
+<div class="q-card" id="q-reorder-24">
+  <div class="q-meta"><span class="q-num">No. 24</span><span class="q-badge badge-mc">Essay</span></div>
+    <div class="q-text"><p>JAWABLAH PERTANYAAN BERIKUT DENGAN BENAR</p>
+<p>Spektrum garis yang dihasilkan ketika elektron pada atom hidrogen berpindah dari kulit yang lebih luar ke kulit <span class="math-inline" data-math="n=1" data-index-in-node="112">n=1</span>disebut deret...</p></div>
+    <div class="opts">
+      <div class="opt correct"></span>lyman</div>
+      <div class="opt correct"></span>Lyman</div>
+      <div class="opt correct"></span>LYMAN</div>
+  </div>
+  <div class="key-row">Kunci: <strong>Pilih salah satu</strong></div>
+</div>
+
+<div class="q-card" id="q-reorder-24">
+  <div class="q-meta"><span class="q-num">No. 24</span><span class="q-badge badge-mc">Essay</span></div>
+    <div class="q-text"><p>JAWABLAH PERTANYAAN BERIKUT DENGAN TEPAT</p>
+<p>Dua buah pegas identik dengan konstanta masing-masing <span class="math-inline" data-math="k" data-index-in-node="54">k</span> disusun secara paralel, kemudian ujungnya dihubungkan dengan pegas ketiga yang juga identik secara seri. Jika beban bermassa <span class="math-inline" data-math="m" data-index-in-node="181">m </span>digantungkan pada ujung susunan tersebut, maka konstanta pegas penggantinya <span class="math-inline" data-math="k_{tot}" data-index-in-node="260">k<sub>tot</sub></span> adalah......</p></div>
+    <div class="opts">
+      <div class="opt correct"></span>2/3</div>
+      <div class="opt correct"></span>2/3 k</div>
+  </div>
+  <div class="key-row">Kunci: <strong>Pilih salah satu</strong></div>
+</div>
+
+  </div>
+</div>
+<footer>Dibuat dengan <strong>QuizConverter</strong> by cybertass &mdash; 30 Maret 2026</footer>
+
+</body>
+</html>

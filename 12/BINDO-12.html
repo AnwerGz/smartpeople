@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PSAJ Bahasa Indonesia Kelas 12</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0c0e14;--bg2:#13161f;--bg3:#191d2a;--bd:rgba(255,255,255,0.06);--bd2:rgba(255,255,255,0.11);--tx:#dde1f0;--tx2:#8a93b0;--tx3:#4e5670;--ac:#5d7eff;--acbg:rgba(93,126,255,0.1);--acbd:rgba(93,126,255,0.28);--gr:#3ecf8e;--grbg:rgba(62,207,142,0.09);--grbd:rgba(62,207,142,0.28);--rd:#f16060;--rdbg:rgba(241,96,96,0.09);--rdbd:rgba(241,96,96,0.26);--am:#f59e0b;--ambg:rgba(245,158,11,0.09);--ambd:rgba(245,158,11,0.28);--pu:#a78bfa;--pubg:rgba(167,139,250,0.09);--pubd:rgba(167,139,250,0.28);--r:9px;--rl:13px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;line-height:1.6;font-size:14px}
+header{border-bottom:1px solid var(--bd);padding:0 2rem;height:54px;display:flex;align-items:center;gap:10px;position:sticky;top:0;background:rgba(12,14,20,0.94);backdrop-filter:blur(14px);z-index:100}
+.hlogo{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600}
+.hlm{width:26px;height:26px;border-radius:6px;background:linear-gradient(135deg,#5d7eff,#a78bfa);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;flex-shrink:0}
+.hmeta{font-size:12px;color:var(--tx3);margin-left:auto;text-align:right}
+
+.wrap{max-width:820px;margin:0 auto;padding:2.5rem 2rem}
+.page-hero{margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--bd)}
+.page-hero h1{font-size:26px;font-weight:700;letter-spacing:-.4px;margin-bottom:6px;line-height:1.3}
+.page-hero .sub{font-size:13px;color:var(--tx3);display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.sub-pill{background:var(--bg2);border:1px solid var(--bd2);border-radius:20px;padding:2px 10px;font-size:12px}
+
+.q-list{display:flex;flex-direction:column;gap:12px}
+.q-card{background:var(--bg2);border:1px solid var(--bd);border-radius:var(--rl);padding:1.2rem;transition:border-color .15s}
+.q-card:hover{border-color:var(--bd2)}
+.q-meta{display:flex;align-items:center;gap:7px;margin-bottom:7px;flex-wrap:wrap}
+.q-num{font-size:11px;color:var(--tx3);font-weight:700;background:var(--bg3);padding:1px 7px;border-radius:5px}
+.q-badge{font-size:10px;padding:2px 7px;border-radius:5px;font-weight:600;border:1px solid transparent}
+.badge-mc{background:var(--acbg);color:var(--ac);border-color:var(--acbd)}
+.badge-multi{background:var(--ambg);color:var(--am);border-color:var(--ambd)}
+.badge-match{background:var(--grbg);color:var(--gr);border-color:var(--grbd)}
+.badge-img{background:var(--pubg);color:var(--pu);border-color:var(--pubd)}
+.q-text{font-size:15px;color:var(--tx);margin-bottom:11px;line-height:1.55}
+.q-text img{max-width:100%;border-radius:7px;margin:7px 0;border:1px solid var(--bd2);display:block}
+.q-text img.broken{opacity:.3;filter:grayscale(1)}
+.opts{display:flex;flex-direction:column;gap:5px}
+.opt{display:flex;align-items:flex-start;gap:9px;padding:7px 11px;border-radius:7px;border:1px solid var(--bd);font-size:13.5px;transition:all .14s;color:var(--tx2);background:var(--bg3)}
+
+.opt img{max-width:200px;max-height:140px;object-fit:contain;border-radius:5px;margin-top:5px;display:block}
+.opt-lbl{font-weight:700;min-width:17px;font-size:11.5px;opacity:.6;flex-shrink:0;padding-top:2px}
+.correct{background:var(--grbg)!important;border-color:var(--grbd)!important;color:var(--gr)!important}
+.wrong{background:var(--rdbg)!important;border-color:var(--rdbd)!important;color:var(--rd)!important}
+.key-row{margin-top:8px;font-size:12.5px;color:var(--tx3);background:var(--grbg);border-left:2px solid var(--gr);padding:6px 11px;border-radius:0 6px 6px 0}
+.feedback{margin-top:7px;padding:6px 11px;border-radius:6px;font-size:13px;font-weight:500}
+.fb-ok{background:var(--grbg);color:var(--gr)}.fb-err{background:var(--rdbg);color:var(--rd)}
+.match-tbl{width:100%;border-collapse:collapse;font-size:13px}
+.match-tbl th,.match-tbl td{padding:6px 9px;border:1px solid var(--bd);vertical-align:top}
+.match-tbl thead th{font-size:10px;color:var(--tx3);font-weight:700;text-transform:uppercase;letter-spacing:.5px;background:var(--bg3)}
+.match-tbl td img{max-width:140px;border-radius:4px;margin-top:4px;display:block}
+.match-ans{color:var(--gr);font-weight:600}
+footer{text-align:center;padding:2rem;font-size:12px;color:var(--tx3);border-top:1px solid var(--bd);margin-top:3rem}
+</style>
+</head>
+<body>
+<header>
+  <div class="hlogo"><div class="hlm">QC</div><span>QuizConverter <span style="color:var(--tx3);font-weight:400">by cybertass</span></span></div>
+  <div class="hmeta">30 Maret 2026</div>
+</header>
+
+<div class="wrap">
+  <div class="page-hero">
+    <h1>PSAJ Bahasa Indonesia Kelas 12</h1>
+    <div class="sub">
+      <span class="sub-pill">📝 51 soal</span>
+      <span class="sub-pill">📋 Kunci Jawaban</span>
+      
+    </div>
+    
+  </div>
+  <div class="q-list">
+<div class="q-card" id="q0">
+<div class="q-meta"><span class="q-num">No. 1</span><span class="q-badge badge-match">Menjodohkan</span></div>
+<div class="q-text"><p>Konjungsi yang cocok untuk kalimat di bawah ini adalah....</p></div>
+<table class="match-tbl"><thead><tr><th>Pernyataan</th><th>Jawaban</th></tr></thead><tbody><tr><td><p>Hujan deras mengguyur lapangan sejak sore tadi.....kedua tim sepak bola tetap bermain dengan sangat baik.</p></td><td class="match-ans">meskipun demikian</td></tr><tr><td><p>Algoritma AI dapat digunakan untuk memprediksi kebutuhan transportasi ........mengurangi jumlah kendaraan.</p></td><td class="match-ans">sehingga</td></tr><tr><td><p>Pembangunan itu akan dilaksanakan lagi....para wali murid sudah membayar.</p></td><td class="match-ans">ketika</td></tr></tbody></table>
+</div>
+<div class="q-card" id="q1">
+<div class="q-meta"><span class="q-num">No. 2</span><span class="q-badge badge-match">Menjodohkan</span></div>
+<div class="q-text"><p>Bagian-nbagian surat lamaran pekerjaan melipouti...</p></div>
+<table class="match-tbl"><thead><tr><th>Pernyataan</th><th>Jawaban</th></tr></thead><tbody><tr><td><p>Setelah membaca iklan di harian Jawa Pos tanggal 2 Oktober 2025 tentang lowongan pekerjaan sebagai tenaga administrasi....</p></td><td class="match-ans">pembuka surat</td></tr><tr><td><p>Adapun data diri saya sebagai berikut:</p>
+<p>Nama                         : Indahyanti</p>
+<p>Tempat, tanggal lahir : Bandung, 12 Agustus 1997</p></td><td class="match-ans">Isi</td></tr><tr><td><p>Yth. Pimpinan PT Cendana Jaya</p>
+<p>Jalan Kebangusan No 23 Bandung</p></td><td class="match-ans">alamat surat</td></tr></tbody></table>
+</div>
+<div class="q-card" id="q2">
+<div class="q-meta"><span class="q-num">No. 3</span><span class="q-badge badge-match">Menjodohkan</span></div>
+<div class="q-text"><p>Kalimat di bawah ini menggunakan kata kerja....</p></div>
+<table class="match-tbl"><thead><tr><th>Pernyataan</th><th>Jawaban</th></tr></thead><tbody><tr><td><p>Pemerintah berusaha mejembatani aspirasi pekerja dan perusahaan.</p></td><td class="match-ans">kata kerja aktif</td></tr><tr><td><p>Peristiwa itu masih diproses secara hukum oleh pihak kepolisian.</p></td><td class="match-ans">kata kerja pasif</td></tr><tr><td><p>Koperasi sekolah memberikan potongan harga pada barang-barang alat tulis.</p></td><td class="match-ans">kata kerja aktif</td></tr></tbody></table>
+</div>
+<div class="q-card" id="q3">
+<div class="q-meta"><span class="q-num">No. 4</span><span class="q-badge badge-match">Menjodohkan</span></div>
+<div class="q-text"><p>Kata-kata berikut ini mengalami proses kata serapan yang cocok adalah...</p></div>
+<table class="match-tbl"><thead><tr><th>Pernyataan</th><th>Jawaban</th></tr></thead><tbody><tr><td><p>Moda<em><strong> transportasi</strong></em> darat mendapatkan perhatian dari pemerintah.</p></td><td class="match-ans">adaptasi</td></tr><tr><td><p>Bapak harus menstransfer uang di <em><strong>bank</strong></em> dulu sebelum ke kantor.</p></td><td class="match-ans">adopsi</td></tr><tr><td><p>Kelas XII sudah  banyak yang mengikuti <em><strong>uji coba</strong></em> di beberapa Lembaga  Bimbingan Belajar.</p></td><td class="match-ans">terjemahan</td></tr></tbody></table>
+</div>
+<div class="q-card" id="q4">
+<div class="q-meta"><span class="q-num">No. 5</span><span class="q-badge badge-match">Menjodohkan</span></div>
+<div class="q-text"><p>Unsur Instrinsik apa yang menonjol dari kalimat berikut!</p></div>
+<table class="match-tbl"><thead><tr><th>Pernyataan</th><th>Jawaban</th></tr></thead><tbody><tr><td><p>Kami berempat hanya diam, dan terduduk di kursi usang dalam kamar tua</p>
+<p></p></td><td class="match-ans">setting</td></tr><tr><td><p>Orang tua itu hanya terdiam dan meneteskan air mata</p></td><td class="match-ans">penokohan</td></tr><tr><td><p>Berbaiklah dengan saudaramu, supaya panjang umurmu.</p></td><td class="match-ans">amanat</td></tr></tbody></table>
+</div>
+<div class="q-card" id="q5">
+<div class="q-meta"><span class="q-num">No. 6</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p>Larik puisi yang mengandung imaji auditif adalah ....</p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div><p>sayup-sayup terdengar rintihan</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>bayangan hitam kokoh di sana</p></div></div><div class="opt correct"><span class="opt-lbl">C</span><div><p>lolongan anjing memecah sunyi</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>dingin menusuk ragaku</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>deburan ombak berkejaran</p></div></div></div><div class="key-row">Kunci: <strong>A, C</strong></div>
+</div>
+<div class="q-card" id="q6">
+<div class="q-meta"><span class="q-num">No. 7</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Penulisan kalimat berikut ini dengan cermat!</p>
+<p><br><strong>Aku pergi ke pasar, kemudian aku pergi ke rumah teman untuk bermain sepak bola.</strong></p>
+<p>Perbaikan kalimat tersebut agar menjadi kalimat efektif adalah…</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>Aku pergi ke pasar dan rumah teman untuk bermain sepak bola.</p></div></div><div class="opt correct"><span class="opt-lbl">B</span><div><p>Aku pergi ke pasar, kemudian ke rumah teman untuk bermain sepak bola.</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>Aku ke pasar dan pergti ke rumah teman untuk bermain sepak bola.</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Aku pergi ke pasar kemudian aku ke rumah teman untuk bermain sepak bola.</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>Aku pergi ke pasar kemudian aku bermain sepak bola.</p></div></div></div><div class="key-row">Kunci: <strong>B</strong></div>
+</div>
+<div class="q-card" id="q7">
+<div class="q-meta"><span class="q-num">No. 8</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Bacalah teks berikut ini dengan saksama!</p>
+<p><br>                                                   Semburan Baru Muncul di Mindi<br>             Semburan lumpur, air dan gas baru keluar dari halaman belakang rumah salah seorang penduduk warga Desa Mindi, Kecamatan Porong Kabupaten Sidoarjo. Semburan ini merupakan semburan ke-59 yang muncul di sekitaran pusat semburan utama. Menurut seorang ahli dari Leader Team Fergaco, perusahaan yang mengawasi gas-gas berbahaya di sekitar pusat semburan, semburan sama dengan 58 semburan liar yang sebelumnya. Semburan liar itu juga tidak berbahaya dan akan membesar.Kalau dibiarkan semburan itu akan mengecil sendiri. Untuk menutup semburan, hari ini akan dimasukkan 100 kologram semen ke dalam lubang asal semburan</p>
+<p>Ide pokok paragraph kedua teks di atas adalah….</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>Pengawasan gas oleh tim ahli</p></div></div><div class="opt correct"><span class="opt-lbl">B</span><div><p>Pendapat tentang semburan liar    </p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>Munculnya semburan liar</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p> mengecilnya semburan liar</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>penutupan lubang semburan</p></div></div></div><div class="key-row">Kunci: <strong>B</strong></div>
+</div>
+<div class="q-card" id="q8">
+<div class="q-meta"><span class="q-num">No. 9</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p>Bacalah kutipan berikut!</p>
+<p>”Dayat” Don bicara dengan agak keras dan menggerakkan pantatnya, kemudian bersandar. “ ini dari saya, Dayat” Dari Don. Ini tanda terima kasih saya. Tanpa kamu Dayat tanpa kalian berdua , saya tidak akan sanggup berhasil. Tak akan sanggup maju perjuangan kami disini”. Hidayat menggelengkan kepalanya, “ Tidak Don, Bukan begitu. Boleh jadi saya benar telah membantumu, don, tapi…. Ini tidak,Don. Terima kasih. Sungguh terima kasih atas kebijaksanaan baikmu. Maaf, kami tidak sanggup mendapatkan barang segini mahalnya darimu”.</p>
+<p>Pada kutipan tersebut, Don dan Dayat dua orang yang sangat baik.  Watak mereka dilukiskan pengarang melalui….</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>Penjelasan pengarang</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>Lingkungan tokoh</p></div></div><div class="opt correct"><span class="opt-lbl">C</span><p>a kesenjangan taraf pendidikan di Tanah A</p><div></div></div><div class="opt"><span class="opt-lbl">D</span><div><p> pikiran-pikiran tokoh</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>tanggapan tokoh lain</p></div></div></div><div class="key-row">Kunci: <strong>C</strong></div>
+</div>
+<div class="q-card" id="q9">
+<div class="q-meta"><span class="q-num">No. 10</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Bacalah kutipan berikut</p>
+<p>”Dayat” Don bicara dengan agak keras dan menggerakkan pantatnya, kemudian bersandar. “ ini dari saya, Dayat” Dari Don. Ini tanda terima kasih saya. Tanpa kamu Dayat tanpa kalian berdua , saya tidak akan sanggup berhasil. Tak akan sanggup maju perjuangan kami disini”. Hidayat menggelengkan kepalanya, “ Tidak Don, Bukan begitu. Boleh jadi saya benar telah membantumu, don, tapi…. Ini tidak,Don. Terima kasih. Sungguh terima kasih atas kebijaksanaan baikmu. Maaf, kami tidak sanggup mendapatkan barang segini mahalnya darimu”.</p>
+<p>Pada kutipan tersebut, Don dan Dayat dua orang yang sangat baik.  Watak mereka dilukiskan pengarang melalui….</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>Penjelasan pengarang</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>Lingkungan tokoh</p></div></div><div class="opt correct"><span class="opt-lbl">C</span><div><p>Dialog antar tokoh</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>pikiran-pikiran tokoh</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>tanggapan tokoh lain</p></div></div></div><div class="key-row">Kunci: <strong>C</strong></div>
+</div>
+<div class="q-card" id="q10">
+<div class="q-meta"><span class="q-num">No. 11</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Cermati penggalan teks biografi berikut!</p>
+<p>Masa kecil Habibie dilalui bersama saudara-saudaranya di Pare-pare, Sulawesi Selatan. Sifat tegas dan selalu memegang prinsip yang diyakini dan telah ditunjukkan Habibie sejak anak-anak Habibie yang pounya kegemaran menunggang kuda dan membaca ini dikenal sangat cerdas sejak duduk di sekolah dasar.</p>
+<p>Kutipan di atas termasuk struktur teks biografi bagian....</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>reorientasi</p></div></div><div class="opt correct"><span class="opt-lbl">B</span><div><p>masalah dan poeristiwa penting</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>orientasi</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>koda</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>simpulan</p></div></div></div><div class="key-row">Kunci: <strong>B</strong></div>
+</div>
+<div class="q-card" id="q11">
+<div class="q-meta"><span class="q-num">No. 12</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p>Persamaan antara teks anekdot dan cerita lucu adalah....</p>
+<p>PILIH 2 JAWABAN BENAR</p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div><p>termasuk jenis teks narasi</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>bersifat faktual</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>teks karangan bebas</p></div></div><div class="opt correct"><span class="opt-lbl">D</span><div><p>mempunyai tujuan komunikatif</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>ada unsur komedi di dalamnya</p></div></div></div><div class="key-row">Kunci: <strong>A, D</strong></div>
+</div>
+<div class="q-card" id="q12">
+<div class="q-meta"><span class="q-num">No. 13</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p>Alkisah, seorang raja bernama Timur Lenk menghadiahi Nasruddin seekor keledai. Nasruddin menerimanya denga senang hati.</p>
+<p>Kata kerja aktif dalam kalimat tersebut adalah….</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>seorang raja</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>bernama</p></div></div><div class="opt correct"><span class="opt-lbl">C</span><div><p>menghadiahi</p></div></div><div class="opt correct"><span class="opt-lbl">D</span><div><p>menerimanya</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>senang hati</p></div></div></div><div class="key-row">Kunci: <strong>C, D</strong></div>
+</div>
+<div class="q-card" id="q13">
+<div class="q-meta"><span class="q-num">No. 14</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p>Berikut bukan langkah-langkah membuat komik potongan yaitu....</p>
+<p>PILIH 2 JAWABAN BENAR</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>menentukan cerita yang akan dituangkan dalam bentuk komik</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>mengubah cerita yang dimiliki ke dalam naskah komik</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>membuat sketsa gambar</p></div></div><div class="opt correct"><span class="opt-lbl">D</span><div><p>menyuruh teman yang lucu untuk membuat </p></div></div><div class="opt correct"><span class="opt-lbl">E</span><div><p>meniru komik yang terkenal</p></div></div></div><div class="key-row">Kunci: <strong>D, E</strong></div>
+</div>
+<div class="q-card" id="q14">
+<div class="q-meta"><span class="q-num">No. 15</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p>Salah satu ciri hikayat adalah pralogis, artinya…</p>
+<p>PILIH 2 JAWABAN BENAR</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>Berdasar logika</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>Berdasarkan kerajaan</p></div></div><div class="opt correct"><span class="opt-lbl">C</span><div><p>Tidak berdasarkan logika</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Mengandung kepahlawanan</p></div></div><div class="opt correct"><span class="opt-lbl">E</span><div><p>Khayalan</p></div></div></div><div class="key-row">Kunci: <strong>C, E</strong></div>
+</div>
+<div class="q-card" id="q15">
+<div class="q-meta"><span class="q-num">No. 16</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p>Berikut ciri-ciri opini adalah....</p>
+<p>PILIH 2 JAWABAN BENAR</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>dapat dibuktikan kebenarannya</p></div></div><div class="opt correct"><span class="opt-lbl">B</span><div><p>bersifat subjektif disertai pendapat, saran, dan uraian penjelasan</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>mempunyai data yang akurat, baik waktu, tanggal, tempat, maupun peristiwa</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>dikumpulkan dari narasumber yang tepercaya</p></div></div><div class="opt correct"><span class="opt-lbl">E</span><div><p>pikiran atau pendapat seseorang atau kelompok</p></div></div></div><div class="key-row">Kunci: <strong>B, E</strong></div>
+</div>
+<div class="q-card" id="q16">
+<div class="q-meta"><span class="q-num">No. 17</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p>Contoh konjungsi berupa hubungan pertentangan adalah ....</p>
+<p>PILIH 2 JAWABAN BENAR</p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div><p>meskipun demikian</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>padahal</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>akibatnya</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>demikian pula</p></div></div><div class="opt correct"><span class="opt-lbl">E</span><div><p>sebaliknya</p></div></div></div><div class="key-row">Kunci: <strong>A, E</strong></div>
+</div>
+<div class="q-card" id="q17">
+<div class="q-meta"><span class="q-num">No. 18</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p>Penulisan imbuhan di- yang tepat adalah.....</p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div><p>Tawon mempunyai tubuh yang mudah dikenali dibandingkan kelas serangga lainnya.</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>Tubuh tawon dibagi menjadi tiga bagian utama, yaitu kepala, toraks, dan abdomen.</p></div></div><div class="opt correct"><span class="opt-lbl">C</span><div><p>Tubuh lebah madu ditutupi oleh pita kuning atau cokelat kemerahan dan pita gelap bergantian.</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Lebah madu dapat membangun sarang dikawasan lindung seperti rongga pohon atau bagian bawah bangunan.</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>Lebah madu sebenarnya merupakan hewan endemic di Asia Selatan dan Tim serta sebagian Afrika.</p></div></div></div><div class="key-row">Kunci: <strong>A, C</strong></div>
+</div>
+<div class="q-card" id="q18">
+<div class="q-meta"><span class="q-num">No. 19</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p>Pernyataan yang tepat mengenai tokoh utama dalam drama adalah....</p>
+<p>PILIH 2 JAWABAN BENAR</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>merupakan tokoh antagonis</p></div></div><div class="opt correct"><span class="opt-lbl">B</span><div><p>pendukung tokoh sentral</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>berlawanan dengan tokoh utama</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>memegang peran pelengkap</p></div></div><div class="opt correct"><span class="opt-lbl">E</span><div><p>tokoh tritagonis dapat menjadi tokoh sentral</p></div></div></div><div class="key-row">Kunci: <strong>B, E</strong></div>
+</div>
+<div class="q-card" id="q19">
+<div class="q-meta"><span class="q-num">No. 20</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p>Bacalah teks berikut!</p>
+<p>Anak-anak selalu menyukai makanan yang renyah dan manis. Cobalah membuat masakan olahan yang baru, tetapi mash terjaga gizi dan nutrisinya. Pilihan untuk membuat masakan ayam goreng madu, bisa menjadi pilihan tepat untuk memenuhi kebutuhan gizi anak-anak di masa tumbuh kembang mereka.<br>Bahan-bahannya, yaitu 1 ekor ayam, garam dan merica bubuk secukupnya, 100 mL kaldu, 1 sdm bawang puth bubuk, 1 bungkus bumbu kaldu ayam instan, 250 gram tepung terigu serbaguna, minyak sayur secukupnya, untuk menggoreng.<br>Cara membuat ayam goreng madu sebagai berikut.<br>1) Bumbui potongan daging ayam dengan garam dan merica bubuk, kemudian olesi dengan madu.<br>2) [...].<br>3) Di dalam mangkuk, campur dan aduk bawang putih bubuk, bumbu kaldu ayam. Guling-gulingkan hingga potongan daging ayam rata terbalut tepung berbumbu.<br>4) Panaskan minyak dalam wajan. Goreng ayam selama kurang lebih lima menit tiap sisinya hingga matang dan berwarna kuning kecokelatan.<br>5) Angkat, tiriskan, dan sajikan.<br>Tujuan penulisan teks tersebut terdapat di bagian ....</p>
+<p>PILIH 2 JAWABAN BENAR</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>Membuat masakan olahan yang renyah dan manis</p></div></div><div class="opt correct"><span class="opt-lbl">B</span><div><p>Membuat masakan olahan yang baru yaitu ayam goreng madu untuk kebutuhan gizi dan nutrisi anak</p></div></div><div class="opt correct"><span class="opt-lbl">C</span><div><p>Membuat masakan ayam goreng madu untuk memenuhi gizi anak-anak</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Memanfaatkan potongan daging ayam dan madu menjadi masakan</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>Memanfaatkan keterampilan memasak dengan berinovasi membuat ayam goreng madu</p></div></div></div><div class="key-row">Kunci: <strong>B, C</strong></div>
+</div>
+<div class="q-card" id="q20">
+<div class="q-meta"><span class="q-num">No. 21</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p>Bacalah teks berikut!<br>Salah satu kesalahan orang tua adalah mereka memberi anaknya gawai sebelum cukup umur,kemudian mereka khawatir akan efek negatifnya .sadarkah mereka bahwa yang harus dikhawatirkan efek negatifnya bukan gawai,tapi justru diri mereka sendiri? ya,orang tua itu bisa memberi efek yang sangat negatif terhadap anaknya. <br>Bagaimana dengan media sosial? itu juga sama. kenapa banyak orang tua yang sudah membuatkan akun media sosial untuk anaknya,sebelum mereka cukup umur? mengapa orang tua takut soal efek negatif media sosial,sementara mereka sendiri sibuk menyebar hoaks?</p>
+<p>Pernyataan yang sesuai dengan paragraph kedua adalah…</p>
+<p>PILIH 2 JAWABAN BENAR</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>Pemanfaatan media sosial sangat bergantung kepada kedewasaan umur penggunanya</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>Media sosial tidak selalu memberikan dampak buruk kepada para penggunanya</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>Tanpa disadari, ternyata banyak orang tua yang terus-menerus menyebarkan hoaks di media sosial mereka</p></div></div><div class="opt correct"><span class="opt-lbl">D</span><div><p>Banyak orang tua tidak menyadari bahaya membuatkan akun media sosial untuk anak mereka yang belum cukup umur</p></div></div><div class="opt correct"><span class="opt-lbl">E</span><div><p>Banyak orang tua yang membuatkan akun media sosial untuk anak mereka yang belum cukup umur</p></div></div></div><div class="key-row">Kunci: <strong>D, E</strong></div>
+</div>
+<div class="q-card" id="q21">
+<div class="q-meta"><span class="q-num">No. 22</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p>Bacalah paragraf berikut!</p>
+<p>        Pulau Siberut memiliki panorama sangat memesona. Pulau Siberut yang berada di Kepulauan Mentawai ini menjadi<strong><em> destinasi</em></strong> wisata terbaik di gugusan kepulauan tersebut. Keindahannya jarang dijumpai di tempat-tempat lain.</p>
+<p>Makna istilah tercetak miring dalam paragraf tersebut adalah tempat....</p>
+<p>PILIH 2 JAWABAN BENAR</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>berkunjung</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>menarik</p></div></div><div class="opt correct"><span class="opt-lbl">C</span><div><p>tempat tujuan</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>alternatif</p></div></div><div class="opt correct"><span class="opt-lbl">E</span><div><p>lokasi tujuan</p></div></div></div><div class="key-row">Kunci: <strong>C, E</strong></div>
+</div>
+<div class="q-card" id="q22">
+<div class="q-meta"><span class="q-num">No. 23</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p>Perhatikan paragraf berikut!</p>
+<p>1) Wilayah perairan Indonesia mulai dari laut teritorial hingga zona ekonomi eksklusive (ZEE) sejauh 200 mil kini tengah merestorasi dirinya.</p>
+<p>2) Ikan-ikan pelagis besar seperti tuna, cakalang dan tongkol berkembang biak di Laut Aru, Laut Maluku, Laut Jawa dan Samudra Hindia sebelah barat Sumatera.</p>
+<p>3) Begitu pula dengan ikan pelagis kecil seperti ikan kembung,dan ikan layang dapat berparade dengan leluasa di peraian Indonesia.</p>
+<p>4) Sebelumnya hampir semua wilayah Pengelolaan Perikanan (WPP) Indonesia merupakan zona merah bagi ikan dan biota laut lain. </p>
+<p>5) Tanda tersebut berarti telah terjadi exploitasi berlebihan terhadap sumber daya di laut..</p>
+<p>Kesalahan penggunaan kata serapan dalam paragraf tersebut terdapat pada kalimat nomor.....</p>
+<p>PILIH 2 JAWABAN BENAR</p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div><p>1</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>2</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>3</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>4</p></div></div><div class="opt correct"><span class="opt-lbl">E</span><div><p>5</p></div></div></div><div class="key-row">Kunci: <strong>A, E</strong></div>
+</div>
+<div class="q-card" id="q23">
+<div class="q-meta"><span class="q-num">No. 24</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Bacalah kedua teks berikut ini!</p>
+<p><strong>TEKS 1</strong></p>
+<p>Olah raga telah memasyarakat dikalangan generasi muda baik di kota maupun di desa. Segala bidang olahraga telah mereka lakukan,misalnya olahraga sepak bola, volly dan atletik. Akhir-akhir ini olah raga sepak bola sempat dinikmati kalangan muda.Mereka bisa menggunakan lapangan sepak bola tanpa menggunakan lapangan luas.Olah raga tersebut cukup dilakukan di dalam gedung dengan ruangan yang tidak luas.olah raga tersebut adalah futsal. Olah raga ini seperti sepak bola tetapi setiap regu hanya terdiri dari lima orang opemain.</p>
+<p><strong>TEKS 2</strong></p>
+<p>Sepak bola telah dilakukan oleh seluruh lapisan masyarakat.sampai ke pelosok desa. Di setiap kota ada perkumpulan sepak bola. Di setiap organisasi yang ada tidak pernah meninggalkan program ini..Jika ingin berolah raga sepak bola tanpa menggunakan lapangan yang luas dan pemain yang banyak, olah raga futsal jawabannya.Futsal hanya memerlukan lima orang pemain di setiap regu tempatnya.pun cukup dalam gedung.</p>
+<p>Persamaan kedua teks tersebut adalah....</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>Orang sadar akan hidup sehat dengan berolah raga.</p></div></div><div class="opt correct"><span class="opt-lbl">B</span><div><p>Olah raga sepak bola (futsal) semakin digemari masyarakat</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>Masyarakat lebih menyukai olah raga di dalam gedung,</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Program olah raga dikalangan pemuda</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>Semua olah raga sangat digemari,</p></div></div></div><div class="key-row">Kunci: <strong>B</strong></div>
+</div>
+<div class="q-card" id="q24">
+<div class="q-meta"><span class="q-num">No. 25</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p>Dalam teks biografi,orientasi berisi....</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>pandangan tokoh terhadap sesuatu</p></div></div><div class="opt correct"><span class="opt-lbl">B</span><div><p>pengenalan dan gambaran tokoh</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>Peristiwa yang dalam</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>masalah yang dialami tokoh</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>pandangan penulis terhadap tokoh</p></div></div></div><div class="key-row">Kunci: <strong>B</strong></div>
+</div>
+<div class="q-card" id="q25">
+<div class="q-meta"><span class="q-num">No. 26</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Bacalah puisi di bawah ini!</p>
+<p>                   Aku ingin</p>
+<p>       Sapardi Djoko Damono</p>
+<p>Aku ingin mencintaimu dengan sederhana</p>
+<p>dengan kata yang tak sempat diucap</p>
+<p>kayu kepada api yang menjadokannya abu</p>
+<p>Aku ingin mencintamu dengan sedeerhana</p>
+<p>dengan syarat yang tak sempat disampaikan awan</p>
+<p>kepada hujan yang menjadikan tiara</p>
+<p>Pesan yang terdapat dalam puisi itu adalah....</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>jangan mencintai secara berlebihan karena cinta itu bersifat sementara</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>cinta tidak dapat diduga karena datangnya bisa cepat sekali</p></div></div><div class="opt correct"><span class="opt-lbl">C</span><div><p>cinta itu ada yang palsu,,seperti kayu yang bisa jadi debu</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>cinta terkadang tidak bisa diungkapkan dengan kata dan isyarat</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>cinta itu rumit dan jika cinta menghilang, ia laksana kayu yang menjadi abu</p></div></div></div><div class="key-row">Kunci: <strong>C</strong></div>
+</div>
+<div class="q-card" id="q26">
+<div class="q-meta"><span class="q-num">No. 27</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p>Bacalah puisi di bawah ini!</p>
+<p>                   Aku ingin</p>
+<p>       Sapardi Djoko Damono</p>
+<p>Aku ingin mencintaimu dengan sederhana</p>
+<p>dengan kata yang tak sempat diucap</p>
+<p>kayu kepada api yang menjadokannya abu</p>
+<p>Aku ingin mencintamu dengan sedeerhana</p>
+<p>dengan syarat yang tak sempat disampaikan awan</p>
+<p>kepada hujan yang menjadikan tiara</p>
+<p>Pesan yang terdapat dalam puisi itu adalah....</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>jangan mencintai secara berlebihan karena cinta itu bersifat sementara</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>cinta tidak dapat diduga karena datangnya bisa cepat sekali</p></div></div><div class="opt correct"><span class="opt-lbl">C</span><div><p>Cinta itu ada yang palsu, seperti kayu yang bisa jadi debu</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>cinta kadang tidak bisa diungkapkan dengan kata atau isyarat</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>cinta itu rumit dan jika cinta menghilang,ia laksana kayu yang menjadi abu</p></div></div></div><div class="key-row">Kunci: <strong>C</strong></div>
+</div>
+<div class="q-card" id="q27">
+<div class="q-meta"><span class="q-num">No. 28</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Bacalah teks negosiasi berikut!</p>
+<p>Doni : "Hai Adi, terkait nama-nama kelompok yang kamu bagikan kemarin, saya agak keberatan"</p>
+<p>Adi :   "Keberatan bagaimana Don?"</p>
+<p>Doni : "Rumah anggota kelompok saya semua berdekatan, kecuali saya. Saat kerja kelompok pasti saya kesulitan.karena harus mendatangi rumah mereka yang jauh. Sebagai ketua kelas, bisakah kamu mengganti anggota kelompok saya dengan anggota kelompok yang berdekatan Adi?"</p>
+<p>Adi : ...........</p>
+<p>Kalimat persetujuan yang tepat untuk melengkapi teks negosisi di atas adalah.....</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>maaf Don, kamu sudah terlambat</p></div></div><div class="opt correct"><span class="opt-lbl">B</span><div><p>boleh saja, asal kamu mencari sendiri anggota kelompok lain yang  bersedia berganti kelompok</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>semua orang tidak mau lagi berpindah-pindah kelompok</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>ibu guru pasti akan marah jika berganti kelompok</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>lha Adi mana bisa begitu</p></div></div></div><div class="key-row">Kunci: <strong>B</strong></div>
+</div>
+<div class="q-card" id="q28">
+<div class="q-meta"><span class="q-num">No. 29</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Perhatikan penggalan surat penawaran berikut!</p>
+<p>Dalam rangka bulan promosi, kami menawarkan pada perusahaan Anda spesial harga. Jenis produk dan harga jasa.dapat dilihat pada brosur terlampir. (harga dan ketentuan berlaku).. kami menggunakan produk-produk yang berkualitas dan terjamin. Keterangan lebih lanjut hubungi custumer service kami melalui hp 08240832132. Percayakan kebutuhan perusahaan Anda kepada kami.</p>
+<p>Bagian tersebut merupakan bagian surat penawaran yang berupa....</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>pembukaan</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>penutup</p></div></div><div class="opt correct"><span class="opt-lbl">C</span><div><p>isi</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>imbauan</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>salam pembuka</p></div></div></div><div class="key-row">Kunci: <strong>C</strong></div>
+</div>
+<div class="q-card" id="q29">
+<div class="q-meta"><span class="q-num">No. 30</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p>Bagian teks argumentasi yang menyampaikan pendapat dengan berfokus pada usaha yang membuktikan pendapat atau gagasan yang telah disampaikan adalah....</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>orientasi</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>pendahuluan</p></div></div><div class="opt correct"><span class="opt-lbl">C</span><div><p>tubuh argumen</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>penutup</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>kesimpulan</p></div></div></div><div class="key-row">Kunci: <strong>C</strong></div>
+</div>
+<div class="q-card" id="q30">
+<div class="q-meta"><span class="q-num">No. 31</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p>Bacalah argumentasi berikut!</p>
+<p>(1) Badan Pusat Statistik memasukkan pangan sebagai penentu garis kemiskinan.(2)  Oleh karena itu pemerintah berkepentingan menjagaharga pangan selalu stabil. (3) Program Presiden dalam masa jabatan yang kedua adalah memastikan adanya cadangan beras 10 juta ton yang harus diusahakan dari produksi dalam negeri. (4)  Keuntungan memproduksi sendiri pangan di dalam negeri adalah menghindarkan ketergantungan dari impor. (5) Dengan demikian Indonesia memiliki ketahanan dan kedaulatan pangan.</p>
+<p>Opini dalam argumentasi di atas adalah....</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>pangan bukan sebagai penentu garis kemiskinan</p></div></div><div class="opt correct"><span class="opt-lbl">B</span><div><p>pemerintah berkepentingan menjaga harga pangan selalu stabil</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>Pesiden memastikan  Indonesia memiliki cadangan beras</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>produksi pangan Indonesia selalu stabil dan terkendali</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>Indonesia sudah memiliki kestabilan dan ketahanan pangan</p></div></div></div><div class="key-row">Kunci: <strong>B</strong></div>
+</div>
+<div class="q-card" id="q31">
+<div class="q-meta"><span class="q-num">No. 32</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Bacalah argumentasi berikut!</p>
+<p>(1) Badan Pusat Statistik memasukkan pangan sebagai penentu garis kemiskinan.(2)  Oleh karena itu pemerintah berkepentingan menjagaharga pangan selalu stabil. (3) Program Presiden dalam masa jabatan yang kedua adalah memastikan adanya cadangan beras 10 juta ton yang harus diusahakan dari produksi dalam negeri. (4)  Keuntungan memproduksi sendiri pangan di dalam negeri adalah menghindarkan ketergantungan dari impor. (5) Dengan demikian Indonesia memiliki ketahanan dan kedaulatan pangan.</p>
+<p>Opini dalam argumentasi di atas adalah....</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>pangan bukan sebagai penentu garis kemiskinan</p></div></div><div class="opt correct"><span class="opt-lbl">B</span><div><p>pemerintah berkepentingan menjaga harga pangan selalu stabil</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>Pesiden memastikan  Indonesia memiliki cadangan beras</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>produksi pangan Indonesia selalu stabil dan terkendali</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>Indonesia memiliki ketahanan dan kestabilan pangan</p></div></div></div><div class="key-row">Kunci: <strong>B</strong></div>
+</div>
+<div class="q-card" id="q32">
+<div class="q-meta"><span class="q-num">No. 33</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p>Sebuah teks yang melaporkan kejadian,peristiwa atau informasi mengenai sesuatu yang telah atau sedang terjadi disebut  teks....</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>artikel</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>eksposisi</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>esai</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>editorial</p></div></div><div class="opt correct"><span class="opt-lbl">E</span><div><p>berita</p></div></div></div><div class="key-row">Kunci: <strong>E</strong></div>
+</div>
+<div class="q-card" id="q33">
+<div class="q-meta"><span class="q-num">No. 34</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Tampaknya kisah ini merupakan kisah nyata,artinya riwayat yang demikian sering didengar pengarangnya. Kejadian-kejadian yang dipaparkan didalamnya benar-benar jelas dan teliti.. Posisi masing-masing tokoh begitu teguh seperti biografi. Sayangnya pengarang tidak berhasil mengerahkannya secara  luas.</p>
+<p>Dilihat dari segi isi, resensi tersebut merupakan contoh....</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>identitas buku</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>sinopsis cerita</p></div></div><div class="opt correct"><span class="opt-lbl">C</span><div><p>analisis keunggulan dan kelemahan buku</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>isi cerita</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>simpulan</p></div></div></div><div class="key-row">Kunci: <strong>C</strong></div>
+</div>
+<div class="q-card" id="q34">
+<div class="q-meta"><span class="q-num">No. 35</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Bacalah cerpen berikut!</p>
+<p>Aneh..pagi ini begitu sepi, kota yang benar-benar sepi.Apalagi semenjak Tegar berpindah kota. Kota yang sangat jauh, dan yang tak mungkin aku datangi.  Aku memandang kanan dan kiriku tampak kosong hanya beberapa tentara Indonesia dan beberapa penduduk yang terlantar seperti pengemis.</p>
+<p>Bulan ini bulan Maret, tepatnya 23 Maret 1946, aku ingat tanggal hari ini,18 hari setelah tegar pergi. Pagi ini sepi penduduk sibuk di dalam rumah mereka masing-masing.Aku melihat tentara Indonesia yang sedang berbicara pada seorang kakek, rupanya kakek itu bertanya sesungguhnya yang terjadi pada hari ini, yang aku sendiri tidak tahu yang terjadi pada hari ini.</p>
+<p>Tak seperti biasanya,hari ini banyak tentara Indonesia yang berjaga sedangkan tentara Jepang tidak terlihat berkeliaran. Aku berpikir sepertinya mereka sudah pergi. Tetapi entahlah aku tak yakin soal itu. Aku berjalan di sekitaran rumah, melihat para orang tua dan anak-anak sibuk sendiri, menyiapkan sesuatu yang aku tidak mengerti. Aku pun menghampiri tentara Indonesia yang sedang berjaga-jaga. yang tadi kulihat sedang berbicara pada kakek..</p>
+<p>"Bapak kenapa kota ini sepi?" tatapku heran kepada tentara Indonesia yang gagah itu.</p>
+<p>"Hari ini dalam waktu 7 jam ke depan, orang tua yang sedang sibuk untuk mempersiapkan bumi hangus,", kata tentara Indonesia yang sedang berjaga-jaga itu</p>
+<p>Latar  peristiwa  sejarah cerpen itu adalah....</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>pertempuran 10 November</p></div></div><div class="opt correct"><span class="opt-lbl">B</span><div><p>Peristiwa Bandung Lautan Api</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>Peristiwa Proklamasi</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>peristiwa ambarawa</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>perang puputan</p></div></div></div><div class="key-row">Kunci: <strong>B</strong></div>
+</div>
+<div class="q-card" id="q35">
+<div class="q-meta"><span class="q-num">No. 36</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p>Berikut bukan pembangun unsur naskah drama....</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>tokoh</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>alur</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>tema</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>amanat</p></div></div><div class="opt correct"><span class="opt-lbl">E</span><div><p>biografi penulis</p></div></div></div><div class="key-row">Kunci: <strong>E</strong></div>
+</div>
+<div class="q-card" id="q36">
+<div class="q-meta"><span class="q-num">No. 37</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Cermati teks prosedur  komplek berikut ini!</p>
+<p>Petunjuk Menggunakan Mesin Bor</p>
+<p>(1) Pasangkan mata bor.</p>
+<p>(2)  Masukkkan steker ke dalam stop kontak.</p>
+<p>(3)  Arahkan mesin bor dengan tepat kea rah tempat yang akan dilobangi dan dikunci.</p>
+<p>(4)  Hidupkan mesin.</p>
+<p>(5) Atur kecepatan mesin.</p>
+<p>(6) Matikan mesin dan tunggu sampai putaran berhenti.</p>
+<p>(7) ...............</p>
+<p>Kalimat yang tepat untuk melengkapi teks prosedur komplek di atas adalah...</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>Periksa benda yang telah dilobangi.</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>Masukkan bor ke dalam kardus.</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>Bersihkan bor yang telah digunakan.</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Bukalah mata bor,lalu cabut stiker darn stopkontak</p></div></div><div class="opt correct"><span class="opt-lbl">E</span><div><p>Cabut steker dari stopkontak dan bukalah mata bor.</p></div></div></div><div class="key-row">Kunci: <strong>E</strong></div>
+</div>
+<div class="q-card" id="q37">
+<div class="q-meta"><span class="q-num">No. 38</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Perhatikan teks berikut!</p>
+<p>(1) Diwaktu sekarang ini nilai-nilai persatuan dan kesatuan para pemuda sudah mulai pudar.</p>
+<p>(2) Sebab sudah banyak pemuda yang melakukan penyimpangan perilaku.</p>
+<p>(3)  Sudah mulai banyak perkelahian, pencurian, rokok, minuman keras dan hubungan terlarang para pemuda.</p>
+<p>(4)  Hal inilah yang menjadikan nilai-milai persatuan dan kesatuan mulai pudar.</p>
+<p>(5) Oleh karena itu pemuda harus bisa mengontrol diri dari hal-hal negatif</p>
+<p>Kesimpulan teks terdapat dalam kalimat.... </p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div><p>1</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>2</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>3</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>4</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>5</p></div></div></div><div class="key-row">Kunci: <strong>A</strong></div>
+</div>
+<div class="q-card" id="q38">
+<div class="q-meta"><span class="q-num">No. 39</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Kalimat di bawah ini yang menggunakan penerapan kaidah penggunaan tanda baca petik tunggal dan ganda adalah.... </p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>“Jangan habiskan waktumu untuk mengerjakan hal-hal yang dirasa kurang bermanfaat,” kata Ayah kepadaku</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>Aurel berteriak,”Paman sedang melakukan perjalanan dinas ke luar kota.”</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>“Saya mendengar suara ‘bip-bip’ di belakang rumah,” celetuk Anissa kepada adiknya.</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Farah berkata, “Sudahkah kamu sampaikan pesanku, Sin?”</p></div></div><div class="opt correct"><span class="opt-lbl">E</span><div><p>Siswa harus mempelajari ‘Morfologi ilmu bertukar kata’ sebelum dia masuki ke bab selanjutnya.</p></div></div></div><div class="key-row">Kunci: <strong>E</strong></div>
+</div>
+<div class="q-card" id="q39">
+<div class="q-meta"><span class="q-num">No. 40</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Cermatilah paragraf berikut!</p>
+<p>pemandangan indah Pantai Bira, Bulukumba sangat memesona. Di sepanjang  tepi pantai terlihat  pasir putih yang sangat indah.(....). Di depan pantai ini tampak pula dua pulau yaitu, Pantai Lukang dan Pantai Kambing.</p>
+<p>Kalimat deskripsi yang tepat untuk melengkapi paragraf tersebut adalah....</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>Banyak wisatawan yang mengunjungi Pantai Bira</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>Tanjung Bira terletak sekitar 40 km dari kota Bulukumba</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>Pantai Bira dilengkapi dengan berbagai fasilitas</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Di kawasan pantai ini terdapat pelabuhan kapal feri</p></div></div><div class="opt correct"><span class="opt-lbl">E</span><div><p>Pasir putih itu lembut seperti tepung terigu</p></div></div></div><div class="key-row">Kunci: <strong>E</strong></div>
+</div>
+<div class="q-card" id="q40">
+<div class="q-meta"><span class="q-num">No. 41</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Perhatikan teks berikut!</p>
+<p>Problematika utama tidak berkembangnya pariwisata di Indonesia adalah dangkalnya kesadaran dan potensi yang kita miliki. Pemerintah pusat atau daerah masih senang mendapatkan uang dengan cara eksploitasi sumber daya alam. Mereka lebih suka membabat hutan untuk mengambil kayunya menggali buminya untk mengeduk mineral di dalamnya atau menggantikan pepohonan hutan dengan kelapa sawit. Pariwisata dianggap tidak terlalu menguntungkan terutama untuk pejabat yang korupsi. Tidak ada resort atau pengelola wisata yang bisa membayar setoran ke pejabat korup sebesar yang disetor pejabat hutan dan pemilik tambang.</p>
+<p>Pilihan kata yang tepat untuk menggati kata yang bercetak miring dalam paragraf di atas adalah....</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>Problem,eksploitasi,korup</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>Problematika,mengeksploitasi,koruptor</p></div></div><div class="opt correct"><span class="opt-lbl">C</span><div><p>Problem,mengeksploitasi,korup</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Problem,eksploitasi,koruptor,</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>problematika, eksploitasi, korup</p></div></div></div><div class="key-row">Kunci: <strong>C</strong></div>
+</div>
+<div class="q-card" id="q41">
+<div class="q-meta"><span class="q-num">No. 42</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Cermatilah teks berikut!</p>
+<p>RA Kartini membaca semua majalah atau surat kabar kebudayaan berbahasa Belanda yang menjadi langganan pada usianya, misalnya karya LOuis Copertus,De Style K,karya Van Enden,Augusta de Watt dan beberapa roman-roman beraliran feminis yang berbahasa Belanda. Selain itu ia membaca buku karya Multatuli yang berjudul Max Havelar dan surat-surat cinta. Ketertarikannya dalam membaca membuatnya memiliki perhatian khusus pada emansipasi wanita, terutama melihat perbandingan anatar wanita Belanda dan wanita pribumi. Selain itu ia juga menaruh perhatian pada masalah sosial yang terjadi. Menurutnya seorang wanita operlu mendapat persamaan kebebasan otonomi serta kesetaraan hukum..</p>
+<p>Hal yang patut diteladani dari tokoh RA Kartini adalah....</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>Cukup membandingkan wanita Eropa dengan wanita pribumi</p></div></div><div class="opt correct"><span class="opt-lbl">B</span><div><p>Kepedulian terhadap emansipasi wanita dan manusia social</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>Perhatian terhadap rakyat kecil dan kaum wanita</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Mengajak kaum wanita untuk membaca</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>Mengajak kaum wanita untuk giat bekerja</p></div></div></div><div class="key-row">Kunci: <strong>B</strong></div>
+</div>
+<div class="q-card" id="q42">
+<div class="q-meta"><span class="q-num">No. 43</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Daftar pustaka yang ditulis dengan benar adalah .....</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>Kayam.Umar. 1981. Seni Tradisi Masyarakat. Jakarta. Sinar Harapa</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>Kayam, Umar, 1981, Seni Tradisi Masyarakat, Jakarta, Sinar Harapan</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>Kayam: Umar: 1981: Seni Tradisi Masyarakat Jakarta: Sinar Harapan</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Kayam; Umar; 1981; Seni Tradisi Masyarakat; Jakarta; Sinar Harapan</p></div></div><div class="opt correct"><span class="opt-lbl">E</span><div><p>Kayam, Umar. 1981. Seni Tradisi Masyarakat. Jakarta: Sinar Harapan.</p></div></div></div><div class="key-row">Kunci: <strong>E</strong></div>
+</div>
+<div class="q-card" id="q43">
+<div class="q-meta"><span class="q-num">No. 44</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Cermatilah topik karya ilmiah berikut!</p>
+<p>Topik : Penyelamatan Hutan Tropis Penyelamat Dunia</p>
+<p>Kalimat latar belakang yang sesuai topik di atas....</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>Kebakaran hutan dari tahun ketahun makin meningkat sehingga banjir besar sering terjadi dimana-mana.</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>Perlu ditumbuhkan kesadaran bagi masyarakat yang tinggal di tepi hutan agar tidak seenaknya merambah hutan</p></div></div><div class="opt correct"><span class="opt-lbl">C</span><div><p>Penebangan hutan dan kebakaran hutan dari tahun ke tahun makin meningkat sehingga iklim dunia makin panas.</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>Penebangan hutan sebaiknya secara cermat agar tidak terjadi penggundulan hutan yang mengakibatkan ilim makin panas.</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>Pemerintah sebaiknya mengawasi penebangan hutan yang dilakukan oleh pemegang HPH sehingga tidak terjadi penggundulan hutan secara membabi buta.</p></div></div></div><div class="key-row">Kunci: <strong>C</strong></div>
+</div>
+<div class="q-card" id="q44">
+<div class="q-meta"><span class="q-num">No. 45</span><span class="q-badge badge-multi">Multi Jawaban</span></div>
+<div class="q-text"><p>Karya tulis yang dibuat berdasarkan prinsip-prinsip ilmiah berdasarkan data dan fakta (observasi,eksperimen dan kajian pustaka) disebut....</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div><p>proposal penelitian</p></div></div><div class="opt correct"><span class="opt-lbl">B</span><div><p>karya ilmiah</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>disertasi</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>skripsi</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>tesis</p></div></div></div><div class="key-row">Kunci: <strong>B</strong></div>
+</div>
+<div class="q-card" id="q45">
+<div class="q-meta"><span class="q-num">No. 46</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Bacalah puisi berikut!</p>
+<p>      AKU</p>
+<p>Karya Chairil Anwar</p>
+<p>Tak perlu sedu sedan itu</p>
+<p>Aku ini binatang jalang</p>
+<p>Dari kumpulannya yang terbuang</p>
+<p>Makna kata "binatang jalang" dalam puisi tersebut adalah....</p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div><p>orang yang terpinggirkan</p></div></div><div class="opt"><span class="opt-lbl">B</span><div><p>orang yang dihormati</p></div></div><div class="opt"><span class="opt-lbl">C</span><div><p>binatang yang liar</p></div></div><div class="opt"><span class="opt-lbl">D</span><div><p>binatang yang disayangi</p></div></div><div class="opt"><span class="opt-lbl">E</span><div><p>orang yang kesepian</p></div></div></div><div class="key-row">Kunci: <strong>A</strong></div>
+</div>
+<div class="q-card" id="q46">
+<div class="q-meta"><span class="q-num">No. 47</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Perhatikan teks berikut ini!</p>
+<p>Pamflet pertunjukan drama adalah selebaran berisi informasi pertunjukan drama yang bertujuan untuk menarik minat calon penonton dan menginformasikan tentang acara tersebut. Pamflet ini biasanya berisi judul pertunjukan, sinopsis singkat, waktu dan tempat pertunjukan serta informasi tentang pemain dan kru produksi.</p>
+<p>Pernyataan di bawah ini <strong>benar</strong> atau <strong>salah </strong>berdasarkan teks di atas..</p>
+<p>Informasi pemain dan kru produksi biasanya tidak dimuat dalam pamflet.</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div>true</div></div><div class="opt correct"><span class="opt-lbl">B</span><div>false</div></div></div><div class="key-row">Kunci: <strong>B</strong></div>
+</div>
+<div class="q-card" id="q47">
+<div class="q-meta"><span class="q-num">No. 48</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Perhatikan teks di bawah ini!</p>
+<p><em>Rectoverso</em> adalah buku karya Dewi Lestari berupa gabungan antara cerita pendekdan lagu. Buku ini berisi sebelas cerita pendek yang masing-masing memiliki lagu yang diciptakan dan dinyanyikan oleh Dewi Lestari sendiri. Cerita dan lagu dalam <em>Rectoverso </em>saling melengkapi menghadirkan pengalaman membaca dan mendengarkan yang unik.</p>
+<p>Setiap cerita dalam buku ini memiliki makna mendalam dan menyentuh emosi pembaca. Beberapa judul cerita<em> Rectovers</em>o antara lain, "Curhat buat Sahabat", "Malaikat Juga Tahu", "Selamat Ulang Tahun", "Peluk","Cecak di Dinding.</p>
+<p>Pernyataan berikut <strong>bena</strong>r atau <strong>salah</strong> berdasarkan teks di atas!</p>
+<p>Buku Rectoverso berisi gabungan cerita pendek dan lagu.</p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div>true</div></div><div class="opt"><span class="opt-lbl">B</span><div>false</div></div></div><div class="key-row">Kunci: <strong>A</strong></div>
+</div>
+<div class="q-card" id="q48">
+<div class="q-meta"><span class="q-num">No. 49</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Perhatikan dialog di bawah ini!</p>
+<p>Pembeli : "Maaf, Bu. Harga buku ini Rp 50.000,00. Apakah bisa kurang?</p>
+<p>Penjual : " Buku itu banyak dicari. Tetapi, kalau beli dua buku, saya bisa berikan harga Rp 45.000,00 per buku."</p>
+<p>Pembeli : "Kalau saya beli dua buku, boleh Rp 40.000,00 per buku ya?</p>
+<p>Penjual : " Begini saja, saya beri harga Rp 43.000,00 per buku kalau mau ambil dua. Setuju?"</p>
+<p>Pembeli :"Baik, saya setuju."</p>
+<p>Berdasarkan dialog di atas pernyataan berikut<strong> benar</strong> atau <strong>salah..</strong>.,</p>
+<p>Negosiasi berakhir dengan kesepakatan antara pembeli dan penjual.</p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div>true</div></div><div class="opt"><span class="opt-lbl">B</span><div>false</div></div></div><div class="key-row">Kunci: <strong>A</strong></div>
+</div>
+<div class="q-card" id="q49">
+<div class="q-meta"><span class="q-num">No. 50</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Perhatikan teks di bawah ini!</p>
+<p>Karena bisa berbahasa Belanda. Kartini belajar sendiri dan menulis surat kepada teman-teman korespondesi dari Belanda. Dan membaca berbagai buku, koran, dan majalah Eropa. Kartini menjadi tertarik pada kemajuan berpikir perempuan Eropa.</p>
+<p>Tentukan <strong>benar </strong>atau <strong>salah</strong> pernyataan berikut ini!</p>
+<p>Kata kerja pasif yang digunakan adalah menulis.</p></div>
+<div class="opts"><div class="opt"><span class="opt-lbl">A</span><div>true</div></div><div class="opt correct"><span class="opt-lbl">B</span><div>false</div></div></div><div class="key-row">Kunci: <strong>B</strong></div>
+</div>
+<div class="q-card" id="q50">
+<div class="q-meta"><span class="q-num">No. 51</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Perhatikanlah puisi berikut!</p>
+<p>              <strong> Rindu Ibu</strong></p>
+<p>Wajahmu rembulan yang meneduhkan</p>
+<p>Suaramu, alunan lagu mengantar malam</p>
+<p>Dalam doamu, aku tumbuh jadi harapan</p>
+<p>Berdasarkan puisi di atas pernyataan di bawah ini <strong>benar</strong> atau <strong>salah</strong></p>
+<p>Baris kedua menggunakan majas Personifikasi</p>
+<p></p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div>true</div></div><div class="opt"><span class="opt-lbl">B</span><div>false</div></div></div><div class="key-row">Kunci: <strong>A</strong></div>
+</div>
+
+<div class="q-card" id="q50">
+<div class="q-meta"><span class="q-num">No. 51</span><span class="q-badge badge-mc">Pilihan Ganda</span></div>
+<div class="q-text"><p>Perhatikanlah puisi berikut!</p>
+<p>              <strong> Rindu Ibu</strong></p>
+<p>Wajahmu rembulan yang meneduhkan</p>
+<p>Suaramu, alunan lagu mengantar malam</p>
+<p>Dalam doamu, aku tumbuh jadi harapan</p>
+<p>Berdasarkan puisi di atas pernyataan di bawah ini <strong>benar</strong> atau <strong>salah</strong></p>
+<p>Baris kedua menggunakan majas Personifikasi</p>
+<p></p></div>
+<div class="opts"><div class="opt correct"><span class="opt-lbl">A</span><div>true</div></div><div class="opt"><span class="opt-lbl">B</span><div>false</div></div></div><div class="key-row">Kunci: <strong>A</strong></div>
+</div>
+
+<div class="q-card" id="q-reorder-35">
+  <div class="q-meta"><span class="q-num">No. 35</span><span class="q-badge badge-mc">Essay</span></div>
+    <div class="q-text"><p>Perhatikan dialog di bawah ini!</p>
+    <p>Pak Bagus : "Contekan siapa ini?" (sambil mengawas dengan tajam)</p>
+    <p>Nathan : " Bukan saya, Pak"</p>
+    <p>Pak Bagus : "Kalian berdua maju!" (dengan wajah tafakur)</p>
+    <p>Lola: " Kertas itu bukan milik saya, Pak"</p>
+    <p>Pak Bagus : "Bapak tidak mengajar murid-murid pembohong!" ( berjalan menuju keluar kelas)</p>
+    <p>Di manakah latar kutipan drama di atas?</p>
+    <p></p></div>
+    <div class="opts">
+      <div class="opt correct"></span>di kelas</div>
+  </div>
+  <div class="key-row">Kunci: <strong>di kelas</strong></div>
+</div>
+
+<div class="q-card" id="q-reorder-36">
+  <div class="q-meta"><span class="q-num">No. 36</span><span class="q-badge badge-mc">Essay</span></div>
+    <div class="q-text"><p>Perhatikan dialog di bawah ini!</p>
+    <p><em>Rani sedang duduk di bawah pohon sambil membaca buku. Bima datang sambil makan permen dan membuang bungkusannya ke tanah.</em></p>
+    <p>Rani : (menoleh)"Bima, kamu buang samtru dari hal yang kecilpah sembarangan lagi? ini kan halaman sekolah bukan tempat sampah."</p>
+    <p>Bima : "Ah, cuma bungkus permen. Tidak masalah kan?"</p>
+    <p>Rani : "Justru dari hal yang kecil seperti itu bisa jadi kebiasaan. Pohon ini rindang karena kita jaga bersama. Masa kita rusak lingkungannya?</p>
+    <p>Bima : " (merasa bersalah) "Iya juga ya. Aku tidak kepikiran. Terima kasih Rani. Mulai sekarang aku janji  tidak buang sampah sembarangan lagi.</p>
+    <p>Rani : "Bagus! Ayo kita rawat bersama-sama! Pohon ini sudah seperti saksi kita belajar dan bermain."</p>
+    <p>Nilai apakah yang ada dalam dialog di atas?</p></div>
+    <div class="opts">
+      <div class="opt correct"></span>di kelas</div>
+  </div>
+  <div class="key-row">Kunci: <strong>di kelas</strong></div>
+</div>
+
+<div class="q-card" id="q-reorder-36">
+  <div class="q-meta"><span class="q-num">No. 36</span><span class="q-badge badge-mc">Essay</span></div>
+    <div class="q-text"><p>Perhatikan dialog di bawah ini!</p>
+    <p><em>Rani sedang duduk di bawah pohon sambil membaca buku. Bima datang sambil makan permen dan membuang bungkusannya ke tanah.</em></p>
+    <p>Rani : (menoleh)"Bima, kamu buang samtru dari hal yang kecilpah sembarangan lagi? ini kan halaman sekolah bukan tempat sampah."</p>
+    <p>Bima : "Ah, cuma bungkus permen. Tidak masalah kan?"</p>
+    <p>Rani : "Justru dari hal yang kecil seperti itu bisa jadi kebiasaan. Pohon ini rindang karena kita jaga bersama. Masa kita rusak lingkungannya?</p>
+    <p>Bima : " (merasa bersalah) "Iya juga ya. Aku tidak kepikiran. Terima kasih Rani. Mulai sekarang aku janji  tidak buang sampah sembarangan lagi.</p>
+    <p>Rani : "Bagus! Ayo kita rawat bersama-sama! Pohon ini sudah seperti saksi kita belajar dan bermain."</p>
+    <p>Nilai apakah yang ada dalam dialog di atas?</p></div>
+    <div class="opts">
+      <div class="opt correct"></span>moral</div>
+  </div>
+  <div class="key-row">Kunci: <strong>moral</strong></div>
+</div>
+
+<div class="q-card" id="q-reorder-37">
+  <div class="q-meta"><span class="q-num">No. 37</span><span class="q-badge badge-mc">Essay</span></div>
+    <div class="q-text"><p>Perhatikan teks berikut ini!</p>
+<p>          Salah satu sumber daya alam di Indonesia yang memiliki nilai esensi serta ekonomis adalah hutan. Hutan memiliki fungsi penting. Di samping sebagai oparu-paru dunia dan tempat tinggal fauna, dalam beberapa dekade ini, alih fungsi hutan salah satunya sebagai sarana pembelajaran berbasis wisata yang syarat nilai ekonomis bagi pengelolanya. hal tersebut perlu diperhatikan secara serius, mengingat akhir-akhir ini banyak eksploitasi hutan untuk kepentingan fungsional ekonomi saja. Salah satu dari sekian banyak kawasan hutan yang dapat dijadikan sebagai sarana edukasi dan wisata adalah hutan bakau.</p>
+<p>Ide pokok paragraf di atas adalah....</p></div>
+    <div class="opts">
+      <div class="opt correct"></span>Salah satu sumber daya alam di Indonesia yang memiliki nilai esensi serta ekonomis adalah hutan.</div>
+  </div>
+  <div class="key-row">Kunci: <strong>Salah satu sumber daya alam di Indonesia yang memiliki nilai esensi serta ekonomis adalah hutan.</strong></div>
+</div>
+
+<div class="q-card" id="q-reorder-38">
+  <div class="q-meta"><span class="q-num">No. 38</span><span class="q-badge badge-mc">Essay</span></div>
+    <div class="q-text"><p>Perhatikan puisi di bawah ini!</p>
+<p>Di timur terbentang cuaca terang</p>
+<p><em><strong>Sang surya bangun beradu</strong></em></p>
+<p>Tanda akan datang meraja siang</p>
+<p>Malam melajang sementara waktu</p>
+<p>Majas yang ada pada baris kedua adalah....</p></p></div>
+    <div class="opts">
+      <div class="opt correct"></span>personifikasi</div>
+  </div>
+  <div class="key-row">Kunci: <strong>personifikasi</strong></div>
+</div>
+
+<div class="q-card" id="q-reorder-39">
+  <div class="q-meta"><span class="q-num">No. 39</span><span class="q-badge badge-mc">Essay</span></div>
+    <div class="q-text"><p>Moda<em><strong> transportasi</strong></em> darat mendapat perhatian penuh dari pemerintah.</p>
+<p>Kata <strong>transportasi </strong> mengalami proses serapan masuk dalam bahasa Indonesia melalyi proses....</p></div>
+    <div class="opts">
+      <div class="opt correct"></span>adaptasi</div>
+  </div>
+  <div class="key-row">Kunci: <strong>adaptasi</strong></div>
+</div>
+
+  </div>
+</div>
+<footer>Dibuat dengan <strong>QuizConverter</strong> by cybertass &mdash; 30 Maret 2026</footer>
+
+</body>
+</html>
